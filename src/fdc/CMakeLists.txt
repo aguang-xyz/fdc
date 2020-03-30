@@ -1,7 +1,9 @@
 aux_source_directory(. SRCS)
 
-add_library(fdc ${SRCS})
+add_library(fdc SHARED ${SRCS})
 
-install(TARGETS fdc DESTINATION bin)
+set_target_properties(fdc PROPERTIES PUBLIC_HEADER "fdc.hpp")
 
-install(FILES fdc.h DESTINATION include)
+install(TARGETS fdc
+        LIBRARY DESTINATION lib
+        PUBLIC_HEADER DESTINATION include)
