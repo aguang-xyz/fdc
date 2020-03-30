@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['to_5fstr',['to_str',['../namespacefdc.html#afdb47b8ae4f99d6feb656cfc54297cb1',1,'fdc::to_str(attr x)'],['../namespacefdc.html#a21a64b4ebd41783b12cdc82651201997',1,'fdc::to_str(attrs X)'],['../namespacefdc.html#a8d91f63e8dcb1d1f969440a2dc14118a',1,'fdc::to_str(fd f)'],['../namespacefdc.html#a03e229c07daf5f72688eadf7fa4323df',1,'fdc::to_str(fds F)']]],
-  ['types_2eh',['types.h',['../types_8h.html',1,'']]]
+  ['union_5fof',['union_of',['../namespacefdc.html#a438dbefd68e9ba6074057f70f247ee1c',1,'fdc']]],
+  ['utils_2ecpp',['utils.cpp',['../utils_8cpp.html',1,'']]],
+  ['utils_2eh',['utils.h',['../utils_8h.html',1,'']]]
 ];

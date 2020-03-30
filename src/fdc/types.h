@@ -1,12 +1,3 @@
-/**
- * @file fds/types.h
- * @brief Basic typedefs for fdc.
- * @author: Guangrui Wang
- * @email: aguang.xyz@gmail.com
- * @version: 1.0.0
- * @date 2020-03-30
- */
-
 #include <set>
 #include <queue>
 #include <string>
@@ -15,7 +6,8 @@
 #define __fd_cover_types_inc__
 
 /**
- * @brief Functional Dependency Cover Library.
+ * @brief A cross-platform library for calculating the covers of functional
+ * dependencies.
  */
 namespace fdc {
 

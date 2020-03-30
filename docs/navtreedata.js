@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "Functional Dependencies' Covers", "index.html", [
-    [ "Optimum Covers of Functional Dependencies", "md_README.html", null ],
+    [ "FDC - Functional Dependencies' Covers", "md_README.html", null ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
