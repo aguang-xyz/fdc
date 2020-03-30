@@ -318,4 +318,20 @@ namespace fdc {
     return closure.find(fd(X, Y)) != closure.end() &&
       closure.find(fd(Y, X)) != closure.end();
   }
+
+  // Check if a given set of functional dependencies is non-redundant.
+  bool is_non_redundant(fds F) {
+
+    auto U = attrs_of(F);
+
+    for (auto G : subsets_of(F)) {
+
+      if (G != F && closure_of(U, G) == closure_of(U, F)) {
+
+        return false;
+      }
+    }
+
+    return true;
+  }
 }

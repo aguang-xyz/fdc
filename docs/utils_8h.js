@@ -6,6 +6,7 @@ var utils_8h =
     [ "equal", "utils_8h.html#aad6df841a7622ac0c1b8d291d91388c3", null ],
     [ "equal", "utils_8h.html#aa5c43e3577b5ff0d7c7e2d4093d3f451", null ],
     [ "is_cover_of", "utils_8h.html#a3023396be854f0792414b149cca563c6", null ],
+    [ "is_non_redundant", "utils_8h.html#a0b6e7998c22b797377f0822d9334aa71", null ],
     [ "is_subset_of", "utils_8h.html#aa4ae2258c4916f1a730d61a67891484e", null ],
     [ "subsets_of", "utils_8h.html#a0520d59fbae8d450e9188d5b5b9ff2e3", null ],
     [ "subsets_of", "utils_8h.html#a01f04e4756b2e788fd327ce61973e0bd", null ],

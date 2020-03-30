@@ -159,6 +159,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aa5c43e3577b5ff0d7c7e2d4093d3f451">equal</a> (<a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> X, <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> Y, <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
 <tr class="memdesc:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two sets of attributes <code>X</code> and <code>Y</code> are equivalent under a given set of functional dependencies <code>F</code>.  <a href="#aa5c43e3577b5ff0d7c7e2d4093d3f451">More...</a><br /></td></tr>
 <tr class="separator:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b6e7998c22b797377f0822d9334aa71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a0b6e7998c22b797377f0822d9334aa71">is_non_redundant</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
+<tr class="memdesc:a0b6e7998c22b797377f0822d9334aa71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is non-redundant.  <a href="#a0b6e7998c22b797377f0822d9334aa71">More...</a><br /></td></tr>
+<tr class="separator:a0b6e7998c22b797377f0822d9334aa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A cross-platform library for calculating the covers of functional dependencies. </p>
@@ -434,6 +437,33 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">G</td><td>A set of functional dependencies.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="a0b6e7998c22b797377f0822d9334aa71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b6e7998c22b797377f0822d9334aa71">&#9670;&nbsp;</a></span>is_non_redundant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_non_redundant </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a given set of functional dependencies is non-redundant. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependnecies.</td></tr>
   </table>
   </dd>
 </dl>

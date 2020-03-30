@@ -144,6 +144,15 @@ namespace fdc {
    * @return bool
    */
   bool equal(attrs X, attrs Y, fds F);
+
+  /**
+   * @brief Check if a given set of functional dependencies is non-redundant.
+   *
+   * @param F: A set of functional dependnecies.
+   *
+   * @return bool
+   */
+  bool is_non_redundant(fds F);
 }
 
 #endif
