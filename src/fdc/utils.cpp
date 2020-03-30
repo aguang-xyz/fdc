@@ -144,6 +144,48 @@ namespace fdc {
     return subsets;
   }
 
+  // Get all subsets of a given set of functional dependencies `F`.
+  set<fds> subsets_of(fds F) {
+
+    auto subsets = set<fds>();
+
+    auto q_set = queue<fds>({ fds() });
+    auto q_itr = queue<fds::iterator>({ F.begin() });
+ 
+    while (!q_set.empty()) {
+
+      auto expanding_set = q_set.front();
+      auto expanding_itr = q_itr.front();
+
+      if (expanding_itr != F.end()) {
+
+        auto next_set0 = fds(expanding_set);
+
+        q_set.push(next_set0);
+        q_itr.push(next(expanding_itr));
+        
+        auto next_set1 = fds(expanding_set);
+
+        next_set1.insert(*expanding_itr);
+
+        q_set.push(next_set1);
+        q_itr.push(next(expanding_itr));
+
+      } else {
+
+        if (!expanding_set.empty()) {
+
+          subsets.insert(expanding_set);
+        }
+      }
+
+      q_set.pop();
+      q_itr.pop();
+    }
+
+    return subsets;
+  }
+
   // Check if given set of attributes `X` is a subset of given set of
   // attributes `Y`.
   bool is_subset_of(attrs X, attrs Y) {

@@ -70,6 +70,15 @@ namespace fdc {
   std::set<attrs> subsets_of(attrs X);
 
   /**
+   * @brief Get all subsets of a given set of functional dependencies `F`.
+   *
+   * @param F: A set of functional dependencies.
+   *
+   * @return A set of sets of functional dependencies.
+   */
+  std::set<fds> subsets_of(fds F);
+
+  /**
    * @brief Check if given set of attributes `X` is a subset of given set of
    * attributes `Y`.
    *
