@@ -7,3 +7,5 @@ set_target_properties(fdc PROPERTIES PUBLIC_HEADER "fdc.hpp")
 install(TARGETS fdc
         LIBRARY DESTINATION lib
         PUBLIC_HEADER DESTINATION include)
+
+install(FILES fdc.hpp DESTINATION include RENAME fdc)

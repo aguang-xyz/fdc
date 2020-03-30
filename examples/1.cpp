@@ -1,5 +1,5 @@
 #include <iostream>
-#include <fdc.hpp>
+#include <fdc>
 
 using namespace std;
 using namespace fdc;
