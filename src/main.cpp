@@ -13,6 +13,7 @@ int main(int argc, char **argv) {
 
     fd(attrs({ "A" }), attrs({ "B" })),
     fd(attrs({ "B" }), attrs({ "C" })),
+    fd(attrs({ "C" }), attrs({ "A" })),
     fd(attrs({ "A" }), attrs({ "C" })),
   });
  
@@ -36,6 +37,11 @@ int main(int argc, char **argv) {
   cout<<"Closure(U, G) = "<<to_str(closure_of(U, G))<<endl<<endl;
 
   cout<<"(F == G) = "<<equal(F, G)<<endl<<endl;
+
+  attrs A = attrs({ "A" });
+  attrs B = attrs({ "B" });
+
+  cout<<"(A <-> B under F) = "<<equal(A, B, F)<<endl<<endl;
 
   return 0;
 }

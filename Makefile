@@ -9,7 +9,7 @@ SOURCES = src/main.cpp src/fdc/utils.cpp
 run: bin doc
 	$(TARGET) > log/run.log 2>&1
 
-bin: log bin src
+bin: log bin $(HEADERS) $(SOURCES)
 	mkdir -p bin
 	
 	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET) > log/build.log 2>&1

@@ -112,6 +112,19 @@ namespace fdc {
    * @return bool
    */
   bool is_cover_of(fds F, fds G);
+
+
+  /**
+   * @brief Check if two sets of attributes `X` and `Y` are equivalent under
+   * a given set of functional dependencies `F`.
+   *
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   * @param F: A set of functional dependencies.
+   *
+   * @return bool
+   */
+  bool equal(attrs X, attrs Y, fds F);
 }
 
 #endif

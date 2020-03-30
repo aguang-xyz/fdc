@@ -3,6 +3,7 @@ var utils_8cpp =
     [ "attrs_of", "utils_8cpp.html#a8588564cbd962ffeec7caba447ad6bd6", null ],
     [ "closure_of", "utils_8cpp.html#a46a047327e2ccfc25b6a0b5c02e0ec8f", null ],
     [ "equal", "utils_8cpp.html#aad6df841a7622ac0c1b8d291d91388c3", null ],
+    [ "equal", "utils_8cpp.html#aa5c43e3577b5ff0d7c7e2d4093d3f451", null ],
     [ "is_cover_of", "utils_8cpp.html#a3023396be854f0792414b149cca563c6", null ],
     [ "is_subset_of", "utils_8cpp.html#aa4ae2258c4916f1a730d61a67891484e", null ],
     [ "subsets_of", "utils_8cpp.html#a0520d59fbae8d450e9188d5b5b9ff2e3", null ],

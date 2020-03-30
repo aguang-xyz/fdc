@@ -257,4 +257,16 @@ namespace fdc {
 
     return equal(F, G);
   }
+
+  // Check if two sets of attributes `X` and `Y` are equivalent under a given
+  // set of functional dependencies `F`.
+  bool equal(attrs X, attrs Y, fds F) {
+
+    auto U = union_of(union_of(X, Y), attrs_of(F));
+
+    auto closure = closure_of(U, F);
+
+    return closure.find(fd(X, Y)) != closure.end() &&
+      closure.find(fd(Y, X)) != closure.end();
+  }
 }
