@@ -5,6 +5,10 @@
 #ifndef __fdc_inc__
 #define __fdc_inc__
 
+#define FDC_VERSION_MAJOR @FDC_VERSION_MAJOR@
+#define FDC_VERSION_MINOR @FDC_VERSION_MINOR@
+#define FDC_VERSION_PATCH @FDC_VERSION_PATCH@
+
 /**
  * @brief A cross-platform library for calculating the covers of functional
  * dependencies.
