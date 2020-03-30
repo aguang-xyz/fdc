@@ -1,13 +1,21 @@
+TARGET = ./bin/fdc
 
-run: main
-	./bin/main > log/run.log 2>&1
+CC = g++
+CFLAGS = -O3
 
-main: log bin src/rdm.cpp src/main.cpp
-	g++ src/main.cpp -o bin/main > log/build.log 2>&1
+HEADERS = src/fdc/types.h src/fdc/utils.h
+SOURCES = src/main.cpp src/fdc/utils.cpp
+
+run: bin doc
+	$(TARGET) > log/run.log 2>&1
+
+bin: log bin src
+	mkdir -p bin
+	
+	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET) > log/build.log 2>&1
+
+doc: Doxyfile $(HEADERS) $(SOURCES)
+	doxygen ./Doxyfile
 
 log:
 	mkdir -p log
-
-bin:
-	mkdir -p bin
-

@@ -1,10 +1,11 @@
 #include <iostream>
 
-#include "rdm.cpp"
+#include "fdc/types.h"
+#include "fdc/utils.h"
 
 using namespace std;
-using namespace rdm;
-using namespace rdm::utils;
+
+using namespace fdc;
 
 int main(int argc, char **argv) {
 
