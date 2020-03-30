@@ -1,7 +1,6 @@
 #include <iostream>
 
-#include "fdc/types.h"
-#include "fdc/utils.h"
+#include "fdc/fdc.h"
 
 using namespace std;
 

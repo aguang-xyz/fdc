@@ -1,9 +1,37 @@
-#include "types.h"
+#include <set>
+#include <queue>
+#include <string>
 
-#ifndef __fd_cover_utils_inc__
-#define __fd_cover_utils_inc__
+#ifndef __fdc_inc__
+#define __fdc_inc__
 
+/**
+ * @brief A cross-platform library for calculating the covers of functional
+ * dependencies.
+ */
 namespace fdc {
+
+
+  /**
+   * @brief Attribute.
+   */
+  typedef std::string attr;
+
+  /**
+   * @brief A set of attributes.
+   */
+  typedef std::set<attr> attrs;
+
+  /**
+   * @brief Functional dependency.
+   */
+  typedef std::pair<attrs, attrs> fd;
+
+  /**
+   * @brief A set of functional dependencies.
+   */
+  typedef std::set<fd> fds;
+
 
   /**
    * @brief Convert a attribute `x` to a string.
@@ -153,6 +181,6 @@ namespace fdc {
    * @return bool
    */
   bool is_non_redundant(fds F);
-}
 
+}
 #endif
