@@ -1,6 +1,7 @@
 var utils_8h =
 [
     [ "attrs_of", "utils_8h.html#a8588564cbd962ffeec7caba447ad6bd6", null ],
+    [ "closure_of", "utils_8h.html#a96368d32a18a06c946ce13a1175d0af4", null ],
     [ "closure_of", "utils_8h.html#a46a047327e2ccfc25b6a0b5c02e0ec8f", null ],
     [ "equal", "utils_8h.html#aad6df841a7622ac0c1b8d291d91388c3", null ],
     [ "equal", "utils_8h.html#aa5c43e3577b5ff0d7c7e2d4093d3f451", null ],

@@ -201,7 +201,14 @@ namespace fdc {
     return true;
   }
 
-  // Get the closure of a given set of functional depdencies `F`under a
+  // Get the closure of a given set of functional depdencies `F`. It is an
+  // implementation of Armstrong's Axioms.
+  fds closure_of(fds F) {
+
+    return closure_of(attrs_of(F), F);
+  }
+
+  // Get the closure of a given set of functional depdencies `F` under a
   // given set of attributes, universe `U`. It is an implementation of
   // Armstrong's Axioms.
   fds closure_of(attrs U, fds F) {

@@ -144,8 +144,11 @@ Functions</h2></td></tr>
 <tr class="memitem:aa4ae2258c4916f1a730d61a67891484e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aa4ae2258c4916f1a730d61a67891484e">is_subset_of</a> (<a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> X, <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> Y)</td></tr>
 <tr class="memdesc:aa4ae2258c4916f1a730d61a67891484e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if given set of attributes <code>X</code> is a subset of given set of attributes <code>Y</code>.  <a href="#aa4ae2258c4916f1a730d61a67891484e">More...</a><br /></td></tr>
 <tr class="separator:aa4ae2258c4916f1a730d61a67891484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96368d32a18a06c946ce13a1175d0af4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a96368d32a18a06c946ce13a1175d0af4">closure_of</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
+<tr class="memdesc:a96368d32a18a06c946ce13a1175d0af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code>. It is an implementation of Armstrong's Axioms.  <a href="#a96368d32a18a06c946ce13a1175d0af4">More...</a><br /></td></tr>
+<tr class="separator:a96368d32a18a06c946ce13a1175d0af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a46a047327e2ccfc25b6a0b5c02e0ec8f">closure_of</a> (<a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> U, <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
-<tr class="memdesc:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code>under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms.  <a href="#a46a047327e2ccfc25b6a0b5c02e0ec8f">More...</a><br /></td></tr>
+<tr class="memdesc:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code> under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms.  <a href="#a46a047327e2ccfc25b6a0b5c02e0ec8f">More...</a><br /></td></tr>
 <tr class="separator:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad6df841a7622ac0c1b8d291d91388c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aad6df841a7622ac0c1b8d291d91388c3">equal</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F, <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> G)</td></tr>
 <tr class="memdesc:aad6df841a7622ac0c1b8d291d91388c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two given sets of functional dependencies are equivalent.  <a href="#aad6df841a7622ac0c1b8d291d91388c3">More...</a><br /></td></tr>
@@ -252,8 +255,35 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a96368d32a18a06c946ce13a1175d0af4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96368d32a18a06c946ce13a1175d0af4">&#9670;&nbsp;</a></span>closure_of() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> fdc::closure_of </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the closure of a given set of functional depdencies <code>F</code>. It is an implementation of Armstrong's Axioms. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A set of functional depdencies. </dd></dl>
+
+</div>
+</div>
 <a id="a46a047327e2ccfc25b6a0b5c02e0ec8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a46a047327e2ccfc25b6a0b5c02e0ec8f">&#9670;&nbsp;</a></span>closure_of()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a46a047327e2ccfc25b6a0b5c02e0ec8f">&#9670;&nbsp;</a></span>closure_of() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +308,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the closure of a given set of functional depdencies <code>F</code>under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms. </p>
+<p>Get the closure of a given set of functional depdencies <code>F</code> under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">U</td><td>Universal set of attributes. </td></tr>

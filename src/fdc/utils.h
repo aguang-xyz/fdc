@@ -90,7 +90,17 @@ namespace fdc {
   bool is_subset_of(attrs X, attrs Y);
 
   /**
-   * @brief Get the closure of a given set of functional depdencies `F`under a
+   * @brief Get the closure of a given set of functional depdencies `F`. It is
+   * an implementation of Armstrong's Axioms.
+   *
+   * @param F: A set of functional dependencies.
+   *
+   * @return A set of functional depdencies.
+   */
+  fds closure_of(fds F);
+
+  /**
+   * @brief Get the closure of a given set of functional depdencies `F` under a
    * given set of attributes, universe `U`. It is an implementation of
    * Armstrong's Axioms.
    *
