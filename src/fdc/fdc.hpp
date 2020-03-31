@@ -186,7 +186,7 @@ namespace fdc {
    */
   bool is_non_redundant(fds F);
 
-  /*
+  /**
    * @brief Check if a given set of functional dependencies is canonical.
    *
    * @param F: A set of functional dependencies.

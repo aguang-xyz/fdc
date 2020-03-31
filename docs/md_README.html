@@ -97,9 +97,10 @@ $(document).ready(function(){initNavTree('md_README.html','');});
 <ul>
 <li><a href="https://aguang-xyz.github.io/fdc/namespacefdc.html">Document</a>.</li>
 </ul>
-<h2>Install</h2>
-<div class="fragment"><div class="line">git clone git@github.com:aguang-xyz/fdc.git</div><div class="line"></div><div class="line">cmake .</div><div class="line"></div><div class="line">sudo make install</div></div><!-- fragment --><h2>How to generate docs?</h2>
-<div class="fragment"><div class="line">doxygen .</div></div><!-- fragment --> </div></div><!-- contents -->
+<h2>How to install libfdc?</h2>
+<div class="fragment"><div class="line">git clone git@github.com:aguang-xyz/fdc.git</div><div class="line"></div><div class="line">cmake -B./build -H./src</div><div class="line"></div><div class="line">cd build</div><div class="line"></div><div class="line">make</div><div class="line"></div><div class="line">make install # sudo might be required.</div></div><!-- fragment --><h2>How to link this library</h2>
+<div class="fragment"><div class="line">g++ xxx.cpp -lfdc</div></div><!-- fragment --><h2>How to generate docs?</h2>
+<div class="fragment"><div class="line">doxygen</div></div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

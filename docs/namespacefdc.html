@@ -162,6 +162,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a0b6e7998c22b797377f0822d9334aa71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a0b6e7998c22b797377f0822d9334aa71">is_non_redundant</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
 <tr class="memdesc:a0b6e7998c22b797377f0822d9334aa71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is non-redundant.  <a href="#a0b6e7998c22b797377f0822d9334aa71">More...</a><br /></td></tr>
 <tr class="separator:a0b6e7998c22b797377f0822d9334aa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0c8d3b283ad8840551e7b22be70688"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#abc0c8d3b283ad8840551e7b22be70688">is_canonical</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F)</td></tr>
+<tr class="memdesc:abc0c8d3b283ad8840551e7b22be70688"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is canonical.  <a href="#abc0c8d3b283ad8840551e7b22be70688">More...</a><br /></td></tr>
+<tr class="separator:abc0c8d3b283ad8840551e7b22be70688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A cross-platform library for calculating the covers of functional dependencies. </p>
@@ -398,6 +401,33 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
     <tr><td class="paramname">Y</td><td>A set of attributes. </td></tr>
+    <tr><td class="paramname">F</td><td>A set of functional dependencies.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>bool </dd></dl>
+
+</div>
+</div>
+<a id="abc0c8d3b283ad8840551e7b22be70688"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0c8d3b283ad8840551e7b22be70688">&#9670;&nbsp;</a></span>is_canonical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_canonical </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if a given set of functional dependencies is canonical. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies.</td></tr>
   </table>
   </dd>

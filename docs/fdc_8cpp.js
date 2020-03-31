@@ -5,6 +5,7 @@ var fdc_8cpp =
     [ "closure_of", "fdc_8cpp.html#a46a047327e2ccfc25b6a0b5c02e0ec8f", null ],
     [ "equal", "fdc_8cpp.html#aad6df841a7622ac0c1b8d291d91388c3", null ],
     [ "equal", "fdc_8cpp.html#aa5c43e3577b5ff0d7c7e2d4093d3f451", null ],
+    [ "is_canonical", "fdc_8cpp.html#abc0c8d3b283ad8840551e7b22be70688", null ],
     [ "is_cover_of", "fdc_8cpp.html#a3023396be854f0792414b149cca563c6", null ],
     [ "is_non_redundant", "fdc_8cpp.html#a0b6e7998c22b797377f0822d9334aa71", null ],
     [ "is_subset_of", "fdc_8cpp.html#aa4ae2258c4916f1a730d61a67891484e", null ],
