@@ -4,13 +4,13 @@ namespace fdc {
 
   using namespace std;
 
-  string to_str(attr x) {
+  string to_str(const attr &x) {
 
-    return x;
+    return (string) x;
   }
 
   // Convert a set of attributes `X` to a string.
-  string to_str(attrs X) {
+  string to_str(const attrs &X) {
 
     bool first = true;
     
@@ -34,13 +34,13 @@ namespace fdc {
   }
 
   // Convert a set of functional depdency `f` to a string.
-  string to_str(fd f) {
+  string to_str(const fd &f) {
 
     return to_str(f.first) + " -> " + to_str(f.second);
   }
 
   // Convert a set of functional dependencies `F` to a string.
-  string to_str(fds F) {
+  string to_str(const fds &F) {
 
     bool first = true;
     
@@ -64,7 +64,7 @@ namespace fdc {
   }
 
   // Get all attributes of a given functional dependency set `F`.
-  attrs attrs_of(fds F) {
+  attrs attrs_of(const fds &F) {
 
     attrs ret = {};
 
@@ -85,7 +85,7 @@ namespace fdc {
   }
 
   // Get the union set of two sets of attributes `X`, `Y`.
-  attrs union_of(attrs X, attrs Y) {
+  attrs union_of(const attrs &X, const attrs &Y) {
 
     auto res = attrs();
 
@@ -103,7 +103,7 @@ namespace fdc {
   }
 
   // Get all subsets of a given set attributes `X`.
-  set<attrs> subsets_of(attrs X) {
+  set<attrs> subsets_of(const attrs &X) {
 
     auto subsets = set<attrs>();
 
@@ -145,7 +145,7 @@ namespace fdc {
   }
 
   // Get all subsets of a given set of functional dependencies `F`.
-  set<fds> subsets_of(fds F) {
+  set<fds> subsets_of(const fds &F) {
 
     auto subsets = set<fds>();
 
@@ -188,7 +188,7 @@ namespace fdc {
 
   // Check if given set of attributes `X` is a subset of given set of
   // attributes `Y`.
-  bool is_subset_of(attrs X, attrs Y) {
+  bool is_subset_of(const attrs &X, const attrs &Y) {
 
     for (auto x : X) {
 
@@ -203,7 +203,7 @@ namespace fdc {
 
   // Get the closure of a given set of functional depdencies `F`. It is an
   // implementation of Armstrong's Axioms.
-  fds closure_of(fds F) {
+  fds closure_of(const fds &F) {
 
     return closure_of(attrs_of(F), F);
   }
@@ -211,7 +211,7 @@ namespace fdc {
   // Get the closure of a given set of functional depdencies `F` under a
   // given set of attributes, universe `U`. It is an implementation of
   // Armstrong's Axioms.
-  fds closure_of(attrs U, fds F) {
+  fds closure_of(const attrs &U, const fds &F) {
 
     // Closure.
     auto closure = fds(F);
@@ -292,7 +292,7 @@ namespace fdc {
   }
 
   // Check if two given sets of functional dependencies are equivalent.
-  bool equal(fds F, fds G) {
+  bool equal(const fds &F, const fds &G) {
 
     // Universe.
     attrs U = union_of(attrs_of(F), attrs_of(G));
@@ -302,14 +302,14 @@ namespace fdc {
 
   // Check if a given set of functional dependencies `F` is a cover of
   // another given set of functional dependencies `G`.
-  bool is_cover_of(fds F, fds G) {
+  bool is_cover_of(const fds &F, const fds &G) {
 
     return equal(F, G);
   }
 
   // Check if two sets of attributes `X` and `Y` are equivalent under a given
   // set of functional dependencies `F`.
-  bool equal(attrs X, attrs Y, fds F) {
+  bool equal(const attrs &X, const attrs &Y, const fds &F) {
 
     auto U = union_of(union_of(X, Y), attrs_of(F));
 
@@ -320,7 +320,7 @@ namespace fdc {
   }
 
   // Check if a given set of functional dependencies is non-redundant.
-  bool is_non_redundant(fds F) {
+  bool is_non_redundant(const fds &F) {
 
     auto U = attrs_of(F);
 
@@ -338,7 +338,7 @@ namespace fdc {
   }
 
   // Check if a given set of functional dependencies is canonical.
-  bool is_canonical(fds F) {
+  bool is_canonical(const fds F) {
 
     // Rule 1. \forall X \to Y \in F, |Y| =1
     for (auto f : F) {

@@ -44,7 +44,7 @@ namespace fdc {
    *
    * @return string
    */
-  std::string to_str(attr x);
+  std::string to_str(const attr &x);
 
   /**
    * @brief Convert a set of attributes `X` to a string.
@@ -53,7 +53,7 @@ namespace fdc {
    *
    * @return string
    */
-  std::string to_str(attrs X);
+  std::string to_str(const attrs &X);
 
   /**
    * @brief Convert a set of functional depdency `f` to a string.
@@ -62,7 +62,7 @@ namespace fdc {
    *
    * @return string
    */
-  std::string to_str(fd f);
+  std::string to_str(const fd &f);
 
   /**
    * @brief Convert a set of functional dependencies `F` to a string.
@@ -71,7 +71,7 @@ namespace fdc {
    *
    * @return string
    */
-  std::string to_str(fds F);
+  std::string to_str(const fds &F);
 
   /**
    * @brief Get all attributes of a given functional dependency set `F`.
@@ -80,7 +80,7 @@ namespace fdc {
    *
    * @return A set of attributes.
    */
-  attrs attrs_of(fds F);
+  attrs attrs_of(const fds &F);
 
   /**
    * @brief Get the union set of two sets of attributes `X`, `Y`.
@@ -90,7 +90,7 @@ namespace fdc {
    *
    * @return The union set of attibutes.
    */
-  attrs union_of(attrs X, attrs Y);
+  attrs union_of(const attrs &X, const attrs &Y);
 
   /**
    * @brief Get all subsets of a given set attributes `X`.
@@ -99,7 +99,7 @@ namespace fdc {
    *
    * @return A set of sets of attributes.
    */
-  std::set<attrs> subsets_of(attrs X);
+  std::set<attrs> subsets_of(const attrs &X);
 
   /**
    * @brief Get all subsets of a given set of functional dependencies `F`.
@@ -108,7 +108,7 @@ namespace fdc {
    *
    * @return A set of sets of functional dependencies.
    */
-  std::set<fds> subsets_of(fds F);
+  std::set<fds> subsets_of(const fds &F);
 
   /**
    * @brief Check if given set of attributes `X` is a subset of given set of
@@ -119,7 +119,7 @@ namespace fdc {
    *
    * @return bool
    */
-  bool is_subset_of(attrs X, attrs Y);
+  bool is_subset_of(const attrs &X, const attrs &Y);
 
   /**
    * @brief Get the closure of a given set of functional depdencies `F`. It is
@@ -129,7 +129,7 @@ namespace fdc {
    *
    * @return A set of functional depdencies.
    */
-  fds closure_of(fds F);
+  fds closure_of(const fds &F);
 
   /**
    * @brief Get the closure of a given set of functional depdencies `F` under a
@@ -141,7 +141,7 @@ namespace fdc {
    *
    * @return A set of functional depdencies.
    */
-  fds closure_of(attrs U, fds F);
+  fds closure_of(const attrs &U, const fds &F);
 
   /**
    * @brief Check if two given sets of functional dependencies are equivalent.
@@ -151,7 +151,7 @@ namespace fdc {
    *
    * @return bool
    */
-  bool equal(fds F, fds G);
+  bool equal(const fds &F, const fds &G);
 
   /**
    * @brief Check if a given set of functional dependencies `F` is a cover of
@@ -162,8 +162,7 @@ namespace fdc {
    *
    * @return bool
    */
-  bool is_cover_of(fds F, fds G);
-
+  bool is_cover_of(const fds &F, const fds &G);
 
   /**
    * @brief Check if two sets of attributes `X` and `Y` are equivalent under
@@ -175,7 +174,7 @@ namespace fdc {
    *
    * @return bool
    */
-  bool equal(attrs X, attrs Y, fds F);
+  bool equal(const attrs &X, const attrs &Y, const fds &F);
 
   /**
    * @brief Check if a given set of functional dependencies is non-redundant.
@@ -184,7 +183,7 @@ namespace fdc {
    *
    * @return bool
    */
-  bool is_non_redundant(fds F);
+  bool is_non_redundant(const fds &F);
 
   /**
    * @brief Check if a given set of functional dependencies is canonical.
@@ -193,6 +192,6 @@ namespace fdc {
    *
    * @return bool
    */
-  bool is_canonical(fds F);
+  bool is_canonical(const fds &F);
 }
 #endif
