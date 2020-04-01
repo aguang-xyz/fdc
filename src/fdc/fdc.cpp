@@ -339,7 +339,7 @@ namespace fdc {
   }
 
   // Check if a given set of functional dependencies is canonical.
-  bool is_canonical(const fds F) {
+  bool is_canonical(const fds &F) {
 
     // Rule 1. \forall X \to Y \in F, |Y| =1
     for (auto f : F) {
