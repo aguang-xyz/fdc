@@ -9,7 +9,7 @@ A cross-platform library for calculating the covers of functional dependencies.
 ```bash
 git clone git@github.com:aguang-xyz/fdc.git
 
-cmake -B./build -H./src
+cmake -B./build -H./
 
 cd build
 
