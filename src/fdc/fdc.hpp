@@ -38,7 +38,7 @@ namespace fdc {
 
 
   /**
-   * @brief Convert a attribute `x` to a string.
+   * @brief Convert an attribute `x` to a string.
    *
    * @param x: a given attribute
    *

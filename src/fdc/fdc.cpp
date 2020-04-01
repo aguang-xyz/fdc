@@ -4,6 +4,7 @@ namespace fdc {
 
   using namespace std;
 
+  // Convert an attribute `x` to a string.
   string to_str(const attr &x) {
 
     return (string) x;
