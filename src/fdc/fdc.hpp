@@ -1,5 +1,6 @@
-#include <set>
+#include <iostream>
 #include <queue>
+#include <set>
 #include <string>
 
 #ifndef __fdc_inc__
@@ -36,6 +37,49 @@ namespace fdc {
    */
   typedef std::set<fd> fds;
 
+  /*
+   * @brief Convert a json string `input` into a set of attributes `U` and a
+   * set of functional dependencies `F`.
+   *
+   * The json string `input` is expected to be under the structure below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param input: A json string.
+   * @param U: A set of attributes for output.
+   * @param F: A set of functional dependencies for output.
+   */
+  void from_json(const std::string input, attrs &U, fds &F);
+ 
+  /**
+   * @brief Convert a input stream `input` into a set of attributes `U` and a
+   * set of functional dependencies `F`.
+   *
+   * The input stream `input` is expected to be under the structure below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param input: A input stream.
+   * @param U: A set of attributes for output.
+   * @param F: A set of functional dependencies for output.
+   */
+  void from_json(const std::istream input, attrs &U, fds &F);
 
   /**
    * @brief Convert an attribute `x` to a string.
