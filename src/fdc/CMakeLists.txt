@@ -1,3 +1,5 @@
+include_directories(../../lib)
+
 aux_source_directory(. SRCS)
 
 add_library(fdc ${SRCS})
