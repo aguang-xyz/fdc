@@ -1,5 +1,5 @@
-#include "fdc.hpp"
-#include "../../lib/json/json.hpp"
+#include "fdc.h"
+#include "json/json.hpp"
 
 namespace fdc {
 
