@@ -66,4 +66,43 @@ namespace fdc {
 
     from_json(json::parse(input), U, F);
   }
+
+  // Convert given set of attributes `U` and given set of functional
+  // dependencies `F` to json string and write it into output.
+  void to_json(ostream &output, const attrs &U, const fds &F) {
+
+    json j;
+
+    j["R"] = U.size();
+
+    auto fds = vector<map<string, vector<int>>>();
+
+    for (auto &f : F) {
+
+      auto lhs = vector<int>();
+
+      for (attr x : f.first) {
+
+        lhs.push_back(distance(U.begin(), U.find(x)));
+      }
+      
+      auto rhs = vector<int>();
+
+      for (attr y : f.second) {
+
+        rhs.push_back(distance(U.begin(), U.find(y)));
+      }
+
+      auto fd = map<string, vector<int>>();
+
+      fd["lhs"] = lhs;
+      fd["rhs"] = rhs;
+
+      fds.push_back(fd);
+    }
+
+    j["fds"] = fds;
+
+    output<<j.dump(2)<<endl;
+  }
 }

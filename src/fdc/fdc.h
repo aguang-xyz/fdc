@@ -82,6 +82,29 @@ namespace fdc {
   void from_json(std::istream &input, attrs &U, fds &F);
 
   /**
+   * @brief Convert given set of attributes `U` and given set of functional
+   * dependencies `F` to json string and write it into output.
+   *
+   * The output stream `output` is expected to be written under the structure
+   * below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param output: An output stream.
+   * @param U: A set of attributes.
+   * @param F: A set of functional dependencies.
+   */
+  void to_json(std::ostream &output, const attrs &U, const fds &F);
+
+  /**
    * @brief Convert an attribute `x` to a string.
    *
    * @param x: a given attribute
