@@ -44,9 +44,10 @@ TEST(io, to_json) {
     fd(attrs({ "0", "2", "3" }), attrs({ "4" })),
     fd(attrs({ "1", "2", "3" }), attrs({ "4" })),
   });
-  
+ 
+  char filename[1024];
 
-  auto filename = string(tmpnam(NULL));
+  mkstemp(filename);
   
   cout<<"tmp file name = "<<filename<<endl;
 
