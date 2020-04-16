@@ -11,11 +11,9 @@ git clone git@github.com:aguang-xyz/fdc.git
 
 cmake -B./build -H./
 
-cd build
+make --directory build
 
-make
-
-make install # sudo might be required.
+make --directory build install # sudo might be required.
 ```
 
 ## How to link this library
