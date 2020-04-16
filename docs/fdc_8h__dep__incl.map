@@ -1,4 +1,6 @@
 <map id="src/fdc/fdc.h" name="src/fdc/fdc.h">
-<area shape="rect" id="node2" href="$fdc_8cpp.html" title="src/fdc/fdc.cpp" alt="" coords="5,80,115,107"/>
-<area shape="rect" id="node3" href="$fdc-cli_8cpp.html" title="src/fdc&#45;cli.cpp" alt="" coords="139,80,243,107"/>
+<area shape="rect" id="node2" href="$algorithm_8cpp.html" title="src/fdc/algorithm.cpp" alt="" coords="5,80,149,107"/>
+<area shape="rect" id="node3" href="$fdc_8cpp.html" title="src/fdc/fdc.cpp" alt="" coords="173,80,283,107"/>
+<area shape="rect" id="node4" href="$io_8cpp.html" title="src/fdc/io.cpp" alt="" coords="307,80,408,107"/>
+<area shape="rect" id="node5" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="433,80,530,107"/>
 </map>

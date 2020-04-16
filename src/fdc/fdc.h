@@ -261,14 +261,30 @@ namespace fdc {
    */
   bool is_canonical(const fds &F);
 
-  /**
-   * @brief Given a set of functional dependencies $F$ and a functional
-   * dependency $f$, determine if $X \to Y \in F^{+}$ in linear time.
+  /*! \brief The algorithms implemented in `FDC`.
+   *
+   * This module contains the algorithms implemented in `FDC`.
+   *
+   * @defgroup algorithms
+   *
+   * @{
+   */
+
+  /*! \brief Membership determine.
+   *
+   * Given a set of functional dependencies \f$ F \f$ and a functional
+   * dependency \f$ X \to Y \f$ , determine if \f$ X \to Y \in F^{+} \f$ in
+   * linear time.
+   *
+   * The original version of this algorithm was introduced by
+   * [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    * @param X: A set of attributes.
    * @param Y: A set of attributes.
    */
   bool membership(fds F, attrs X, attrs Y);
+
+  /** @} */
 }
 #endif

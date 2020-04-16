@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "Functional Dependencies' Covers", "index.html", [
-    [ "FDC - Functional Dependencies' Covers", "md_README.html", null ],
+    [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", null, [
       [ "Namespace List", "namespaces.html", "namespaces" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -11,20 +11,14 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Files", null, [
-      [ "File List", "files.html", "files" ],
-      [ "File Members", "globals.html", [
-        [ "All", "globals.html", null ],
-        [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Macros", "globals_defs.html", null ]
-      ] ]
+      [ "File List", "files.html", "files" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"1_8cpp.html"
+"dir_68267d1309a1af8e8297ef4c3efbcdba.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

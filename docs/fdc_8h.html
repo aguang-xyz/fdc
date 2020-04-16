@@ -22,6 +22,12 @@
 <script type="text/javascript">
   $(document).ready(function() { init_search(); });
 </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -98,8 +104,9 @@ $(document).ready(function(){initNavTree('fdc_8h.html','');});
 <div class="title">fdc.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;set&gt;</code><br />
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
 <code>#include &lt;queue&gt;</code><br />
+<code>#include &lt;set&gt;</code><br />
 <code>#include &lt;string&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for fdc.h:</div>
@@ -111,8 +118,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="fdc_8h__dep__incl.png" border="0" usemap="#src_2fdc_2fdc_8hdep" alt=""/></div>
 <map name="src_2fdc_2fdc_8hdep" id="src_2fdc_2fdc_8hdep">
-<area shape="rect" id="node2" href="fdc_8cpp.html" title="src/fdc/fdc.cpp" alt="" coords="5,80,115,107"/>
-<area shape="rect" id="node3" href="fdc-cli_8cpp.html" title="src/fdc&#45;cli.cpp" alt="" coords="139,80,243,107"/>
+<area shape="rect" id="node2" href="algorithm_8cpp.html" title="src/fdc/algorithm.cpp" alt="" coords="5,80,149,107"/>
+<area shape="rect" id="node3" href="fdc_8cpp.html" title="src/fdc/fdc.cpp" alt="" coords="173,80,283,107"/>
+<area shape="rect" id="node4" href="io_8cpp.html" title="src/fdc/io.cpp" alt="" coords="307,80,408,107"/>
+<area shape="rect" id="node5" href="main_8cpp.html" title="src/main.cpp" alt="" coords="433,80,530,107"/>
 </map>
 </div>
 </div>
@@ -150,51 +159,65 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afdb47b8ae4f99d6feb656cfc54297cb1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#afdb47b8ae4f99d6feb656cfc54297cb1">fdc::to_str</a> (attr x)</td></tr>
-<tr class="memdesc:afdb47b8ae4f99d6feb656cfc54297cb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a attribute <code>x</code> to a string.  <a href="namespacefdc.html#afdb47b8ae4f99d6feb656cfc54297cb1">More...</a><br /></td></tr>
-<tr class="separator:afdb47b8ae4f99d6feb656cfc54297cb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a64b4ebd41783b12cdc82651201997"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a21a64b4ebd41783b12cdc82651201997">fdc::to_str</a> (attrs X)</td></tr>
-<tr class="memdesc:a21a64b4ebd41783b12cdc82651201997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of attributes <code>X</code> to a string.  <a href="namespacefdc.html#a21a64b4ebd41783b12cdc82651201997">More...</a><br /></td></tr>
-<tr class="separator:a21a64b4ebd41783b12cdc82651201997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d91f63e8dcb1d1f969440a2dc14118a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a8d91f63e8dcb1d1f969440a2dc14118a">fdc::to_str</a> (fd f)</td></tr>
-<tr class="memdesc:a8d91f63e8dcb1d1f969440a2dc14118a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of functional depdency <code>f</code> to a string.  <a href="namespacefdc.html#a8d91f63e8dcb1d1f969440a2dc14118a">More...</a><br /></td></tr>
-<tr class="separator:a8d91f63e8dcb1d1f969440a2dc14118a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03e229c07daf5f72688eadf7fa4323df"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a03e229c07daf5f72688eadf7fa4323df">fdc::to_str</a> (fds F)</td></tr>
-<tr class="memdesc:a03e229c07daf5f72688eadf7fa4323df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of functional dependencies <code>F</code> to a string.  <a href="namespacefdc.html#a03e229c07daf5f72688eadf7fa4323df">More...</a><br /></td></tr>
-<tr class="separator:a03e229c07daf5f72688eadf7fa4323df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8588564cbd962ffeec7caba447ad6bd6"><td class="memItemLeft" align="right" valign="top">attrs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a8588564cbd962ffeec7caba447ad6bd6">fdc::attrs_of</a> (fds F)</td></tr>
-<tr class="memdesc:a8588564cbd962ffeec7caba447ad6bd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all attributes of a given functional dependency set <code>F</code>.  <a href="namespacefdc.html#a8588564cbd962ffeec7caba447ad6bd6">More...</a><br /></td></tr>
-<tr class="separator:a8588564cbd962ffeec7caba447ad6bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a438dbefd68e9ba6074057f70f247ee1c"><td class="memItemLeft" align="right" valign="top">attrs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a438dbefd68e9ba6074057f70f247ee1c">fdc::union_of</a> (attrs X, attrs Y)</td></tr>
-<tr class="memdesc:a438dbefd68e9ba6074057f70f247ee1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the union set of two sets of attributes <code>X</code>, <code>Y</code>.  <a href="namespacefdc.html#a438dbefd68e9ba6074057f70f247ee1c">More...</a><br /></td></tr>
-<tr class="separator:a438dbefd68e9ba6074057f70f247ee1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0520d59fbae8d450e9188d5b5b9ff2e3"><td class="memItemLeft" align="right" valign="top">set&lt; attrs &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a0520d59fbae8d450e9188d5b5b9ff2e3">fdc::subsets_of</a> (attrs X)</td></tr>
-<tr class="memdesc:a0520d59fbae8d450e9188d5b5b9ff2e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all subsets of a given set attributes <code>X</code>.  <a href="namespacefdc.html#a0520d59fbae8d450e9188d5b5b9ff2e3">More...</a><br /></td></tr>
-<tr class="separator:a0520d59fbae8d450e9188d5b5b9ff2e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01f04e4756b2e788fd327ce61973e0bd"><td class="memItemLeft" align="right" valign="top">set&lt; fds &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a01f04e4756b2e788fd327ce61973e0bd">fdc::subsets_of</a> (fds F)</td></tr>
-<tr class="memdesc:a01f04e4756b2e788fd327ce61973e0bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all subsets of a given set of functional dependencies <code>F</code>.  <a href="namespacefdc.html#a01f04e4756b2e788fd327ce61973e0bd">More...</a><br /></td></tr>
-<tr class="separator:a01f04e4756b2e788fd327ce61973e0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4ae2258c4916f1a730d61a67891484e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aa4ae2258c4916f1a730d61a67891484e">fdc::is_subset_of</a> (attrs X, attrs Y)</td></tr>
-<tr class="memdesc:aa4ae2258c4916f1a730d61a67891484e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if given set of attributes <code>X</code> is a subset of given set of attributes <code>Y</code>.  <a href="namespacefdc.html#aa4ae2258c4916f1a730d61a67891484e">More...</a><br /></td></tr>
-<tr class="separator:aa4ae2258c4916f1a730d61a67891484e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96368d32a18a06c946ce13a1175d0af4"><td class="memItemLeft" align="right" valign="top">fds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a96368d32a18a06c946ce13a1175d0af4">fdc::closure_of</a> (fds F)</td></tr>
-<tr class="memdesc:a96368d32a18a06c946ce13a1175d0af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code>. It is an implementation of Armstrong's Axioms.  <a href="namespacefdc.html#a96368d32a18a06c946ce13a1175d0af4">More...</a><br /></td></tr>
-<tr class="separator:a96368d32a18a06c946ce13a1175d0af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="memItemLeft" align="right" valign="top">fds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a46a047327e2ccfc25b6a0b5c02e0ec8f">fdc::closure_of</a> (attrs U, fds F)</td></tr>
-<tr class="memdesc:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code> under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms.  <a href="namespacefdc.html#a46a047327e2ccfc25b6a0b5c02e0ec8f">More...</a><br /></td></tr>
-<tr class="separator:a46a047327e2ccfc25b6a0b5c02e0ec8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad6df841a7622ac0c1b8d291d91388c3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aad6df841a7622ac0c1b8d291d91388c3">fdc::equal</a> (fds F, fds G)</td></tr>
-<tr class="memdesc:aad6df841a7622ac0c1b8d291d91388c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two given sets of functional dependencies are equivalent.  <a href="namespacefdc.html#aad6df841a7622ac0c1b8d291d91388c3">More...</a><br /></td></tr>
-<tr class="separator:aad6df841a7622ac0c1b8d291d91388c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3023396be854f0792414b149cca563c6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a3023396be854f0792414b149cca563c6">fdc::is_cover_of</a> (fds F, fds G)</td></tr>
-<tr class="memdesc:a3023396be854f0792414b149cca563c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies <code>F</code> is a cover of another given set of functional dependencies <code>G</code>.  <a href="namespacefdc.html#a3023396be854f0792414b149cca563c6">More...</a><br /></td></tr>
-<tr class="separator:a3023396be854f0792414b149cca563c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aa5c43e3577b5ff0d7c7e2d4093d3f451">fdc::equal</a> (attrs X, attrs Y, fds F)</td></tr>
-<tr class="memdesc:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two sets of attributes <code>X</code> and <code>Y</code> are equivalent under a given set of functional dependencies <code>F</code>.  <a href="namespacefdc.html#aa5c43e3577b5ff0d7c7e2d4093d3f451">More...</a><br /></td></tr>
-<tr class="separator:aa5c43e3577b5ff0d7c7e2d4093d3f451"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b6e7998c22b797377f0822d9334aa71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a0b6e7998c22b797377f0822d9334aa71">fdc::is_non_redundant</a> (fds F)</td></tr>
-<tr class="memdesc:a0b6e7998c22b797377f0822d9334aa71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is non-redundant.  <a href="namespacefdc.html#a0b6e7998c22b797377f0822d9334aa71">More...</a><br /></td></tr>
-<tr class="separator:a0b6e7998c22b797377f0822d9334aa71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c75e85ecef59ee445ea08ba09ee11be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a3c75e85ecef59ee445ea08ba09ee11be">fdc::from_json</a> (const std::string input, attrs &amp;U, fds &amp;F)</td></tr>
+<tr class="separator:a3c75e85ecef59ee445ea08ba09ee11be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f22d2e6196b4cc3f54d39b53140da8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a3f22d2e6196b4cc3f54d39b53140da8e">fdc::from_json</a> (std::istream &amp;input, attrs &amp;U, fds &amp;F)</td></tr>
+<tr class="memdesc:a3f22d2e6196b4cc3f54d39b53140da8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a input stream <code>input</code> into a set of attributes <code>U</code> and a set of functional dependencies <code>F</code>.  <a href="namespacefdc.html#a3f22d2e6196b4cc3f54d39b53140da8e">More...</a><br /></td></tr>
+<tr class="separator:a3f22d2e6196b4cc3f54d39b53140da8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adca80a3e72fb6a420f386f7a38c11c26"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#adca80a3e72fb6a420f386f7a38c11c26">fdc::to_json</a> (std::ostream &amp;output, const attrs &amp;U, const fds &amp;F)</td></tr>
+<tr class="memdesc:adca80a3e72fb6a420f386f7a38c11c26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert given set of attributes <code>U</code> and given set of functional dependencies <code>F</code> to json string and write it into output.  <a href="namespacefdc.html#adca80a3e72fb6a420f386f7a38c11c26">More...</a><br /></td></tr>
+<tr class="separator:adca80a3e72fb6a420f386f7a38c11c26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe224a98bd98ea3cf26dff6bdc8f7392"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#afe224a98bd98ea3cf26dff6bdc8f7392">fdc::to_str</a> (const attr &amp;x)</td></tr>
+<tr class="memdesc:afe224a98bd98ea3cf26dff6bdc8f7392"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert an attribute <code>x</code> to a string.  <a href="namespacefdc.html#afe224a98bd98ea3cf26dff6bdc8f7392">More...</a><br /></td></tr>
+<tr class="separator:afe224a98bd98ea3cf26dff6bdc8f7392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a543e1b80a6136df57b31c53c0f53a6fc"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a543e1b80a6136df57b31c53c0f53a6fc">fdc::to_str</a> (const attrs &amp;X)</td></tr>
+<tr class="memdesc:a543e1b80a6136df57b31c53c0f53a6fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of attributes <code>X</code> to a string.  <a href="namespacefdc.html#a543e1b80a6136df57b31c53c0f53a6fc">More...</a><br /></td></tr>
+<tr class="separator:a543e1b80a6136df57b31c53c0f53a6fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663eb3d61e60d928e698a7541aa586a1"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a663eb3d61e60d928e698a7541aa586a1">fdc::to_str</a> (const fd &amp;f)</td></tr>
+<tr class="memdesc:a663eb3d61e60d928e698a7541aa586a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of functional depdency <code>f</code> to a string.  <a href="namespacefdc.html#a663eb3d61e60d928e698a7541aa586a1">More...</a><br /></td></tr>
+<tr class="separator:a663eb3d61e60d928e698a7541aa586a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ce571e0c9b400de6db33fe404989957"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a3ce571e0c9b400de6db33fe404989957">fdc::to_str</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:a3ce571e0c9b400de6db33fe404989957"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert a set of functional dependencies <code>F</code> to a string.  <a href="namespacefdc.html#a3ce571e0c9b400de6db33fe404989957">More...</a><br /></td></tr>
+<tr class="separator:a3ce571e0c9b400de6db33fe404989957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d944a5166e8572172947fcc1d8ecc56"><td class="memItemLeft" align="right" valign="top">attrs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a2d944a5166e8572172947fcc1d8ecc56">fdc::attrs_of</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:a2d944a5166e8572172947fcc1d8ecc56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all attributes of a given functional dependency set <code>F</code>.  <a href="namespacefdc.html#a2d944a5166e8572172947fcc1d8ecc56">More...</a><br /></td></tr>
+<tr class="separator:a2d944a5166e8572172947fcc1d8ecc56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a56c273cb4563108ebaa15ae0ef30bd"><td class="memItemLeft" align="right" valign="top">attrs&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a6a56c273cb4563108ebaa15ae0ef30bd">fdc::union_of</a> (const attrs &amp;X, const attrs &amp;Y)</td></tr>
+<tr class="memdesc:a6a56c273cb4563108ebaa15ae0ef30bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the union set of two sets of attributes <code>X</code>, <code>Y</code>.  <a href="namespacefdc.html#a6a56c273cb4563108ebaa15ae0ef30bd">More...</a><br /></td></tr>
+<tr class="separator:a6a56c273cb4563108ebaa15ae0ef30bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5923d381fe5ba6970d4cd16d0b7ac951"><td class="memItemLeft" align="right" valign="top">set&lt; attrs &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a5923d381fe5ba6970d4cd16d0b7ac951">fdc::subsets_of</a> (const attrs &amp;X)</td></tr>
+<tr class="memdesc:a5923d381fe5ba6970d4cd16d0b7ac951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all subsets of a given set attributes <code>X</code>.  <a href="namespacefdc.html#a5923d381fe5ba6970d4cd16d0b7ac951">More...</a><br /></td></tr>
+<tr class="separator:a5923d381fe5ba6970d4cd16d0b7ac951"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a906d98343b02bb8fbd998ebb3938d6fa"><td class="memItemLeft" align="right" valign="top">set&lt; fds &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a906d98343b02bb8fbd998ebb3938d6fa">fdc::subsets_of</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:a906d98343b02bb8fbd998ebb3938d6fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all subsets of a given set of functional dependencies <code>F</code>.  <a href="namespacefdc.html#a906d98343b02bb8fbd998ebb3938d6fa">More...</a><br /></td></tr>
+<tr class="separator:a906d98343b02bb8fbd998ebb3938d6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08752712e324fe7b45970512fac12db7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a08752712e324fe7b45970512fac12db7">fdc::is_subset_of</a> (const attrs &amp;X, const attrs &amp;Y)</td></tr>
+<tr class="memdesc:a08752712e324fe7b45970512fac12db7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if given set of attributes <code>X</code> is a subset of given set of attributes <code>Y</code>.  <a href="namespacefdc.html#a08752712e324fe7b45970512fac12db7">More...</a><br /></td></tr>
+<tr class="separator:a08752712e324fe7b45970512fac12db7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b324986f2cc23cb3f91d8ab4ecdda7"><td class="memItemLeft" align="right" valign="top">fds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a57b324986f2cc23cb3f91d8ab4ecdda7">fdc::closure_of</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:a57b324986f2cc23cb3f91d8ab4ecdda7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code>. It is an implementation of Armstrong's Axioms.  <a href="namespacefdc.html#a57b324986f2cc23cb3f91d8ab4ecdda7">More...</a><br /></td></tr>
+<tr class="separator:a57b324986f2cc23cb3f91d8ab4ecdda7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa06e7815abedadbd0ffc73e729ade316"><td class="memItemLeft" align="right" valign="top">fds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#aa06e7815abedadbd0ffc73e729ade316">fdc::closure_of</a> (const attrs &amp;U, const fds &amp;F)</td></tr>
+<tr class="memdesc:aa06e7815abedadbd0ffc73e729ade316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the closure of a given set of functional depdencies <code>F</code> under a given set of attributes, universe <code>U</code>. It is an implementation of Armstrong's Axioms.  <a href="namespacefdc.html#aa06e7815abedadbd0ffc73e729ade316">More...</a><br /></td></tr>
+<tr class="separator:aa06e7815abedadbd0ffc73e729ade316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2792679098c7b549c7f898bca33a50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#afd2792679098c7b549c7f898bca33a50">fdc::equal</a> (const fds &amp;F, const fds &amp;G)</td></tr>
+<tr class="memdesc:afd2792679098c7b549c7f898bca33a50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two given sets of functional dependencies are equivalent.  <a href="namespacefdc.html#afd2792679098c7b549c7f898bca33a50">More...</a><br /></td></tr>
+<tr class="separator:afd2792679098c7b549c7f898bca33a50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd490291a1a1ce433b424dfb9be571ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#abd490291a1a1ce433b424dfb9be571ff">fdc::is_cover_of</a> (const fds &amp;F, const fds &amp;G)</td></tr>
+<tr class="memdesc:abd490291a1a1ce433b424dfb9be571ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies <code>F</code> is a cover of another given set of functional dependencies <code>G</code>.  <a href="namespacefdc.html#abd490291a1a1ce433b424dfb9be571ff">More...</a><br /></td></tr>
+<tr class="separator:abd490291a1a1ce433b424dfb9be571ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb059ca0fc991071faed60edade40f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a8eb059ca0fc991071faed60edade40f9">fdc::equal</a> (const attrs &amp;X, const attrs &amp;Y, const fds &amp;F)</td></tr>
+<tr class="memdesc:a8eb059ca0fc991071faed60edade40f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if two sets of attributes <code>X</code> and <code>Y</code> are equivalent under a given set of functional dependencies <code>F</code>.  <a href="namespacefdc.html#a8eb059ca0fc991071faed60edade40f9">More...</a><br /></td></tr>
+<tr class="separator:a8eb059ca0fc991071faed60edade40f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab97a440d6e3515dc92dbcb6015245e10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#ab97a440d6e3515dc92dbcb6015245e10">fdc::is_non_redundant</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:ab97a440d6e3515dc92dbcb6015245e10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is non-redundant.  <a href="namespacefdc.html#ab97a440d6e3515dc92dbcb6015245e10">More...</a><br /></td></tr>
+<tr class="separator:ab97a440d6e3515dc92dbcb6015245e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f7c3eebb058e80db712ff650fe3fcd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6">fdc::is_canonical</a> (const fds &amp;F)</td></tr>
+<tr class="memdesc:a6f7c3eebb058e80db712ff650fe3fcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is canonical.  <a href="namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6">More...</a><br /></td></tr>
+<tr class="separator:a6f7c3eebb058e80db712ff650fe3fcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaad334dfa87b7e0cd9ef8eae7730efba8">fdc::membership</a> (fds F, attrs X, attrs Y)</td></tr>
+<tr class="memdesc:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a set of functional dependencies \(F\) and a functional dependency \( f \) , determine if \( X \to Y \in F^{+} \) in linear time.  <a href="group__algorithms.html#gaad334dfa87b7e0cd9ef8eae7730efba8">More...</a><br /></td></tr>
+<tr class="separator:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a94f60ed828c2617557b17e6392c1317e"></a>

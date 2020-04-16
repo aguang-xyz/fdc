@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['main',['main',['../CMakeCCompilerId_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCCompilerId.c'],['../CMakeCXXCompilerId_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;CMakeCXXCompilerId.cpp'],['../feature__tests_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;feature_tests.c'],['../feature__tests_8cxx.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;feature_tests.cxx'],['../1_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;1.cpp'],['../2_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;2.cpp'],['../3_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;3.cpp'],['../4_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;4.cpp'],['../5_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;5.cpp'],['../6_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;6.cpp'],['../7_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;7.cpp'],['../fdc-cli_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;fdc-cli.cpp']]]
+  ['is_5fcanonical',['is_canonical',['../namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6',1,'fdc']]],
+  ['is_5fcover_5fof',['is_cover_of',['../namespacefdc.html#abd490291a1a1ce433b424dfb9be571ff',1,'fdc']]],
+  ['is_5fnon_5fredundant',['is_non_redundant',['../namespacefdc.html#ab97a440d6e3515dc92dbcb6015245e10',1,'fdc']]],
+  ['is_5fsubset_5fof',['is_subset_of',['../namespacefdc.html#a08752712e324fe7b45970512fac12db7',1,'fdc']]]
 ];

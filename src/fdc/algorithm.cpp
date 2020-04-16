@@ -7,12 +7,12 @@ namespace fdc {
 
   using namespace std;
 
-  // Given a set of functional dependencies $F$ and a functional dependency
-  // $f$, determine if $f \in F^{+}$ in linear time.
+  // Given a set of functional dependencies$ \f$ F \f$ and a functional
+  // dependency $ \f$ f \f$ , determine if$ \f$ f \in F^{+} \f$ in linear time.
   bool membership(fds F, attrs X, attrs Y) {
 
     // attrlist[x] indicates all the functional dependencies with attribute
-    // $x$ on their left sides.
+    //$ \f$ x \f$ on their left sides.
     auto attrlist = map<attr, set<fd>>();
 
     // Build attrlist.
@@ -34,15 +34,15 @@ namespace fdc {
     // new_depend is a subset of dependend that has not yet been examined.
     auto new_depend = queue<attr>();
 
-    // Initialize $depend$ and $new_depend$.
+    // Initialize$ \f$ depend \f$ and$ \f$ new_depend \f$ .
     for (auto & x : X) {
 
       depend.insert(x);
       new_depend.push(x);
     }
 
-    // counter[f] indicates the number of attributes on the left side of $f$
-    // that have not yet been found to be in depend.
+    // counter[f] indicates the number of attributes on the left side of
+    // \f$ f \f$ that have not yet been found to be in depend.
     auto counter = map<fd, int>();
 
     // Initialize counter.

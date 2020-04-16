@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['to_5fstr',['to_str',['../namespacefdc.html#afdb47b8ae4f99d6feb656cfc54297cb1',1,'fdc::to_str(attr x)'],['../namespacefdc.html#a21a64b4ebd41783b12cdc82651201997',1,'fdc::to_str(attrs X)'],['../namespacefdc.html#a8d91f63e8dcb1d1f969440a2dc14118a',1,'fdc::to_str(fd f)'],['../namespacefdc.html#a03e229c07daf5f72688eadf7fa4323df',1,'fdc::to_str(fds F)']]]
+  ['queue',['Queue',['../classQueue.html',1,'Queue&lt; E &gt;'],['../classQueue.html#ab09891e54b51dc677ee6efb350687ae4',1,'Queue::Queue()']]],
+  ['queue_3c_20e_20_3e',['Queue&lt; E &gt;',['../classQueueNode.html#ad4336229b1d7c3626e4ba69f236b202d',1,'QueueNode']]],
+  ['queuenode',['QueueNode',['../classQueueNode.html',1,'']]]
 ];

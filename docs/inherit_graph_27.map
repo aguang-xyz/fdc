@@ -1,0 +1,24 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node2" href="$classgoogletest-break-on-failure-unittest_1_1GTestBreakOnFailureUnitTest.html" title="googletest&#45;break&#45;on\l&#45;failure&#45;unittest.GTestBreak\lOnFailureUnitTest" alt="" coords="154,5,337,61"/>
+<area shape="rect" id="node3" href="$classgoogletest-catch-exceptions-test_1_1CatchCxxExceptionsTest.html" title="googletest&#45;catch&#45;exceptions\l&#45;test.CatchCxxExceptionsTest" alt="" coords="144,86,347,127"/>
+<area shape="rect" id="node4" href="$classgoogletest-catch-exceptions-test_1_1CatchSehExceptionsTest.html" title="googletest&#45;catch&#45;exceptions\l&#45;test.CatchSehExceptionsTest" alt="" coords="145,151,346,193"/>
+<area shape="rect" id="node5" href="$classgoogletest-color-test_1_1GTestColorTest.html" title="googletest&#45;color&#45;test.GTest\lColorTest" alt="" coords="155,217,335,258"/>
+<area shape="rect" id="node6" href="$classgoogletest-env-var-test_1_1GTestEnvVarTest.html" title="googletest&#45;env&#45;var\l&#45;test.GTestEnvVarTest" alt="" coords="167,282,324,323"/>
+<area shape="rect" id="node7" href="$classgoogletest-filter-unittest_1_1GTestFilterUnitTest.html" title="googletest&#45;filter&#45;unittest.\lGTestFilterUnitTest" alt="" coords="164,347,327,389"/>
+<area shape="rect" id="node8" href="$classgoogletest-json-outfiles-test_1_1GTestJsonOutFilesTest.html" title="googletest&#45;json&#45;outfiles\l&#45;test.GTestJsonOutFilesTest" alt="" coords="150,413,341,454"/>
+<area shape="rect" id="node9" href="$classgoogletest-json-output-unittest_1_1GTestJsonOutputUnitTest.html" title="googletest&#45;json&#45;output\l&#45;unittest.GTestJsonOutputUnitTest" alt="" coords="132,478,359,519"/>
+<area shape="rect" id="node10" href="$classgoogletest-list-tests-unittest_1_1GTestListTestsUnitTest.html" title="googletest&#45;list&#45;tests\l&#45;unittest.GTestListTestsUnitTest" alt="" coords="139,543,352,585"/>
+<area shape="rect" id="node11" href="$classgoogletest-output-test_1_1GTestOutputTest.html" title="googletest&#45;output&#45;test.GTest\lOutputTest" alt="" coords="151,609,339,650"/>
+<area shape="rect" id="node12" href="$classgoogletest-param-test-invalid-name1-test_1_1GTestParamTestInvalidName1Test.html" title="googletest&#45;param&#45;test\l&#45;invalid&#45;name1&#45;test.GTestParam\lTestInvalidName1Test" alt="" coords="140,675,351,731"/>
+<area shape="rect" id="node13" href="$classgoogletest-param-test-invalid-name2-test_1_1GTestParamTestInvalidName2Test.html" title="googletest&#45;param&#45;test\l&#45;invalid&#45;name2&#45;test.GTestParam\lTestInvalidName2Test" alt="" coords="140,755,351,811"/>
+<area shape="rect" id="node14" href="$classgoogletest-shuffle-test_1_1GTestShuffleUnitTest.html" title="googletest&#45;shuffle\l&#45;test.GTestShuffleUnitTest" alt="" coords="156,835,335,877"/>
+<area shape="rect" id="node15" href="$classgoogletest-throw-on-failure-test_1_1ThrowOnFailureTest.html" title="googletest&#45;throw&#45;on\l&#45;failure&#45;test.ThrowOnFailureTest" alt="" coords="141,901,350,942"/>
+<area shape="rect" id="node16" href="$classgoogletest-uninitialized-test_1_1GTestUninitializedTest.html" title="googletest&#45;uninitialized\l&#45;test.GTestUninitializedTest" alt="" coords="153,966,338,1007"/>
+<area shape="rect" id="node17" href="$classgtest__help__test_1_1GTestHelpTest.html" title="gtest_help_test.GTestHelpTest" alt="" coords="143,1032,347,1059"/>
+<area shape="rect" id="node18" href="$classgtest__list__output__unittest_1_1GTestListTestsOutputUnitTest.html" title="gtest_list_output_unittest.\lGTestListTestsOutputUnitTest" alt="" coords="145,1083,346,1125"/>
+<area shape="rect" id="node19" href="$classgtest__skip__environment__check__output__test_1_1SkipEntireEnvironmentTest.html" title="gtest_skip_environment\l_check_output_test.SkipEntire\lEnvironmentTest" alt="" coords="145,1149,345,1205"/>
+<area shape="rect" id="node20" href="$classgtest__testbridge__test_1_1GTestTestFilterTest.html" title="gtest_testbridge_test.GTest\lTestFilterTest" alt="" coords="153,1230,337,1271"/>
+<area shape="rect" id="node21" href="$classgtest__xml__test__utils_1_1GTestXMLTestCase.html" title="gtest_xml_test_utils.GTest\lXMLTestCase" alt="" coords="156,1295,335,1337"/>
+<area shape="rect" id="node22" href="$classgtest__xml__outfiles__test_1_1GTestXMLOutFilesTest.html" title="gtest_xml_outfiles\l_test.GTestXMLOutFilesTest" alt="" coords="407,1262,600,1303"/>
+<area shape="rect" id="node23" href="$classgtest__xml__output__unittest_1_1GTestXMLOutputUnitTest.html" title="gtest_xml_output_unittest.\lGTestXMLOutputUnitTest" alt="" coords="415,1327,591,1369"/>
+</map>
