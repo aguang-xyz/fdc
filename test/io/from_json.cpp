@@ -8,9 +8,7 @@ using namespace fdc;
 
 TEST(io, from_json) {
 
-  ifstream iris;
-
-  iris.open("../../dataset/A/Complete Data/iris.json");
+  auto iris = ifstream("../../dataset/A/Complete Data/iris.json");
 
   auto U1 = attrs();
   auto F1 = fds();
