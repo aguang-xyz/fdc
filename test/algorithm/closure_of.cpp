@@ -1,27 +1,29 @@
 #include "gtest/gtest.h"
 #include "fdc/fdc.h"
 
+#include <fstream>
+
 using namespace std;
 using namespace fdc;
 
-TEST(algorithm, closure_of_1) {
+TEST(algorithm, closure_of_iris) {
 
-  fds F = fds({
+  auto iris = ifstream("../../dataset/A/Complete Data/iris.json");
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
-  });
-  
-  cout<<"Closure(U, F) = "<<to_str(closure_of(F))<<endl;
-}
+  auto U = attrs();
+  auto F = fds();
 
-TEST(algorithm, closure_of_2) {
+  from_json(iris, U, F);
+ 
+  cout<<"U = "<<to_str(U)<<endl;
+  cout<<"F = "<<to_str(F)<<endl;
 
-  fds F = fds({
+  auto closure = closure_of(U, F);
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "Y" }), attrs({ "Z" })),
-  });
-  
-  cout<<"Closure(U, F) = "<<to_str(closure_of(F))<<endl;
+  cout<<"Closure(U, F) = "<<to_str(closure)<<endl;
+
+  auto irisClosure =
+    ofstream("../../dataset/A/Complete Data/iris.closure.json");
+
+  to_json(irisClosure, U, closure);
 }
