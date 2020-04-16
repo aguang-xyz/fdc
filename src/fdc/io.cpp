@@ -55,14 +55,14 @@ namespace fdc {
 
   // Parse a json string `input` into a set of attributes `U` and a set of
   // functional dependencies `F`
-  void from_json(string input, attrs &U, fds &F) {
+  void from_json(const string input, attrs &U, fds &F) {
 
     from_json(json::parse(input), U, F);
   }
 
   // Parse a input stream `input` into a set of attributes `U` and a set of
   // functional dependencies `F`
-  void from_json(istream input, attrs &U, fds &F) {
+  void from_json(istream &input, attrs &U, fds &F) {
 
     from_json(json::parse(input), U, F);
   }

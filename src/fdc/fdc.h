@@ -79,7 +79,7 @@ namespace fdc {
    * @param U: A set of attributes for output.
    * @param F: A set of functional dependencies for output.
    */
-  void from_json(const std::istream input, attrs &U, fds &F);
+  void from_json(std::istream &input, attrs &U, fds &F);
 
   /**
    * @brief Convert an attribute `x` to a string.
