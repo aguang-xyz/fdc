@@ -260,5 +260,15 @@ namespace fdc {
    * @return bool
    */
   bool is_canonical(const fds &F);
+
+  /**
+   * @brief Given a set of functional dependencies $F$ and a functional
+   * dependency $f$, determine if $X \to Y \in F^{+}$ in linear time.
+   *
+   * @param F: A set of functional dependencies.
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   */
+  bool membership(fds F, attrs X, attrs Y);
 }
 #endif
