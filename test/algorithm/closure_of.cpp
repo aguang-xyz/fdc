@@ -6,6 +6,42 @@
 using namespace std;
 using namespace fdc;
 
+TEST(algorithm, closure_of_0) {
+
+  auto F = fds({
+
+    fd(attrs({ "X" }), attrs({ "Y" })),
+    fd(attrs({ "X" }), attrs({ "Z" })),
+  });
+
+  cout<<to_str(closure_of(F))<<endl;
+}
+
+TEST(algorithm, closure_of_1) {
+
+  auto F = fds({
+
+    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ "Y" }), attrs({ "Z" })),
+  });
+
+  cout<<to_str(closure_of(F))<<endl;
+}
+
+TEST(algorithm, closure_of_2) {
+
+  auto F = fds({
+
+    fd(attrs({ "X" }), attrs({ "Y" })),
+    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ "Y", "Z" }), attrs({ "V" })),
+    fd(attrs({ "V" }), attrs({ "X" })),
+  });
+
+  cout<<to_str(closure_of(F))<<endl;
+}
+
+/*
 TEST(algorithm, closure_of_iris) {
 
   const string inputs[] = {
@@ -56,3 +92,4 @@ TEST(algorithm, closure_of_iris) {
 		to_json(output, U, closure);
 	}
 }
+*/
