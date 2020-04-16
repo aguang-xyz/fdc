@@ -23,7 +23,7 @@ TEST(algorithm, closure_of_iris) {
   cout<<"Closure(U, F) = "<<to_str(closure)<<endl;
 
   auto irisClosure =
-    ofstream("../../dataset/A/Complete Data/iris.closure.json");
+    ofstream("../../dataset/A/Complete Data/iris.closure.out.json");
 
   to_json(irisClosure, U, closure);
 }
