@@ -83,15 +83,7 @@ namespace fdc {
 
     const auto &D = depend(F, X);
 
-    for (auto &y : Y) {
-
-      if (D.find(y) != D.end()) {
-
-        return true;
-      }
-    }
-
-    return false;
+    return is_subset_eq(Y, D);
   }
  
 
@@ -145,6 +137,8 @@ namespace fdc {
 
     // 2.1 Calculate X^+.
     auto D = depend(G, X);
+
+    cout<<"D = "<<to_str(D)<<endl;
 
     auto EFX = fds();
 

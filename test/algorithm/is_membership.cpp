@@ -41,7 +41,7 @@ TEST(algorithm, is_membership_3) {
     fd(attrs({ "Y", "Z", "W" }), attrs({ "V" })),
   });
 
-  auto f = fd(attrs({ "X" }), attrs({ "X", "V", "W" }));
+  auto f = fd(attrs({ "X", "V", "W" }), attrs({ "X" }));
 
   ASSERT_TRUE(is_membership(F, f));
 }
