@@ -350,7 +350,7 @@ namespace fdc {
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
    */
-  bool membership(const fds &F, const fd &f);
+  bool is_membership(const fds &F, const fd &f);
 
   /*! \brief Redundant determination.
    *

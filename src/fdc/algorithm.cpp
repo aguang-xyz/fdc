@@ -76,7 +76,7 @@ namespace fdc {
   }
 
 
-  bool membership(const fds &F, const fd &f) {
+  bool is_membership(const fds &F, const fd &f) {
 
     const auto &X = f.first;
     const auto &Y = f.second;
@@ -93,7 +93,7 @@ namespace fdc {
 
       auto G = minus(F, fds({ f }));
 
-      if (membership(G, f)) {
+      if (is_membership(G, f)) {
 
         return true;
       }
@@ -111,7 +111,7 @@ namespace fdc {
 
       auto H = minus(G, fds({ f }));
 
-      if (membership(H, f)) {
+      if (is_membership(H, f)) {
 
         G = H;
       }

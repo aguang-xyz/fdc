@@ -4,7 +4,7 @@
 using namespace std;
 using namespace fdc;
 
-TEST(algorithm, membership_1) {
+TEST(algorithm, is_membership_1) {
 
   auto F = fds({
 
@@ -15,10 +15,10 @@ TEST(algorithm, membership_1) {
 
   auto f = fd(attrs({ "X" }), attrs({ "V" }));
 
-  ASSERT_TRUE(membership(F, f));
+  ASSERT_TRUE(is_membership(F, f));
 }
 
-TEST(algorithm, membership_2) {
+TEST(algorithm, is_membership_2) {
 
   auto F = fds({
 
@@ -29,5 +29,5 @@ TEST(algorithm, membership_2) {
 
   auto f = fd(attrs({ "X" }), attrs({ "V" }));
 
-  ASSERT_FALSE(membership(F, f));
+  ASSERT_FALSE(is_membership(F, f));
 }
