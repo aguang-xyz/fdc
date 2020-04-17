@@ -20,5 +20,5 @@ TEST(algorithm, redundant_1) {
   });
 
 
-  ASSERT_EQ(redundant(F), G);
+  ASSERT_EQ(non_redundant(F), G);
 }

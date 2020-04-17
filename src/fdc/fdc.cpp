@@ -169,20 +169,6 @@ namespace fdc {
     return subsets;
   }
 
-  // Check if given set of attributes `X` is a subset of given set of
-  // attributes `Y`.
-  bool is_subset_of(const attrs &X, const attrs &Y) {
-
-    for (auto x : X) {
-
-      if (Y.find(x) == Y.end()) {
-
-        return false;
-      }
-    }
-
-    return true;
-  }
 
   // Get the closure of a given set of functional depdencies `F`. It is an
   // implementation of Armstrong's Axioms.
@@ -252,7 +238,7 @@ namespace fdc {
 
           auto Z = f2.first, VW = f2.second;
 
-          if (is_subset_of(Z, YZ)) {
+          if (is_subset_eq(Z, YZ)) {
 
             for (auto V : subsets_of(VW)) {
 

@@ -155,15 +155,6 @@ namespace fdc {
   std::set<fds> subsets_of(const fds &F);
 
   /**
-   * @brief Check if given set of attributes `X` is a subset of given set of
-   * attributes `Y`.
-   *
-   * @param X: A set of atributes.
-   * @param Y: A set of attributes.
-   */
-  bool is_subset_of(const attrs &X, const attrs &Y);
-
-  /**
    * @brief Get the closure of a given set of functional depdencies `F`. It is
    * an implementation of Armstrong's Axioms.
    *
@@ -290,15 +281,15 @@ namespace fdc {
    *     depend[label = "attrs depend(const fds &F, const attrs &X)"]
    *     is_membership[label = "bool is_membership(const fds &F, const fd &f)"]
    *     is_redundant[label = "bool is_redundant(const fds &F)"]
-   *     redundant[label = "fds redundant(const fds &F)"]
+   *     non_redundant[label = "fds non_redundant(const fds &F)"]
    *     is_direct[label = "bool is_direct(const fds &F, const fd &f)"]
    *     minimum[label = "fds minimum(const fds &F)"]
    *
    *     is_membership -> depend
    *     is_redundant -> is_membership
-   *     redundant -> is_membership
-   *     is_direct -> redundant
-   *     minimum -> redundant
+   *     non_redundant -> is_membership
+   *     is_direct -> non_redundant
+   *     minimum -> non_redundant
    *   }
    * \enddot
    *
@@ -352,7 +343,7 @@ namespace fdc {
 
   /*! \brief Redundant cover calculation.
    *
-   * Given a set of functional dependencies \f$ F \f$, calculate a redundant
+   * Given a set of functional dependencies \f$ F \f$, calculate a non-redundant
    * cover \f$ G \f$ of \f$ F \f$, where:
    *
    *   * \f$ G^+ = F^+ \f$
@@ -364,7 +355,7 @@ namespace fdc {
    *
    * @param F: A set of functional dependencies.
    */
-  fds redundant(const fds &F);
+  fds non_redundant(const fds &F);
 
   /*! \brief Direct determination.
    *

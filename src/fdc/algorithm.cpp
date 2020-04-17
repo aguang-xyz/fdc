@@ -103,7 +103,7 @@ namespace fdc {
   }
 
 
-  fds redundant(const fds &F) {
+  fds non_redundant(const fds &F) {
 
     auto G = fds(F);
 
@@ -132,8 +132,8 @@ namespace fdc {
     const auto &X = f.first;
     const auto &Y = f.second;
 
-    // 1. Find a redundant cover for `F`.
-    auto G = redundant(F);
+    // 1. Find a non-redundant cover for `F`.
+    auto G = non_redundant(F);
 
     // 2.1 Calculate X^+.
     auto D = depend(G, X);
@@ -163,8 +163,8 @@ namespace fdc {
 
   fds minimum(const fds &F) {
 
-    // 1. Find a redundant cover for `F`.
-    auto G = redundant(F);
+    // 1. Find a non-redundant cover for `F`.
+    auto G = non_redundant(F);
 
     // 2. Find all equivalence classes for `G`.
     auto D = vector<attrs>();
