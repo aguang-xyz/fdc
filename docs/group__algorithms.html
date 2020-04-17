@@ -125,6 +125,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga40f20f64f21360947f32bec8fc771280"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga40f20f64f21360947f32bec8fc771280">fdc::non_redundant</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga40f20f64f21360947f32bec8fc771280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant cover calculation.  <a href="group__algorithms.html#ga40f20f64f21360947f32bec8fc771280">More...</a><br /></td></tr>
 <tr class="separator:ga40f20f64f21360947f32bec8fc771280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">fdc::is_canonical</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is canonical.  <a href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">More...</a><br /></td></tr>
+<tr class="separator:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">fdc::is_direct</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
 <tr class="memdesc:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct determination.  <a href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">More...</a><br /></td></tr>
 <tr class="separator:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,6 +140,11 @@ Functions</h2></td></tr>
 <div class="dotgraph">
 <img src="dot_inline_dotgraph_1.png" alt="dot_inline_dotgraph_1.png" border="0" usemap="#dot_inline_dotgraph_1.map"/>
 <map name="dot_inline_dotgraph_1.map" id="dot_inline_dotgraph_1.map"></map>
+</div>
+<p>Brief relations between different kinds of covers:</p>
+<div class="dotgraph">
+<img src="dot_inline_dotgraph_2.png" alt="dot_inline_dotgraph_2.png" border="0" usemap="#dot_inline_dotgraph_2.map"/>
+<map name="dot_inline_dotgraph_2.map" id="dot_inline_dotgraph_2.map"></map>
 </div>
  <h2 class="groupheader">Function Documentation</h2>
 <a id="ga8610b34d6f680cb3e888518cb7f2f856"></a>
@@ -250,6 +258,40 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">G</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6f7c3eebb058e80db712ff650fe3fcd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6f7c3eebb058e80db712ff650fe3fcd6">&#9670;&nbsp;</a></span>is_canonical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_canonical </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Canonical determination.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Given a set of functional dependencies \( F \), determine if \( F \) is canonical.</p>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of cuntional dependencies. </td></tr>
   </table>
   </dd>
 </dl>

@@ -267,48 +267,4 @@ namespace fdc {
 
     return equal(F, G);
   }
-
-
-  // Check if a given set of functional dependencies is canonical.
-  bool is_canonical(const fds &F) {
-
-    // Rule 1. \forall X \to Y \in F, |Y| =1
-    for (auto f : F) {
-
-      if (f.second.size() != 1) {
-
-        return false;
-      }
-    }
-
-    // Rule 2. F is non-redundant.
-    if (is_redundant(F)) {
-
-      return false;
-    }
-
-    // Rule 3.
-    //
-    // $$
-    // \forall X^' \subset X \land X \to Y \in F,
-    //   X^` \to Y \not \in F^+
-    // $$
-    auto C = closure_of(F);
-
-    for (auto f: F) {
-
-      auto X = f.first;
-      auto Y = f.second;
-
-      for (auto X2 : subsets_of(X)) {
-
-        if (X2 != X && C.find(fd(X2, Y)) != C.end()) {
-
-          return false;
-        }
-      }
-    }
-
-    return true;
-  }
 }

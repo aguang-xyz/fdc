@@ -79,13 +79,6 @@ namespace fdc {
    */
   fds closure_of(const attrs &U, const fds &F);
 
-  /**
-   * @brief Check if a given set of functional dependencies is canonical.
-   *
-   * @param F: A set of functional dependencies.
-   */
-  bool is_canonical(const fds &F);
-
   
  
 
@@ -291,6 +284,29 @@ namespace fdc {
    *   }
    * \enddot
    *
+   * Brief relations between different kinds of covers:
+   *
+   * \dot
+   *   digraph covers {
+   *
+   *     rankdir=RL;
+   *     node[shape=rect];
+   *
+   *     canonical[label = "Canonical"]
+   *     non_redundant[label = "Non-Redundant"]
+   *     minimum[label = "Minimum"]
+   *     l_minimum[label = "L-Minimum"]
+   *     lr_minimum[label = "LR-Minimum"]
+   *     optical[label = "Optical"]
+   *
+   *     canonical -> non_redundant
+   *     minimum -> non_redundant
+   *     l_minimum -> minimum
+   *     lr_minimum -> l_minimum
+   *     optical -> lr_minimum
+   *   }
+   * \enddot
+   *
    * @defgroup algorithms
    *
    * @{
@@ -374,6 +390,20 @@ namespace fdc {
    * @param F: A set of functional dependencies.
    */
   fds non_redundant(const fds &F);
+
+  /*! \brief Canonical determination.
+   *
+   * Given a set of functional dependencies \f$ F \f$, determine if \f$ F \f$
+   * is canonical.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   * 
+   * See also: Removing extraneous attributes in
+   *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *
+   * @param F: A set of cuntional dependencies.
+   */
+  bool is_canonical(const fds &F);
 
   /*! \brief Direct determination.
    *

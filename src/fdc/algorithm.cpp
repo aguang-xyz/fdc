@@ -149,6 +149,35 @@ namespace fdc {
   }
 
 
+  bool is_canonical(const fds &F) {
+
+    if (!is_redundant(F)) {
+
+      return false;
+    }
+
+    for (auto &f : F) {
+
+      auto &X = f.first;
+      auto &Y = f.second;
+
+      if (X.size() > 0) {
+
+        for (auto &x : X) {
+
+          auto X2 = minus(X, attrs({ x }));
+
+          if (is_membership(F, fd(X2, Y))) {
+
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
   bool is_direct(const fds &F, const fd &f) {
 
     // 0. Check if \f$ X \to Y \in F^+ \f$.
