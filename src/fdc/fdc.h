@@ -299,14 +299,28 @@ namespace fdc {
    * @{
    */
 
+  /*! \brief Dependent calculation.
+   *
+   * Given a set of functional dependencies \f$ F \f$ and a set of attributes
+   * \f$ X \f$, calculate the set of attributes \f$ \{ y \mid X \to y \in F^+ \} \f$.
+   *
+   * Time complexity: \f$ O(|F|) \f$
+   *
+   * See also: [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *
+   * @param F: A set of functional dependencies.
+   * @param X: A set of attributes.
+   */
+  attrs depend(const fds &F, const attrs &X);
+
   /*! \brief Membership determination.
    *
    * Given a set of functional dependencies \f$ F \f$ and a functional
-   * dependency \f$ f \f$ , determine if \f$ f \in F^{+} \f$ in
-   * linear time.
+   * dependency \f$ f \f$ , determine if \f$ f \in F^{+} \f$.
    *
-   * The original version of this algorithm was introduced by
-   * [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * Time complexity: \f$ O(|F|) \f$
+   *
+   * See also: [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
@@ -316,10 +330,13 @@ namespace fdc {
   /*! \brief Redundant determination.
    *
    * Check if a set of functional dependencies \f$ F \f$ is redundant.
+   *
+   * If there is a \f$ \ f \in F \f$, where \f$ (F - \{f\})^+ = F^+ \f$, then
+   * we say \f$ F \f$ is redundant.
+   *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * The original version of this algorithm was introduced by
-   * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * See also: [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    */
@@ -328,10 +345,14 @@ namespace fdc {
   /*! \brief Redundant cover calculation.
    *
    * Given a set of functional dependencies \f$ F \f$, calculate a redundant
-   * cover of \f$ F \f$. Time complexity: \f$ O(|F|^2) \f$.
+   * cover \f$ G \f$ of \f$ F \f$, where:
    *
-   * The original version of this algorithm was introduced by
-   * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *   * \f$ G^+ = F^+ \f$
+   *   * \f$ \forall H \subset G: H^{+} \neq F^+ \f$
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    */

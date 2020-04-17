@@ -7,11 +7,8 @@ namespace fdc {
 
   using namespace std;
 
-  
-  bool membership(const fds &F, const fd &f) {
 
-    const attrs &X = f.first;
-    const attrs &Y = f.second;
+  attrs depend(const fds &F, const attrs &X) {
 
     // attrlist[x] indicates all the functional dependencies with attribute
     //$ \f$ x \f$ on their left sides.
@@ -75,9 +72,20 @@ namespace fdc {
       new_depend.pop();
     }
 
+    return depend;
+  }
+
+
+  bool membership(const fds &F, const fd &f) {
+
+    const auto &X = f.first;
+    const auto &Y = f.second;
+
+    const auto &D = depend(F, X);
+
     for (auto &y : Y) {
 
-      if (depend.find(y) == depend.end()) {
+      if (D.find(y) == D.end()) {
 
         return false;
       }
@@ -85,8 +93,8 @@ namespace fdc {
 
     return true;
   }
+ 
 
-  
   bool is_redundant(const fds &F) {
 
     for (auto &f : F) {
