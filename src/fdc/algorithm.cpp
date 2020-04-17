@@ -151,7 +151,7 @@ namespace fdc {
 
   bool is_canonical(const fds &F) {
 
-    if (!is_redundant(F)) {
+    if (is_redundant(F)) {
 
       return false;
     }
