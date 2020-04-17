@@ -135,7 +135,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check if a set of functional dependencies \( F \) is redundant.</p>
+<p>Check if a set of functional dependencies \( F \) is redundant. Time complexity: \( O(|F|^2) \).</p>
 <p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -171,7 +171,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Given a set of functional dependencies \( F \) and a functional dependency \( X \to Y \) , determine if \( f \in F^{+} \) in linear time.</p>
+<p>Given a set of functional dependencies \( F \) and a functional dependency \( f \) , determine if \( f \in F^{+} \) in linear time.</p>
 <p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -198,7 +198,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Given a set of functional dependencies \( F \), calculate a redundant cover of \( F \).</p>
+<p>Given a set of functional dependencies \( F \), calculate a redundant cover of \( F \). Time complexity: \( O(|F|^2) \).</p>
 <p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

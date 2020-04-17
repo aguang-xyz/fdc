@@ -302,7 +302,7 @@ namespace fdc {
   /*! \brief Membership determination.
    *
    * Given a set of functional dependencies \f$ F \f$ and a functional
-   * dependency \f$ X \to Y \f$ , determine if \f$ f \in F^{+} \f$ in
+   * dependency \f$ f \f$ , determine if \f$ f \in F^{+} \f$ in
    * linear time.
    *
    * The original version of this algorithm was introduced by
@@ -316,6 +316,7 @@ namespace fdc {
   /*! \brief Redundant determination.
    *
    * Check if a set of functional dependencies \f$ F \f$ is redundant.
+   * Time complexity: \f$ O(|F|^2) \f$.
    *
    * The original version of this algorithm was introduced by
    * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
@@ -327,7 +328,7 @@ namespace fdc {
   /*! \brief Redundant cover calculation.
    *
    * Given a set of functional dependencies \f$ F \f$, calculate a redundant
-   * cover of \f$ F \f$.
+   * cover of \f$ F \f$. Time complexity: \f$ O(|F|^2) \f$.
    *
    * The original version of this algorithm was introduced by
    * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
