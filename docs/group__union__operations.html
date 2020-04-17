@@ -113,10 +113,90 @@ Functions</h2></td></tr>
 <tr class="memitem:ga05d5e45644b6d154ceabc4b397df6de9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__union__operations.html#ga05d5e45644b6d154ceabc4b397df6de9">fdc::minus</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;X, const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;Y)</td></tr>
 <tr class="memdesc:ga05d5e45644b6d154ceabc4b397df6de9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functional dependencies minus.  <a href="group__union__operations.html#ga05d5e45644b6d154ceabc4b397df6de9">More...</a><br /></td></tr>
 <tr class="separator:ga05d5e45644b6d154ceabc4b397df6de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4eae647ddd9aec0bb39997686293198d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__union__operations.html#ga4eae647ddd9aec0bb39997686293198d">fdc::is_subset_eq</a> (const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;X, const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;Y)</td></tr>
+<tr class="memdesc:ga4eae647ddd9aec0bb39997686293198d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes subset or equal determination.  <a href="group__union__operations.html#ga4eae647ddd9aec0bb39997686293198d">More...</a><br /></td></tr>
+<tr class="separator:ga4eae647ddd9aec0bb39997686293198d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__union__operations.html#ga2c0fc55261aa2b2bcb5da9871e6bd5ea">fdc::is_subset_eq</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;X, const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;Y)</td></tr>
+<tr class="memdesc:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functional dependencies subset or equal determination.  <a href="group__union__operations.html#ga2c0fc55261aa2b2bcb5da9871e6bd5ea">More...</a><br /></td></tr>
+<tr class="separator:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the basic union operations implemented in <code>FDC</code>. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga4eae647ddd9aec0bb39997686293198d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4eae647ddd9aec0bb39997686293198d">&#9670;&nbsp;</a></span>is_subset_eq() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_subset_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;&#160;</td>
+          <td class="paramname"><em>Y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given two set of attributes \( X\), \( Y \), determine if \( X \subseteq Y \).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
+    <tr><td class="paramname">Y</td><td>A set of attributes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( X \subseteq Y \) </dd></dl>
+
+</div>
+</div>
+<a id="ga2c0fc55261aa2b2bcb5da9871e6bd5ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c0fc55261aa2b2bcb5da9871e6bd5ea">&#9670;&nbsp;</a></span>is_subset_eq() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_subset_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>Y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given two set of functioanl dependencies \( X\), \( Y \), determine if \( X \subseteq Y \).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>A set of functional dependencies. </td></tr>
+    <tr><td class="paramname">Y</td><td>A set of functional dependencies.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>\( X \subseteq Y \) </dd></dl>
+
+</div>
+</div>
 <a id="ga0535b66f93412c2a661cb21eb3c128f1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga0535b66f93412c2a661cb21eb3c128f1">&#9670;&nbsp;</a></span>minus() <span class="overload">[1/2]</span></h2>
 
@@ -150,7 +230,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>attrs </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>\( X - Y \) </dd></dl>
 
 </div>
 </div>
@@ -187,7 +267,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>fds </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>\( X - Y \) </dd></dl>
 
 </div>
 </div>

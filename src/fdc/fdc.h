@@ -270,7 +270,7 @@ namespace fdc {
    * @param X: A set of attributes.
    * @param Y: A set of attributes.
    *
-   * @return attrs
+   * @return \f$ X - Y \f$
    */
   attrs minus(const attrs &X, const attrs &Y);
  
@@ -282,9 +282,34 @@ namespace fdc {
    * @param X: A set of functional dependencies.
    * @param Y: A set of attributes dependencies.
    *
-   * @return fds
+   * @return \f$ X - Y \f$
    */
   fds minus(const fds &X, const fds &Y);
+
+  /*! \brief Attributes subset or equal determination.
+   *
+   * Given two set of attributes \f$ X\f$, \f$ Y \f$, determine if
+   * \f$ X \subseteq Y \f$.
+   *
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   *
+   * @return \f$ X \subseteq Y \f$
+   */
+  bool is_subset_eq(const attrs &X, const attrs &Y);
+
+  /*! \brief Functional dependencies subset or equal determination.
+   *
+   * Given two set of functioanl dependencies \f$ X\f$, \f$ Y \f$, determine if
+   * \f$ X \subseteq Y \f$.
+   *
+   * @param X: A set of functional dependencies.
+   * @param Y: A set of functional dependencies.
+   *
+   * @return \f$ X \subseteq Y \f$
+   */
+  bool is_subset_eq(const fds &X, const fds &Y);
+
 
   /** @} */
 
