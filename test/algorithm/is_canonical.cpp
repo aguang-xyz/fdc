@@ -6,7 +6,7 @@ using namespace fdc;
 
 TEST(algorithm, is_canonical_1) {
 
-  // Since AC -> D \in F^+, this is not canonical.
+  // Since $AC \to D \in F^+$, this is not canonical.
   auto F = fds({
 
     fd(attrs({ "A", "B", "C" }), attrs({ "D" })),
@@ -15,4 +15,3 @@ TEST(algorithm, is_canonical_1) {
 
   ASSERT_FALSE(is_canonical(F));
 }
-

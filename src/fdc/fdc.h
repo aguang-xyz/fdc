@@ -436,6 +436,20 @@ namespace fdc {
    */
   fds minimum(const fds &F);
 
+  /*! \brief Minimum determination.
+   *
+   * Given a set of functional dependencies \f$ F \f$, determine if:
+   *
+   *   * \f$ \forall G^+ = F^+, |G| \geq |F| \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  bool is_minimum(const fds &F);
+
   /** @} */
 }
 #endif

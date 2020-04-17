@@ -302,4 +302,10 @@ namespace fdc {
 
     return G;
   }
+
+
+  bool is_minimum(const fds &F) {
+
+    return minimum(F).size() == F.size();
+  }
 }

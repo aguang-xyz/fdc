@@ -126,7 +126,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga40f20f64f21360947f32bec8fc771280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant cover calculation.  <a href="group__algorithms.html#ga40f20f64f21360947f32bec8fc771280">More...</a><br /></td></tr>
 <tr class="separator:ga40f20f64f21360947f32bec8fc771280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">fdc::is_canonical</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
-<tr class="memdesc:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a given set of functional dependencies is canonical.  <a href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">More...</a><br /></td></tr>
+<tr class="memdesc:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canonical determination.  <a href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">More...</a><br /></td></tr>
 <tr class="separator:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">fdc::is_direct</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
 <tr class="memdesc:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct determination.  <a href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">More...</a><br /></td></tr>
@@ -134,6 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga593e7fa977c8be828fe7b12c027e1cf8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga593e7fa977c8be828fe7b12c027e1cf8">fdc::minimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga593e7fa977c8be828fe7b12c027e1cf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum cover calculation.  <a href="group__algorithms.html#ga593e7fa977c8be828fe7b12c027e1cf8">More...</a><br /></td></tr>
 <tr class="separator:ga593e7fa977c8be828fe7b12c027e1cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4366e0efe33ff07476e11e301a2246a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1">fdc::is_minimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga4366e0efe33ff07476e11e301a2246a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum determination.  <a href="group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1">More...</a><br /></td></tr>
+<tr class="separator:ga4366e0efe33ff07476e11e301a2246a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -279,13 +282,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Canonical determination.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">F</td><td>A set of functional dependencies.</td></tr>
-  </table>
-  </dd>
-</dl>
 <p>Given a set of functional dependencies \( F \), determine if \( F \) is canonical.</p>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
@@ -368,6 +364,36 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">f</td><td>A functional dependency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4366e0efe33ff07476e11e301a2246a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4366e0efe33ff07476e11e301a2246a1">&#9670;&nbsp;</a></span>is_minimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_minimum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), determine if:</p>
+<ul>
+<li>\( \forall G^+ = F^+, |G| \geq |F| \).</li>
+</ul>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
   </table>
   </dd>
 </dl>
