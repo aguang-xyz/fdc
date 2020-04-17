@@ -119,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__set__algebra.html#ga2c0fc55261aa2b2bcb5da9871e6bd5ea">fdc::is_subset_eq</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;X, const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;Y)</td></tr>
 <tr class="memdesc:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Functional dependencies subset or equal determination.  <a href="group__set__algebra.html#ga2c0fc55261aa2b2bcb5da9871e6bd5ea">More...</a><br /></td></tr>
 <tr class="separator:ga2c0fc55261aa2b2bcb5da9871e6bd5ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6a56c273cb4563108ebaa15ae0ef30bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__set__algebra.html#ga6a56c273cb4563108ebaa15ae0ef30bd">fdc::union_of</a> (const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;X, const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;Y)</td></tr>
+<tr class="memdesc:ga6a56c273cb4563108ebaa15ae0ef30bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attributes set union.  <a href="group__set__algebra.html#ga6a56c273cb4563108ebaa15ae0ef30bd">More...</a><br /></td></tr>
+<tr class="separator:ga6a56c273cb4563108ebaa15ae0ef30bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the basic algebras of sets implemented in <code>FDC</code>. </p>
@@ -261,6 +264,42 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">X</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">Y</td><td>A set of attributes dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga6a56c273cb4563108ebaa15ae0ef30bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6a56c273cb4563108ebaa15ae0ef30bd">&#9670;&nbsp;</a></span>union_of()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> fdc::union_of </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;&#160;</td>
+          <td class="paramname"><em>Y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given two sets of attributes <code>X</code>, <code>Y</code>, calculate \( X \cup Y \).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
+    <tr><td class="paramname">Y</td><td>A set of attributes. </td></tr>
   </table>
   </dd>
 </dl>

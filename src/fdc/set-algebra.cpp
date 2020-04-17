@@ -63,4 +63,22 @@ namespace fdc {
 
     return true;
   }
+
+
+	attrs union_of(const attrs &X, const attrs &Y) {
+	
+	  auto res = attrs();
+	
+	  for (auto x : X) {
+	
+	    res.insert(x);
+	  }
+	
+	  for (auto y : Y) {
+	
+	    res.insert(y);
+	  }
+	
+	  return res;
+	}
 }

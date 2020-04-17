@@ -85,24 +85,6 @@ namespace fdc {
     return ret;
   }
 
-  // Get the union set of two sets of attributes `X`, `Y`.
-  attrs union_of(const attrs &X, const attrs &Y) {
-
-    auto res = attrs();
-
-    for (auto x : X) {
-
-      res.insert(x);
-    }
-
-    for (auto y : Y) {
-
-      res.insert(y);
-    }
-
-    return res;
-  }
-
   // Get all subsets of a given set attributes `X`.
   set<attrs> subsets_of(const attrs &X) {
 

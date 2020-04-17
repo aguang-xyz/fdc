@@ -139,13 +139,6 @@ namespace fdc {
    */
   attrs attrs_of(const fds &F);
 
-  /**
-   * @brief Get the union set of two sets of attributes `X`, `Y`.
-   *
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
-   */
-  attrs union_of(const attrs &X, const attrs &Y);
 
   /**
    * @brief Get all subsets of a given set attributes `X`.
@@ -272,6 +265,14 @@ namespace fdc {
    */
   bool is_subset_eq(const fds &X, const fds &Y);
 
+  /*! \brief Attributes set union.
+   * 
+   * Given two sets of attributes `X`, `Y`, calculate \f$ X \cup Y \f$.
+   *
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   */
+  attrs union_of(const attrs &X, const attrs &Y);
 
   /** @} */
 
@@ -291,12 +292,13 @@ namespace fdc {
    *     is_redundant[label = "bool is_redundant(const fds &F)"]
    *     redundant[label = "fds redundant(const fds &F)"]
    *     is_direct[label = "bool is_direct(const fds &F, const fd &f)"]
+   *     minimum[label = "fds minimum(const fds &F)"]
    *
    *     is_membership -> depend
    *     is_redundant -> is_membership
    *     redundant -> is_membership
-   *     is_direct -> is_membership
    *     is_direct -> redundant
+   *     minimum -> redundant
    *   }
    * \enddot
    *
@@ -370,12 +372,30 @@ namespace fdc {
    * dependency \f$ f:X \to Y \f$, determine if \f$ X \f$ directly determines
    * \f$ Y \f$.
    *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
    * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
    */
   bool is_direct(const fds &F, const fd &f);
+
+  /*! \brief Minimum cover calculation.
+   *
+   * Given a set of functional dependencies \f$ F \f$, calculate a minimum
+   * cover \f$ G \f$, where:
+   * 
+   *   * \f$ G^+ = F^+ \f$.
+   *   * \f$ \forall H^+ = F^+, |H| \geq |G| \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  fds minimum(const fds &F);
 
   /** @} */
 }

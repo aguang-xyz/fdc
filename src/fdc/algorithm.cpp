@@ -159,4 +159,90 @@ namespace fdc {
     // 3. Check if X \to Y \in (F - EF(X))^+.
     return is_membership(minus(G, EFX), f);
   }
+
+
+  fds minimum(const fds &F) {
+
+    // 1. Find a redundant cover for `F`.
+    auto G = redundant(F);
+
+    // 2. Find all equivalence classes for `G`.
+    auto D = vector<attrs>();
+    auto ef = vector<set<attrs>>();
+    auto EF = vector<fds>();
+
+    for (auto &f : G) {
+
+      auto &X = f.first;
+
+      bool found = false;
+
+      for (int i = 0; i < D.size(); i++) {
+
+        // $ \text{The i-th class} \to X \in F^+ $.
+        if (is_subset_eq(X, D[i])) {
+
+          // $ X \to \text{The i-th class} \in F^+ $.
+          if (is_membership(G, fd(X, *(ef[i].begin())))) {
+
+            ef[i].insert(X);
+            EF[i].insert(f);
+
+            found = true;
+
+            break;
+          }
+        }
+      }
+
+      // Or, append a new class.
+      if (!found) {
+
+        D.push_back(depend(G, X));
+        ef.push_back(set<attrs>({ X }));
+        EF.push_back(fds({ f }));
+      }
+    }
+
+    // 3. Find pairs $Y1 \to Y2$ and $Z1 \to Z2$, where $Y1$, $Z1$ are
+    // equivalent and $Y1$ directly determine $Z1$. Replace them with
+    // $Z1 \to Y2Z2$.
+    for (int i = 0; i < D.size(); i++) {
+
+			again:
+			
+				auto G2 = minus(G, EF[i]);
+	
+				for (auto &y : EF[i]) {
+				 
+					auto &Y1 = y.first;
+					auto &Y2 = y.second;
+
+					auto DY = depend(G2, Y1);
+
+					for (auto &z : EF[i]) {
+
+						if (y == z) continue;
+
+						auto &Z1 = z.first;
+						auto &Z2 = z.second;
+
+						if (is_subset_eq(Z1, DY)) {
+							
+							G.insert(fd(attrs(Z1), union_of(Y2, Z2)));
+							G.erase(y);
+							G.erase(z);
+							
+							EF[i].insert(fd(attrs(Z1), union_of(Y2, Z2)));
+							EF[i].erase(y);
+							EF[i].erase(z);
+
+							goto again;
+						}
+					}
+				}
+    }
+
+    return G;
+  }
 }

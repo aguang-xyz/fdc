@@ -2,8 +2,10 @@
 
 cmake -B./build -H./
 
-make --directory build
+if make --directory build
+then
+  make --directory build test
+fi
 
-make --directory build test
 
 
