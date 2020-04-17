@@ -7,9 +7,10 @@ namespace fdc {
 
   using namespace std;
 
+
   // Given a set of functional dependencies$ \f$ F \f$ and a functional
   // dependency $ \f$ f \f$ , determine if$ \f$ f \in F^{+} \f$ in linear time.
-  bool membership(fds F, attrs X, attrs Y) {
+  bool membership(const fds &F, const attrs &X, const attrs &Y) {
 
     // attrlist[x] indicates all the functional dependencies with attribute
     //$ \f$ x \f$ on their left sides.

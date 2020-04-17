@@ -283,7 +283,7 @@ namespace fdc {
    * @param X: A set of attributes.
    * @param Y: A set of attributes.
    */
-  bool membership(fds F, attrs X, attrs Y);
+  bool membership(const fds &F, const attrs &X, const attrs &Y);
 
   /** @} */
 }
