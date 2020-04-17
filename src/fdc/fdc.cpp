@@ -260,14 +260,6 @@ namespace fdc {
     return closure;
   }
 
-  // Check if two given sets of functional dependencies are equivalent.
-  bool equal(const fds &F, const fds &G) {
-
-    // Universe.
-    attrs U = union_of(attrs_of(F), attrs_of(G));
-
-    return closure_of(U, F) == closure_of(U, G);
-  }
 
   // Check if a given set of functional dependencies `F` is a cover of
   // another given set of functional dependencies `G`.
@@ -276,17 +268,6 @@ namespace fdc {
     return equal(F, G);
   }
 
-  // Check if two sets of attributes `X` and `Y` are equivalent under a given
-  // set of functional dependencies `F`.
-  bool equal(const attrs &X, const attrs &Y, const fds &F) {
-
-    auto U = union_of(union_of(X, Y), attrs_of(F));
-
-    auto closure = closure_of(U, F);
-
-    return closure.find(fd(X, Y)) != closure.end() &&
-      closure.find(fd(Y, X)) != closure.end();
-  }
 
   // Check if a given set of functional dependencies is canonical.
   bool is_canonical(const fds &F) {

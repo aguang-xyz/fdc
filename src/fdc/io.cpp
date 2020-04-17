@@ -7,20 +7,7 @@ namespace fdc {
 
   using json = nlohmann::json;
 
-  // Convert a json `input` into a set of attributes `U` and a set of
-  // functional dependencies `F`.
-  //
-  // The json `input` is expected to be under the structure below:
-  //
-  // {
-  //   "R": Integer,
-  //   "fds": [
-  //     {
-  //        "lhs": [ Integer ],
-  //        "rhs": [ Integer ]
-  //     }
-  //   ]
-  // }
+
   void from_json(const json input, attrs &U, fds &F) {
 
     U.clear();
@@ -53,22 +40,19 @@ namespace fdc {
     }
   }
 
-  // Parse a json string `input` into a set of attributes `U` and a set of
-  // functional dependencies `F`
+
   void from_json(const string input, attrs &U, fds &F) {
 
     from_json(json::parse(input), U, F);
   }
 
-  // Parse a input stream `input` into a set of attributes `U` and a set of
-  // functional dependencies `F`
+
   void from_json(istream &input, attrs &U, fds &F) {
 
     from_json(json::parse(input), U, F);
   }
 
-  // Convert given set of attributes `U` and given set of functional
-  // dependencies `F` to json string and write it into output.
+
   void to_json(ostream &output, const attrs &U, const fds &F) {
 
     json j;

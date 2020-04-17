@@ -85,7 +85,35 @@ namespace fdc {
 
     return is_subset_eq(Y, D);
   }
- 
+
+
+  bool equal(const attrs &X, const attrs &Y, const fds &F) {
+
+    return is_membership(F, fd(X, Y)) && is_membership(F, fd(Y, X));
+  }
+
+
+  bool equal(const fds &F, const fds &G) {
+
+    for (auto &f : F) {
+
+      if (!is_membership(G, f)) {
+        
+        return false;
+      }
+    }
+
+    for (auto &f : G) {
+
+      if (!is_membership(F, f)) {
+
+        return false;
+      }
+    }
+
+    return true;
+  }
+
 
   bool is_redundant(const fds &F) {
 

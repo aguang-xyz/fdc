@@ -37,100 +37,7 @@ namespace fdc {
    */
   typedef std::set<fd> fds;
 
-  /**
-   * @brief Convert a json string `input` into a set of attributes `U` and a
-   * set of functional dependencies `F`.
-   *
-   * The json string `input` is expected to be under the structure below:
-   *
-   * {
-   *   "R": Integer,
-   *   fds": [
-   *     {
-   *       "lhs": [ Integer ],
-   *       "rhs": [ Integer ]
-   *     }
-   *   ]
-   * }
-   *
-   * @param input: A json string.
-   * @param U: A set of attributes for output.
-   * @param F: A set of functional dependencies for output.
-   */
-  void from_json(const std::string input, attrs &U, fds &F);
- 
-  /**
-   * @brief Convert a input stream `input` into a set of attributes `U` and a
-   * set of functional dependencies `F`.
-   *
-   * The input stream `input` is expected to be under the structure below:
-   *
-   * {
-   *   "R": Integer,
-   *   fds": [
-   *     {
-   *       "lhs": [ Integer ],
-   *       "rhs": [ Integer ]
-   *     }
-   *   ]
-   * }
-   *
-   * @param input: A input stream.
-   * @param U: A set of attributes for output.
-   * @param F: A set of functional dependencies for output.
-   */
-  void from_json(std::istream &input, attrs &U, fds &F);
 
-  /**
-   * @brief Convert given set of attributes `U` and given set of functional
-   * dependencies `F` to json string and write it into output.
-   *
-   * The output stream `output` is expected to be written under the structure
-   * below:
-   *
-   * {
-   *   "R": Integer,
-   *   fds": [
-   *     {
-   *       "lhs": [ Integer ],
-   *       "rhs": [ Integer ]
-   *     }
-   *   ]
-   * }
-   *
-   * @param output: An output stream.
-   * @param U: A set of attributes.
-   * @param F: A set of functional dependencies.
-   */
-  void to_json(std::ostream &output, const attrs &U, const fds &F);
-
-  /**
-   * @brief Convert an attribute `x` to a string.
-   *
-   * @param x: a given attribute
-   */
-  std::string to_str(const attr &x);
-
-  /**
-   * @brief Convert a set of attributes `X` to a string.
-   *
-   * @param X: a given set of attributes.
-   */
-  std::string to_str(const attrs &X);
-
-  /**
-   * @brief Convert a set of functional depdency `f` to a string.
-   *
-   * @param f: a given functional dependency.
-   */
-  std::string to_str(const fd &f);
-
-  /**
-   * @brief Convert a set of functional dependencies `F` to a string.
-   *
-   * @param F: a given set of functional dependencies.
-   */
-  std::string to_str(const fds &F);
 
   /**
    * @brief Get all attributes of a given functional dependency set `F`.
@@ -173,38 +80,125 @@ namespace fdc {
   fds closure_of(const attrs &U, const fds &F);
 
   /**
-   * @brief Check if two given sets of functional dependencies are equivalent.
-   *
-   * @param F: A set of functional dependencies.
-   * @param G: A set of functional dependencies.
-   */
-  bool equal(const fds &F, const fds &G);
-
-  /**
-   * @brief Check if a given set of functional dependencies `F` is a cover of
-   * another given set of functional dependencies `G`.
-   *
-   * @param F: A set of functional dependencies.
-   * @param G: A set of functional dependencies.
-   */
-  bool is_cover_of(const fds &F, const fds &G);
-
-  /**
-   * @brief Check if two sets of attributes `X` and `Y` are equivalent under
-   * a given set of functional dependencies `F`.
-   *
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
-   * @param F: A set of functional dependencies.
-   */
-  bool equal(const attrs &X, const attrs &Y, const fds &F);
-
-  /**
    * @brief Check if a given set of functional dependencies is canonical.
    *
    * @param F: A set of functional dependencies.
    */
   bool is_canonical(const fds &F);
+
+  
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*! \brief Input/output functions implemented in `FDC`.
+   *
+   * This module contains the input and output functions implemented in `FDC`.
+   *
+   * @defgroup IO
+   *
+   * @{
+   */
+
+  /*! \brief Convert an attribute `x` to a string.
+   *
+   * @param x: a given attribute
+   */
+  std::string to_str(const attr &x);
+
+  /*! \brief Convert a set of attributes `X` to a string.
+   *
+   * @param X: a given set of attributes.
+   */
+  std::string to_str(const attrs &X);
+
+  /*! \brief Convert a set of functional depdency `f` to a string.
+   *
+   * @param f: a given functional dependency.
+   */
+  std::string to_str(const fd &f);
+
+  /*! \brief Convert a set of functional dependencies `F` to a string.
+   *
+   * @param F: a given set of functional dependencies.
+   */
+
+  std::string to_str(const fds &F);
+  /*! \brief Convert a json string `input` into a set of attributes `U` and a
+   * set of functional dependencies `F`.
+   *
+   * The json string `input` is expected to be under the structure below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param input: A json string.
+   * @param U: A set of attributes for output.
+   * @param F: A set of functional dependencies for output.
+   */
+  void from_json(const std::string input, attrs &U, fds &F);
+ 
+  /*! \brief Convert a input stream `input` into a set of attributes `U` and a
+   * set of functional dependencies `F`.
+   *
+   * The input stream `input` is expected to be under the structure below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param input: A input stream.
+   * @param U: A set of attributes for output.
+   * @param F: A set of functional dependencies for output.
+   */
+  void from_json(std::istream &input, attrs &U, fds &F);
+
+  /*! \brief Convert given set of attributes `U` and given set of functional
+   * dependencies `F` to json string and write it into output.
+   *
+   * The output stream `output` is expected to be written under the structure
+   * below:
+   *
+   * {
+   *   "R": Integer,
+   *   fds": [
+   *     {
+   *       "lhs": [ Integer ],
+   *       "rhs": [ Integer ]
+   *     }
+   *   ]
+   * }
+   *
+   * @param output: An output stream.
+   * @param U: A set of attributes.
+   * @param F: A set of functional dependencies.
+   */
+  void to_json(std::ostream &output, const attrs &U, const fds &F);
+
+  /** @} */
 
 
 
@@ -278,14 +272,18 @@ namespace fdc {
    *
    *     node[shape=rect];
    *
-   *     depend[label = "attrs depend(const fds &F, const attrs &X)"]
-   *     is_membership[label = "bool is_membership(const fds &F, const fd &f)"]
-   *     is_redundant[label = "bool is_redundant(const fds &F)"]
-   *     non_redundant[label = "fds non_redundant(const fds &F)"]
-   *     is_direct[label = "bool is_direct(const fds &F, const fd &f)"]
-   *     minimum[label = "fds minimum(const fds &F)"]
+   *     depend[label = "Depend"]
+   *     is_membership[label = "Membership"]
+   *     equal_attrs[label = "Attributes Equivalence"]
+   *     equal_fds[label = "Functional Dependencies Equivalence"]
+   *     is_redundant[label = "Redundant Determination"]
+   *     non_redundant[label = "Redundant Cover"]
+   *     is_direct[label = "Direct Determination"]
+   *     minimum[label = "Minimum Cover"]
    *
    *     is_membership -> depend
+   *     equal_attrs -> is_membership
+   *     equal_fds -> is_membership
    *     is_redundant -> is_membership
    *     non_redundant -> is_membership
    *     is_direct -> non_redundant
@@ -325,6 +323,26 @@ namespace fdc {
    * @param f: A functional dependency.
    */
   bool is_membership(const fds &F, const fd &f);
+
+  /*! \brief Sets of attributes equivalence determination.
+   *
+   * Check if two sets of attributes \f$ X \f$ and \f$ Y \f$ are equivalent under
+   * a given set of functional dependencies \f$ F \f$.
+   *
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   * @param F: A set of functional dependencies.
+   */
+  bool equal(const attrs &X, const attrs &Y, const fds &F);
+
+  /*! \brief Functional dependencies equivalence determination.
+   *
+   * Check if two given sets of functional dependencies are equivalent.
+   *
+   * @param F: A set of functional dependencies.
+   * @param G: A set of functional dependencies.
+   */
+  bool equal(const fds &F, const fds &G);
 
   /*! \brief Redundant determination.
    *
