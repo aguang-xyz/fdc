@@ -224,11 +224,11 @@ namespace fdc {
 
 
 
-  /*! \brief Basic union operations implemented in `FDC`.
+  /*! \brief Basic algebras of sets implemented in `FDC`.
    *
-   * This module contains the basic union operations implemented in `FDC`.
+   * This module contains the basic algebras of sets implemented in `FDC`.
    *
-   * @defgroup union_operations
+   * @defgroup set_algebra
    *
    * @{
    */
@@ -290,10 +290,13 @@ namespace fdc {
    *     is_membership[label = "bool is_membership(const fds &F, const fd &f)"]
    *     is_redundant[label = "bool is_redundant(const fds &F)"]
    *     redundant[label = "fds redundant(const fds &F)"]
+   *     is_direct[label = "bool is_direct(const fds &F, const fd &f)"]
    *
    *     is_membership -> depend
    *     is_redundant -> is_membership
    *     redundant -> is_membership
+   *     is_direct -> is_membership
+   *     is_direct -> redundant
    *   }
    * \enddot
    *
@@ -360,6 +363,19 @@ namespace fdc {
    * @param F: A set of functional dependencies.
    */
   fds redundant(const fds &F);
+
+  /*! \brief Direct determination.
+   *
+   * Given a set of functional dependencies \f$ F \f$ and a functional
+   * dependency \f$ f:X \to Y \f$, determine if \f$ X \f$ directly determines
+   * \f$ Y \f$.
+   *
+   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   * @param f: A functional dependency.
+   */
+  bool is_direct(const fds &F, const fd &f);
 
   /** @} */
 }

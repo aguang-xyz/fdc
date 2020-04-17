@@ -1,5 +1,5 @@
 var modules =
 [
-    [ "Union_operations", "group__union__operations.html", "group__union__operations" ],
+    [ "Set_algebra", "group__set__algebra.html", "group__set__algebra" ],
     [ "Algorithms", "group__algorithms.html", "group__algorithms" ]
 ];

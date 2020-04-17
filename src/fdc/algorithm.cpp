@@ -83,7 +83,15 @@ namespace fdc {
 
     const auto &D = depend(F, X);
 
-    return is_subset_eq(Y, D);
+    for (auto &y : Y) {
+
+      if (D.find(y) != D.end()) {
+
+        return true;
+      }
+    }
+
+    return false;
   }
  
 
@@ -118,5 +126,43 @@ namespace fdc {
     }
 
     return G;
+  }
+
+
+  bool is_direct(const fds &F, const fd &f) {
+
+    // 0. Check if \f$ X \to Y \in F^+ \f$.
+    if (!is_membership(F, f)) {
+
+      return false;
+    }
+
+    const auto &X = f.first;
+    const auto &Y = f.second;
+
+    // 1. Find a redundant cover for `F`.
+    auto G = redundant(F);
+
+    // 2.1 Calculate X^+.
+    auto D = depend(G, X);
+
+    auto EFX = fds();
+
+    // 2.2 Determine ef(X). 
+    for (auto &fi : G) {
+
+      // If fi: (V, W), where V \subseteq X^+. 
+      if (is_subset_eq(fi.first, D)) {
+
+        // Z \to X \in G^+
+        if (is_membership(G, fd(fi.first, X))) {
+
+          EFX.insert(fi);
+        }
+      }
+    }
+
+    // 3. Check if X \to Y \in (F - EF(X))^+.
+    return is_membership(minus(G, EFX), f);
   }
 }

@@ -119,6 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga57781fbc12b8f11fc773487b92ff8005"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga57781fbc12b8f11fc773487b92ff8005">fdc::redundant</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga57781fbc12b8f11fc773487b92ff8005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant cover calculation.  <a href="group__algorithms.html#ga57781fbc12b8f11fc773487b92ff8005">More...</a><br /></td></tr>
 <tr class="separator:ga57781fbc12b8f11fc773487b92ff8005"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">fdc::is_direct</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
+<tr class="memdesc:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct determination.  <a href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">More...</a><br /></td></tr>
+<tr class="separator:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -159,6 +162,43 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga24ba2bdfb3a127af0b2e0054da08bf70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga24ba2bdfb3a127af0b2e0054da08bf70">&#9670;&nbsp;</a></span>is_direct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_direct </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \) and a functional dependency \( f:X \to Y \), determine if \( X \) directly determines \( Y \).</p>
+<p>See also: <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+    <tr><td class="paramname">f</td><td>A functional dependency. </td></tr>
   </table>
   </dd>
 </dl>

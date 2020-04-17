@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['union_5foperations',['Union_operations',['../group__union__operations.html',1,'']]]
+  ['set_5falgebra',['Set_algebra',['../group__set__algebra.html',1,'']]]
 ];
