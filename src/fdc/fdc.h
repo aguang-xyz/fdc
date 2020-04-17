@@ -244,15 +244,6 @@ namespace fdc {
   bool equal(const attrs &X, const attrs &Y, const fds &F);
 
   /**
-   * @brief Check if a given set of functional dependencies is non-redundant.
-   *
-   * @param F: A set of functional dependnecies.
-   *
-   * @return bool
-   */
-  bool is_non_redundant(const fds &F);
-
-  /**
    * @brief Check if a given set of functional dependencies is canonical.
    *
    * @param F: A set of functional dependencies.
@@ -260,6 +251,44 @@ namespace fdc {
    * @return bool
    */
   bool is_canonical(const fds &F);
+
+
+
+  /*! \brief Basic union operations implemented in `FDC`.
+   *
+   * This module contains the basic union operations implemented in `FDC`.
+   *
+   * @defgroup union_operations
+   *
+   * @{
+   */
+
+  /*! \brief Atributes minus.
+   *
+   * Given two set of attributes \f$ X \f$, \f$ Y \f$, calculate \f$ X - Y \f$.
+   *
+   * @param X: A set of attributes.
+   * @param Y: A set of attributes.
+   *
+   * @return attrs
+   */
+  attrs minus(const attrs &X, const attrs &Y);
+ 
+  /*! \brief Functional dependencies minus.
+   *
+   * Given two set of functional dependencies \f$ X \f$, \f$ Y \f$,
+   * calculate \f$ X - Y \f$.
+   *
+   * @param X: A set of functional dependencies.
+   * @param Y: A set of attributes dependencies.
+   *
+   * @return fds
+   */
+  fds minus(const fds &X, const fds &Y);
+
+  /** @} */
+
+
 
   /*! \brief The algorithms implemented in `FDC`.
    *
@@ -270,20 +299,42 @@ namespace fdc {
    * @{
    */
 
-  /*! \brief Membership determine.
+  /*! \brief Membership determination.
    *
    * Given a set of functional dependencies \f$ F \f$ and a functional
-   * dependency \f$ X \to Y \f$ , determine if \f$ X \to Y \in F^{+} \f$ in
+   * dependency \f$ X \to Y \f$ , determine if \f$ f \in F^{+} \f$ in
    * linear time.
    *
    * The original version of this algorithm was introduced by
    * [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
+   * @param f: A functional dependency.
    */
-  bool membership(const fds &F, const attrs &X, const attrs &Y);
+  bool membership(const fds &F, const fd &f);
+
+  /*! \brief Redundant determination.
+   *
+   * Check if a set of functional dependencies \f$ F \f$ is redundant.
+   *
+   * The original version of this algorithm was introduced by
+   * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  bool is_redundant(const fds &F);
+
+  /*! \brief Redundant cover calculation.
+   *
+   * Given a set of functional dependencies \f$ F \f$, calculate a redundant
+   * cover of \f$ F \f$.
+   *
+   * The original version of this algorithm was introduced by
+   * [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  fds redundant(const fds &F);
 
   /** @} */
 }

@@ -107,15 +107,47 @@ $(document).ready(function(){initNavTree('group__algorithms.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaad334dfa87b7e0cd9ef8eae7730efba8">fdc::membership</a> (<a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> F, <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> X, <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> Y)</td></tr>
-<tr class="memdesc:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membership determine.  <a href="group__algorithms.html#gaad334dfa87b7e0cd9ef8eae7730efba8">More...</a><br /></td></tr>
-<tr class="separator:gaad334dfa87b7e0cd9ef8eae7730efba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">fdc::membership</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
+<tr class="memdesc:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membership determination.  <a href="group__algorithms.html#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">More...</a><br /></td></tr>
+<tr class="separator:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd3f67413e2b4badbb7a743d147d4122"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122">fdc::is_redundant</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:gacd3f67413e2b4badbb7a743d147d4122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant determination.  <a href="group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122">More...</a><br /></td></tr>
+<tr class="separator:gacd3f67413e2b4badbb7a743d147d4122"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57781fbc12b8f11fc773487b92ff8005"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga57781fbc12b8f11fc773487b92ff8005">fdc::redundant</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga57781fbc12b8f11fc773487b92ff8005"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant cover calculation.  <a href="group__algorithms.html#ga57781fbc12b8f11fc773487b92ff8005">More...</a><br /></td></tr>
+<tr class="separator:ga57781fbc12b8f11fc773487b92ff8005"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaad334dfa87b7e0cd9ef8eae7730efba8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaad334dfa87b7e0cd9ef8eae7730efba8">&#9670;&nbsp;</a></span>membership()</h2>
+<a id="gacd3f67413e2b4badbb7a743d147d4122"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd3f67413e2b4badbb7a743d147d4122">&#9670;&nbsp;</a></span>is_redundant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_redundant </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if a set of functional dependencies \( F \) is redundant.</p>
+<p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaabe5ebea3f3f50a3a4d3d1e24163d6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">&#9670;&nbsp;</a></span>membership()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -123,20 +155,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool fdc::membership </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
           <td class="paramname"><em>F</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a>&#160;</td>
-          <td class="paramname"><em>X</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a>&#160;</td>
-          <td class="paramname"><em>Y</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;&#160;</td>
+          <td class="paramname"><em>f</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -145,13 +171,38 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Given a set of functional dependencies \( F \) and a functional dependency \( X \to Y \) , determine if \( X \to Y \in F^{+} \) in linear time.</p>
+<p>Given a set of functional dependencies \( F \) and a functional dependency \( X \to Y \) , determine if \( f \in F^{+} \) in linear time.</p>
 <p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
-    <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
-    <tr><td class="paramname">Y</td><td>A set of attributes. </td></tr>
+    <tr><td class="paramname">f</td><td>A functional dependency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga57781fbc12b8f11fc773487b92ff8005"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57781fbc12b8f11fc773487b92ff8005">&#9670;&nbsp;</a></span>redundant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> fdc::redundant </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate a redundant cover of \( F \).</p>
+<p>The original version of this algorithm was introduced by <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
   </table>
   </dd>
 </dl>

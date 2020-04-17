@@ -13,10 +13,9 @@ TEST(algorithm, membership_1) {
     fd(attrs({ "Y", "Z" }), attrs({ "V" })),
   });
 
-  auto X = attrs({ "X" });
-  auto V = attrs({ "V" });
+  auto f = fd(attrs({ "X" }), attrs({ "V" }));
 
-  ASSERT_TRUE(membership(F, X, V));
+  ASSERT_TRUE(membership(F, f));
 }
 
 TEST(algorithm, membership_2) {
@@ -28,8 +27,7 @@ TEST(algorithm, membership_2) {
     fd(attrs({ "Y", "Z", "W" }), attrs({ "V" })),
   });
 
-  auto X = attrs({ "X" });
-  auto V = attrs({ "V" });
+  auto f = fd(attrs({ "X" }), attrs({ "V" }));
 
-  ASSERT_FALSE(membership(F, X, V));
+  ASSERT_FALSE(membership(F, f));
 }

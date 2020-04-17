@@ -7,10 +7,11 @@ namespace fdc {
 
   using namespace std;
 
+  
+  bool membership(const fds &F, const fd &f) {
 
-  // Given a set of functional dependencies$ \f$ F \f$ and a functional
-  // dependency $ \f$ f \f$ , determine if$ \f$ f \in F^{+} \f$ in linear time.
-  bool membership(const fds &F, const attrs &X, const attrs &Y) {
+    const attrs &X = f.first;
+    const attrs &Y = f.second;
 
     // attrlist[x] indicates all the functional dependencies with attribute
     //$ \f$ x \f$ on their left sides.
@@ -83,5 +84,39 @@ namespace fdc {
     }
 
     return true;
+  }
+
+  
+  bool is_redundant(const fds &F) {
+
+    for (auto &f : F) {
+
+      auto G = minus(F, fds({ f }));
+
+      if (membership(G, f)) {
+
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+
+  fds redundant(const fds &F) {
+
+    auto G = fds(F);
+
+    for (auto &f : F) {
+
+      auto H = minus(G, fds({ f }));
+
+      if (membership(H, f)) {
+
+        G = H;
+      }
+    }
+
+    return G;
   }
 }

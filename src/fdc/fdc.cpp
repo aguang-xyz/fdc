@@ -320,24 +320,6 @@ namespace fdc {
       closure.find(fd(Y, X)) != closure.end();
   }
 
-  // Check if a given set of functional dependencies is non-redundant.
-  bool is_non_redundant(const fds &F) {
-
-    auto U = attrs_of(F);
-
-    auto C = closure_of(U, F);
-
-    for (auto G : subsets_of(F)) {
-
-      if (G != F && closure_of(U, G) == C) {
-
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   // Check if a given set of functional dependencies is canonical.
   bool is_canonical(const fds &F) {
 
@@ -351,7 +333,7 @@ namespace fdc {
     }
 
     // Rule 2. F is non-redundant.
-    if (!is_non_redundant(F)) {
+    if (is_redundant(F)) {
 
       return false;
     }
