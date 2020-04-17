@@ -219,7 +219,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check if two sets of attributes \( X \) and \( Y \) are equivalent under a given set of functional dependencies \( F \).</p>
+<p>Given two sets of attributes \( X \) and \( Y \) and a set of functional dependencies \( F \).</p>
+<p>Determine if:</p>
+<ul>
+<li>\( X \to Y \in F^+ \)</li>
+<li>\( Y \to X \in F^+ \)</li>
+</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">X</td><td>A set of attributes. </td></tr>
@@ -256,7 +261,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Check if two given sets of functional dependencies are equivalent.</p>
+<p>Given two sets of functional dependencies. Determine if \( F^+ = G^+ \).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -283,6 +288,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Given a set of functional dependencies \( F \), determine if \( F \) is canonical.</p>
+<p>The definition of canonical:</p>
+<ul>
+<li>\( F \) is non-redundant.</li>
+<li>For every \( X \to Y \in F \), there is not such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
+</ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>

@@ -342,8 +342,13 @@ namespace fdc {
 
   /*! \brief Sets of attributes equivalence determination.
    *
-   * Check if two sets of attributes \f$ X \f$ and \f$ Y \f$ are equivalent under
-   * a given set of functional dependencies \f$ F \f$.
+   * Given two sets of attributes \f$ X \f$ and \f$ Y \f$ and a set of
+   * functional dependencies \f$ F \f$.
+   *
+   * Determine if:
+   *
+   *   * \f$ X \to Y \in F^+ \f$
+   *   * \f$ Y \to X \in F^+ \f$
    *
    * @param X: A set of attributes.
    * @param Y: A set of attributes.
@@ -353,7 +358,8 @@ namespace fdc {
 
   /*! \brief Functional dependencies equivalence determination.
    *
-   * Check if two given sets of functional dependencies are equivalent.
+   * Given two sets of functional dependencies.
+   * Determine if \f$ F^+ = G^+ \f$.
    *
    * @param F: A set of functional dependencies.
    * @param G: A set of functional dependencies.
@@ -395,6 +401,12 @@ namespace fdc {
    *
    * Given a set of functional dependencies \f$ F \f$, determine if \f$ F \f$
    * is canonical.
+   *
+   * The definition of canonical:
+   *
+   *   * \f$ F \f$ is non-redundant.
+   *   * For every \f$ X \to Y \in F \f$, there is not such a
+   *     \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in F \f$.
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    * 
