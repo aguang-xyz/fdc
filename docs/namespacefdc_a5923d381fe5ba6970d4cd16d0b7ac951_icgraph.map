@@ -1,0 +1,4 @@
+<map id="fdc::subsets_of" name="fdc::subsets_of">
+<area shape="rect" id="node2" href="$namespacefdc.html#aa06e7815abedadbd0ffc73e729ade316" title="Get the closure of a given set of functional depdencies F under a given set of attributes, universe U. It is an implementation of Armstrong&#39;s Axioms. " alt="" coords="171,5,279,32"/>
+<area shape="rect" id="node3" href="$namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6" title="Check if a given set of functional dependencies is canonical. " alt="" coords="165,56,285,83"/>
+</map>

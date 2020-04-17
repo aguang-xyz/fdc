@@ -1,0 +1,5 @@
+<map id="fdc::closure_of" name="fdc::closure_of">
+<area shape="rect" id="node2" href="$namespacefdc.html#afd2792679098c7b549c7f898bca33a50" title="Check if two given sets of functional dependencies are equivalent. " alt="" coords="182,5,261,32"/>
+<area shape="rect" id="node4" href="$namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6" title="Check if a given set of functional dependencies is canonical. " alt="" coords="161,56,281,83"/>
+<area shape="rect" id="node3" href="$namespacefdc.html#abd490291a1a1ce433b424dfb9be571ff" title="Check if a given set of functional dependencies F is a cover of another given set of functional depen..." alt="" coords="329,5,444,32"/>
+</map>

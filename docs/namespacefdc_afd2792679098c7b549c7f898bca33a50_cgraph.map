@@ -1,0 +1,5 @@
+<map id="fdc::equal" name="fdc::equal">
+<area shape="rect" id="node2" href="$namespacefdc.html#a6a56c273cb4563108ebaa15ae0ef30bd" title="Get the union set of two sets of attributes X, Y. " alt="" coords="137,5,235,32"/>
+<area shape="rect" id="node3" href="$namespacefdc.html#a2d944a5166e8572172947fcc1d8ecc56" title="Get all attributes of a given functional dependency set F. " alt="" coords="288,81,380,108"/>
+<area shape="rect" id="node4" href="$namespacefdc.html#a57b324986f2cc23cb3f91d8ab4ecdda7" title="Get the closure of a given set of functional depdencies F. It is an implementation of Armstrong&#39;s Axi..." alt="" coords="132,107,240,133"/>
+</map>

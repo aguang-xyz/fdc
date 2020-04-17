@@ -1,0 +1,10 @@
+<map id="fdc::is_canonical" name="fdc::is_canonical">
+<area shape="rect" id="node2" href="$group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122" title="Redundant determination. " alt="" coords="173,56,296,83"/>
+<area shape="rect" id="node7" href="$namespacefdc.html#a57b324986f2cc23cb3f91d8ab4ecdda7" title="Get the closure of a given set of functional depdencies F. It is an implementation of Armstrong&#39;s Axi..." alt="" coords="181,107,289,133"/>
+<area shape="rect" id="node9" href="$namespacefdc.html#a5923d381fe5ba6970d4cd16d0b7ac951" title="Get all subsets of a given set attributes X. " alt="" coords="179,157,291,184"/>
+<area shape="rect" id="node3" href="$group__union__operations.html#ga0535b66f93412c2a661cb21eb3c128f1" title="Atributes minus. " alt="" coords="371,5,453,32"/>
+<area shape="rect" id="node4" href="$group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe" title="Membership determination. " alt="" coords="344,56,480,83"/>
+<area shape="rect" id="node5" href="$group__algorithms.html#ga8610b34d6f680cb3e888518cb7f2f856" title="Dependent calculation. " alt="" coords="545,31,636,57"/>
+<area shape="rect" id="node6" href="$group__union__operations.html#ga4eae647ddd9aec0bb39997686293198d" title="Attributes subset or equal determination. " alt="" coords="528,81,653,108"/>
+<area shape="rect" id="node8" href="$namespacefdc.html#a2d944a5166e8572172947fcc1d8ecc56" title="Get all attributes of a given functional dependency set F. " alt="" coords="366,107,458,133"/>
+</map>

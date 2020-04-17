@@ -110,9 +110,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8610b34d6f680cb3e888518cb7f2f856"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga8610b34d6f680cb3e888518cb7f2f856">fdc::depend</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#ad130047c2c2e671fd58dd6c069dcdde5">attrs</a> &amp;X)</td></tr>
 <tr class="memdesc:ga8610b34d6f680cb3e888518cb7f2f856"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dependent calculation.  <a href="group__algorithms.html#ga8610b34d6f680cb3e888518cb7f2f856">More...</a><br /></td></tr>
 <tr class="separator:ga8610b34d6f680cb3e888518cb7f2f856"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">fdc::membership</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
-<tr class="memdesc:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membership determination.  <a href="group__algorithms.html#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">More...</a><br /></td></tr>
-<tr class="separator:gaabe5ebea3f3f50a3a4d3d1e24163d6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa7c9eeef2a42479ad43e9d019b88c9fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe">fdc::is_membership</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
+<tr class="memdesc:gaa7c9eeef2a42479ad43e9d019b88c9fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Membership determination.  <a href="group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe">More...</a><br /></td></tr>
+<tr class="separator:gaa7c9eeef2a42479ad43e9d019b88c9fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd3f67413e2b4badbb7a743d147d4122"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122">fdc::is_redundant</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:gacd3f67413e2b4badbb7a743d147d4122"><td class="mdescLeft">&#160;</td><td class="mdescRight">Redundant determination.  <a href="group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122">More...</a><br /></td></tr>
 <tr class="separator:gacd3f67413e2b4badbb7a743d147d4122"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,42 +161,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gacd3f67413e2b4badbb7a743d147d4122"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacd3f67413e2b4badbb7a743d147d4122">&#9670;&nbsp;</a></span>is_redundant()</h2>
+<a id="gaa7c9eeef2a42479ad43e9d019b88c9fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa7c9eeef2a42479ad43e9d019b88c9fe">&#9670;&nbsp;</a></span>is_membership()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool fdc::is_redundant </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
-          <td class="paramname"><em>F</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Check if a set of functional dependencies \( F \) is redundant.</p>
-<p>If there is a \( \ f \in F \), where \( (F - \{f\})^+ = F^+ \), then we say \( F \) is redundant.</p>
-<p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gaabe5ebea3f3f50a3a4d3d1e24163d6c0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaabe5ebea3f3f50a3a4d3d1e24163d6c0">&#9670;&nbsp;</a></span>membership()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool fdc::membership </td>
+          <td class="memname">bool fdc::is_membership </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
           <td class="paramname"><em>F</em>, </td>
@@ -221,6 +193,34 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">f</td><td>A functional dependency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gacd3f67413e2b4badbb7a743d147d4122"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacd3f67413e2b4badbb7a743d147d4122">&#9670;&nbsp;</a></span>is_redundant()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_redundant </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if a set of functional dependencies \( F \) is redundant.</p>
+<p>If there is a \( \ f \in F \), where \( (F - \{f\})^+ = F^+ \), then we say \( F \) is redundant.</p>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
   </table>
   </dd>
 </dl>

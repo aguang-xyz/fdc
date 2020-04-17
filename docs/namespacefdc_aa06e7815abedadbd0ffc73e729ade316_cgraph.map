@@ -1,0 +1,5 @@
+<map id="fdc::closure_of" name="fdc::closure_of">
+<area shape="rect" id="node2" href="$namespacefdc.html#a5923d381fe5ba6970d4cd16d0b7ac951" title="Get all subsets of a given set attributes X. " alt="" coords="167,5,279,32"/>
+<area shape="rect" id="node3" href="$namespacefdc.html#a08752712e324fe7b45970512fac12db7" title="Check if given set of attributes X is a subset of given set of attributes Y. " alt="" coords="161,56,284,83"/>
+<area shape="rect" id="node4" href="$namespacefdc.html#a6a56c273cb4563108ebaa15ae0ef30bd" title="Get the union set of two sets of attributes X, Y. " alt="" coords="174,107,271,133"/>
+</map>
