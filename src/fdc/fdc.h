@@ -281,6 +281,22 @@ namespace fdc {
    *
    * This module contains the algorithms implemented in `FDC`.
    *
+   * \dot
+   *   digraph algorithsm {
+   *
+   *     node[shape=rect];
+   *
+   *     depend[label = "attrs depend(const fds &F, const attrs &X)"]
+   *     is_membership[label = "bool is_membership(const fds &F, const fd &f)"]
+   *     is_redundant[label = "bool is_redundant(const fds &F)"]
+   *     redundant[label = "fds redundant(const fds &F)"]
+   *
+   *     is_membership -> depend
+   *     is_redundant -> is_membership
+   *     redundant -> is_membership
+   *   }
+   * \enddot
+   *
    * @defgroup algorithms
    *
    * @{
