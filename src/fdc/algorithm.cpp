@@ -151,6 +151,14 @@ namespace fdc {
 
   bool is_canonical(const fds &F) {
 
+    for (auto &f : F) {
+
+      if (f.second.size() > 1) {
+
+        return false;
+      }
+    }
+
     if (is_redundant(F)) {
 
       return false;

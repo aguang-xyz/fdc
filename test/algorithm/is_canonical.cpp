@@ -15,3 +15,14 @@ TEST(algorithm, is_canonical_1) {
 
   ASSERT_FALSE(is_canonical(F));
 }
+
+TEST(algorithm, is_canonical_2) {
+
+  // Since $ | YZ | > 1 $, this is not canonical.
+  auto F = fds({
+
+    fd(attrs({ "X" }), attrs({ "Y", "Z" })),
+  });
+
+  ASSERT_FALSE(is_canonical(F));
+}
