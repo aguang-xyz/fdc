@@ -6,8 +6,6 @@ using namespace fdc;
 
 TEST(algorithm, l_minimum_1) {
 
-  // F can be minimized to G.
-
   auto F = fds({
 
     fd(attrs({ "X", "Y", "Z" }), attrs({ "V" })),

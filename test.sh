@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cmake -B./build -H./
-
-if make --directory build
+if cmake -B./build -H./
 then
-  make --directory build test
+  if make --directory build
+  then
+    make --directory build test
+  fi
 fi
-
 
 

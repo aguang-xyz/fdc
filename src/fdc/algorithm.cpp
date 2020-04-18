@@ -422,7 +422,7 @@ namespace fdc {
 
     auto G = fds(F);
 
-    for (auto &f : F) {
+    for (auto f : F) {
 
       auto &X = f.first;
       auto &Y = f.second;
@@ -450,5 +450,42 @@ namespace fdc {
     }
 
     return true;
+  }
+
+
+  fds lrminimum(const fds &F) {
+
+    auto G = lminimum(F);
+
+    again:
+
+      for (auto f : G) {
+
+        auto &X = f.first;
+        auto &Y = f.second;
+
+        if (Y.size() > 1) {
+
+          for (auto &y : Y) {
+
+            auto f2 = fd(X, minus(Y, attrs({ y })));
+            
+            // Replace $ X \to Y with X \to Y - { y } $.
+            G.erase(f);
+            G.insert(f2);
+
+            if (is_membership(G, f)) {
+
+              goto again;
+            }
+
+            // Recovery $ X \to Y $.
+            G.erase(f2);
+            G.insert(f);
+          }
+        }
+      }
+
+    return G;
   }
 }
