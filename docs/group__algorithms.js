@@ -1,5 +1,6 @@
 var group__algorithms =
 [
+    [ "canonical", "group__algorithms.html#ga22211622a812c6160ef041e025ab7c9b", null ],
     [ "depend", "group__algorithms.html#ga8610b34d6f680cb3e888518cb7f2f856", null ],
     [ "equal", "group__algorithms.html#ga8eb059ca0fc991071faed60edade40f9", null ],
     [ "equal", "group__algorithms.html#gafd2792679098c7b549c7f898bca33a50", null ],

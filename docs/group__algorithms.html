@@ -128,6 +128,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">fdc::is_canonical</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canonical determination.  <a href="group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6">More...</a><br /></td></tr>
 <tr class="separator:ga6f7c3eebb058e80db712ff650fe3fcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22211622a812c6160ef041e025ab7c9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga22211622a812c6160ef041e025ab7c9b">fdc::canonical</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga22211622a812c6160ef041e025ab7c9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Canonical calculation.  <a href="group__algorithms.html#ga22211622a812c6160ef041e025ab7c9b">More...</a><br /></td></tr>
+<tr class="separator:ga22211622a812c6160ef041e025ab7c9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">fdc::is_direct</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F, const <a class="el" href="namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2">fd</a> &amp;f)</td></tr>
 <tr class="memdesc:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Direct determination.  <a href="group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70">More...</a><br /></td></tr>
 <tr class="separator:ga24ba2bdfb3a127af0b2e0054da08bf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +153,37 @@ Functions</h2></td></tr>
 <map name="dot_inline_dotgraph_2.map" id="dot_inline_dotgraph_2.map"></map>
 </div>
  <h2 class="groupheader">Function Documentation</h2>
+<a id="ga22211622a812c6160ef041e025ab7c9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga22211622a812c6160ef041e025ab7c9b">&#9670;&nbsp;</a></span>canonical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> fdc::canonical </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate \( G^+ = F^+ \) where</p>
+<ul>
+<li>\( G \) is non-redundant.</li>
+<li>For every \( X \to Y \in G \), \( |Y| = 1 \) and there is not such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in G \).</li>
+</ul>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of cuntional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga8610b34d6f680cb3e888518cb7f2f856"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga8610b34d6f680cb3e888518cb7f2f856">&#9670;&nbsp;</a></span>depend()</h2>
 
@@ -291,7 +325,7 @@ Functions</h2></td></tr>
 <p>The definition of canonical:</p>
 <ul>
 <li>\( F \) is non-redundant.</li>
-<li>For every \( X \to Y \in F \), there is not such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
+<li>For every \( X \to Y \in F \), \( |Y| = 1\) and there is not such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>

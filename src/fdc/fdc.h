@@ -405,8 +405,8 @@ namespace fdc {
    * The definition of canonical:
    *
    *   * \f$ F \f$ is non-redundant.
-   *   * For every \f$ X \to Y \in F \f$, there is not such a
-   *     \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in F \f$.
+   *   * For every \f$ X \to Y \in F \f$, \f$ |Y| = 1\f$ and there is no such
+   *     a \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in F \f$.
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    * 
@@ -416,6 +416,24 @@ namespace fdc {
    * @param F: A set of cuntional dependencies.
    */
   bool is_canonical(const fds &F);
+
+  /*! \brief Canonical calculation.
+   *
+   * Given a set of functional dependencies \f$ F \f$, calculate
+   * \f$ G^+ = F^+ \f$ where
+   *
+   *   * \f$ G \f$ is non-redundant.
+   *   * For every \f$ X \to Y \in G \f$, \f$ |Y| = 1 \f$ and there is no such
+   *     a \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in G \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   * 
+   * See also: Removing extraneous attributes in
+   *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
+   *
+   * @param F: A set of cuntional dependencies.
+   */
+  fds canonical(const fds &F);
 
   /*! \brief Direct determination.
    *

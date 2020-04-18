@@ -27,4 +27,21 @@ TEST(algorithm, is_redundant_2) {
   ASSERT_TRUE(is_redundant(F));
 }
 
+TEST(algorithm, non_redundant_1) {
 
+  auto F = fds({
+
+    fd(attrs({ "X" }), attrs({ "Y" })),
+    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ "Y" }), attrs({ "Z" })),
+  });
+
+  auto G = fds({
+
+    fd(attrs({ "X" }), attrs({ "Y" })),
+    fd(attrs({ "Y" }), attrs({ "Z" })),
+  });
+
+
+  ASSERT_EQ(non_redundant(F), G);
+}

@@ -186,6 +186,46 @@ namespace fdc {
     return true;
   }
 
+
+  fds canonical(const fds &F) {
+
+    auto G = non_redundant(F);
+
+    again:
+      for (auto &f : G) {
+
+        auto &X = f.first;
+        auto &Y = f.second;
+
+        for (auto &x : X) {
+
+          auto f2 = fd(minus(X, attrs({ x })), Y);
+
+          // $ (X - {x}) \to Y \in G^+ $.
+          if (is_membership(G, f2)) {
+
+            // Replace X \to Y with (X - {x}) \to Y.
+            G.erase(f);
+            G.insert(f2);
+
+            goto again;
+          }
+        }
+      }
+
+    auto H = fds();
+
+    for (auto &f : G) {
+      for (auto &y : f.second) {
+
+        H.insert(fd(f.first, attrs({ y })));
+      }
+    }
+
+    return H;
+  }
+
+
   bool is_direct(const fds &F, const fd &f) {
 
     // 0. Check if \f$ X \to Y \in F^+ \f$.
