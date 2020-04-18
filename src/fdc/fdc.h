@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <set>
 #include <string>
 
@@ -17,80 +16,17 @@
 namespace fdc {
 
 
-  /**
-   * @brief Attribute.
-   */
+  /*! \brief Attribute. */
   typedef std::string attr;
 
-  /**
-   * @brief A set of attributes.
-   */
+  /*! \brief A set of attributes. */
   typedef std::set<attr> attrs;
 
-  /**
-   * @brief Functional dependency.
-   */
+  /*! \brief Functional dependency. */
   typedef std::pair<attrs, attrs> fd;
 
-  /**
-   * @brief A set of functional dependencies.
-   */
+  /*! \brief A set of functional dependencies. */
   typedef std::set<fd> fds;
-
-
-
-  /**
-   * @brief Get all attributes of a given functional dependency set `F`.
-   *
-   * @param F: a given set of functional dependencies.
-   */
-  attrs attrs_of(const fds &F);
-
-
-  /**
-   * @brief Get all subsets of a given set attributes `X`.
-   *
-   * @param X: A set of attributes.
-   */
-  std::set<attrs> subsets_of(const attrs &X);
-
-  /**
-   * @brief Get all subsets of a given set of functional dependencies `F`.
-   *
-   * @param F: A set of functional dependencies.
-   */
-  std::set<fds> subsets_of(const fds &F);
-
-  /**
-   * @brief Get the closure of a given set of functional depdencies `F`. It is
-   * an implementation of Armstrong's Axioms.
-   *
-   * @param F: A set of functional dependencies.
-   */
-  fds closure_of(const fds &F);
-
-  /**
-   * @brief Get the closure of a given set of functional depdencies `F` under a
-   * given set of attributes, universe `U`. It is an implementation of
-   * Armstrong's Axioms.
-   *
-   * @param U: Universal set of attributes.
-   * @param F: A set of functional dependencies.
-   */
-  fds closure_of(const attrs &U, const fds &F);
-
-  
- 
-
-
-
-
-
-
-
-
-
-
 
 
 

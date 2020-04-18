@@ -8,6 +8,66 @@ namespace fdc {
   using json = nlohmann::json;
 
 
+  string to_str(const attr &x) {
+
+    return (string) x;
+  }
+
+
+  string to_str(const attrs &X) {
+
+    bool first = true;
+    
+    string str = "(";
+
+    for (auto x : X) {
+
+      if (!first) {
+
+        str += ", ";
+      }
+
+      str += to_str(x);
+
+      first = false;
+    }
+
+    str += ")";
+
+    return str;
+  }
+
+
+  string to_str(const fd &f) {
+
+    return to_str(f.first) + " -> " + to_str(f.second);
+  }
+
+
+  string to_str(const fds &F) {
+
+    bool first = true;
+    
+    string str = "FDS {";
+
+    for (auto f : F) {
+
+      str += "\n  " + to_str(f);
+
+      first = false;
+    }
+
+    if (!first) {
+
+      str += "\n";
+    }
+
+    str += "}";
+
+    return str;
+  }
+
+
   void from_json(const json input, attrs &U, fds &F) {
 
     U.clear();
