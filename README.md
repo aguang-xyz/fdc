@@ -4,7 +4,9 @@ A cross-platform library for calculating the covers of functional dependencies.
 
 * [Document](https://aguang-xyz.github.io/fdc/namespacefdc.html).
 
-## How to install libfdc?
+## Usage
+
+### Install.
 
 ```bash
 git clone git@github.com:aguang-xyz/fdc.git
@@ -16,19 +18,19 @@ make --directory build
 make --directory build install # sudo might be required.
 ```
 
-## How to link this library
+### Link.
 
 ```bash
 g++ xxx.cpp -lfdc
 ```
 
-## How to generate docs?
+### Generate Documents.
 
 ```bash
 doxygen
 ```
 
-## Algorithms
+## Algorithms Implemented.
 
 | Type | Determination | Calculation
 |:---:|:-----:|:----:|
