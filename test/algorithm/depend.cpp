@@ -8,14 +8,14 @@ TEST(algorithm, depend_1) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
-    fd(attrs({ "Y", "Z" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
+    fd(attrs({ 1, 2 }), attrs({ 4 })),
   });
 
-  auto X = attrs({ "X" });
+  auto X = attrs({ 0 });
   
-  auto Y = attrs({ "X", "Y", "Z", "V", });
+  auto Y = attrs({ 0, 1, 2, 4, });
 
   ASSERT_EQ(depend(F, X), Y);
 }

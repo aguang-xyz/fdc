@@ -8,12 +8,12 @@ TEST(algorithm, is_membership_1) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
-    fd(attrs({ "Y", "Z" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
+    fd(attrs({ 1, 2 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "X" }), attrs({ "V" }));
+  auto f = fd(attrs({ 0 }), attrs({ 4 }));
 
   ASSERT_TRUE(is_membership(F, f));
 }
@@ -22,12 +22,12 @@ TEST(algorithm, is_membership_2) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
-    fd(attrs({ "Y", "Z", "W" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
+    fd(attrs({ 1, 2, 5 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "X" }), attrs({ "V" }));
+  auto f = fd(attrs({ 0 }), attrs({ 4 }));
 
   ASSERT_FALSE(is_membership(F, f));
 }
@@ -36,12 +36,12 @@ TEST(algorithm, is_membership_3) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
-    fd(attrs({ "Y", "Z", "W" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
+    fd(attrs({ 1, 2, 5 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "X", "V", "W" }), attrs({ "X" }));
+  auto f = fd(attrs({ 0, 4, 5 }), attrs({ 0 }));
 
   ASSERT_TRUE(is_membership(F, f));
 }

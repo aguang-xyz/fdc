@@ -1,5 +1,6 @@
 #include <map>
 #include <queue>
+#include <ctime>
 
 #include "fdc.h"
 
@@ -8,33 +9,38 @@ namespace fdc {
   using namespace std;
 
 
-  attrs depend(const fds &F, const attrs &X) {
+  attrs depend(const fds &G, const attrs &X) {
+
+    auto F = vector<fd>(G.begin(), G.end());
 
     // attrlist[x] indicates all the functional dependencies with attribute
     //$ \f$ x \f$ on their left sides.
-    auto attrlist = map<attr, set<fd>>();
+    auto attrlist = map<attr, vector<int>>();
 
     // Build attrlist.
-    for (auto &f : F) {
+    for (int i = 0; i < F.size(); i++) {
+
+      auto &f = F[i];
+
       for (auto &x : f.first) {
 
         if (attrlist.find(x) == attrlist.end()) {
 
-          attrlist[x] = set<fd>();
+          attrlist[x] = vector<int>();
         }
 
-        attrlist[x].insert(f);
+        attrlist[x].push_back(i);
       }
     }
 
     // depend is a set of attributes found to be functionally dependent on X.
-    auto depend = set<attr>();
+    auto depend = attrs();
 
     // new_depend is a subset of dependend that has not yet been examined.
     auto new_depend = queue<attr>();
 
     // Initialize$ \f$ depend \f$ and$ \f$ new_depend \f$ .
-    for (auto & x : X) {
+    for (auto &x : X) {
 
       depend.insert(x);
       new_depend.push(x);
@@ -42,23 +48,23 @@ namespace fdc {
 
     // counter[f] indicates the number of attributes on the left side of
     // \f$ f \f$ that have not yet been found to be in depend.
-    auto counter = map<fd, int>();
+    int counter[F.size()];
 
     // Initialize counter.
-    for (auto &f : F) {
+    for (int i = 0; i < F.size(); i++) {
 
-      counter[f] = f.first.size();
+      counter[i] = F[i].first.size();
     }
 
     while (new_depend.size() > 0) {
 
       auto a = new_depend.front();
 
-      for (auto &f : attrlist[a]) {
+      for (auto &i : attrlist[a]) {
 
-        if (--counter[f] == 0) {
+        if (--counter[i] == 0) {
          
-          for (auto &b : f.second) {
+          for (auto &b : F[i].second) {
 
             if (depend.find(b) == depend.end()) {
 

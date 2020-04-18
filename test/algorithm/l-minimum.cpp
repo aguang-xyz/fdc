@@ -8,14 +8,14 @@ TEST(algorithm, l_minimum_1) {
 
   auto F = fds({
 
-    fd(attrs({ "X", "Y", "Z" }), attrs({ "V" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ 0, 1, 2 }), attrs({ 4 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
   });
   
   auto G = fds({
 
-    fd(attrs({ "X", "Y" }), attrs({ "V" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ 0, 1 }), attrs({ 4 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
   });
 
   ASSERT_FALSE(is_lminimum(F));

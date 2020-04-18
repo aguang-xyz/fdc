@@ -10,7 +10,7 @@ namespace fdc {
 
   string to_str(const attr &x) {
 
-    return (string) x;
+    return to_string(x);
   }
 
 
@@ -77,7 +77,7 @@ namespace fdc {
 
     for (auto x = 0; x < R; x++) {
 
-      U.insert(attr(to_string(x)));
+      U.insert(attr(x));
     }
 
     for (auto f : input["fds"]) {
@@ -86,14 +86,14 @@ namespace fdc {
 
       for (auto x : f["lhs"]) {
 
-        X.insert(attr(to_string(x.get<int>())));
+        X.insert(attr(x.get<int>()));
       }
 
       auto Y = attrs();
 
       for (auto y : f["rhs"]) {
 
-        Y.insert(attr(to_string(y.get<int>())));
+        Y.insert(attr(y.get<int>()));
       }
 
       F.insert(fd(X, Y));

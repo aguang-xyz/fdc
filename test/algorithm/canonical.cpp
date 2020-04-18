@@ -8,14 +8,14 @@ TEST(algorithm, is_canonical_1) {
 
   auto F = fds({
 
-    fd(attrs({ "A", "B", "C" }), attrs({ "D" })),
-    fd(attrs({ "A" }), attrs({ "B" })),
+    fd(attrs({ 0, 1, 2 }), attrs({ 3 })),
+    fd(attrs({ 0 }), attrs({ 1 })),
   });
 
   auto G = fds({
 
-    fd(attrs({ "A", "C" }), attrs({ "D" })),
-    fd(attrs({ "A" }), attrs({ "B" })),
+    fd(attrs({ 0, 2 }), attrs({ 3 })),
+    fd(attrs({ 0 }), attrs({ 1 })),
   });
 
   ASSERT_FALSE(is_canonical(F));
@@ -29,13 +29,13 @@ TEST(algorithm, canonical_2) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y", "Z" })),
+    fd(attrs({ 0 }), attrs({ 1, 2 })),
   });
 
   auto G = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "X" }), attrs({ "Z" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 0 }), attrs({ 2 })),
   });
 
   ASSERT_FALSE(is_canonical(F));

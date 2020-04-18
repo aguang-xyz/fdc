@@ -8,13 +8,13 @@ TEST(algorithm, is_direct_1) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "Y" }), attrs({ "Z" })),
-    fd(attrs({ "Z" }), attrs({ "X" })),
-    fd(attrs({ "Z" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 1 }), attrs({ 2 })),
+    fd(attrs({ 2 }), attrs({ 0 })),
+    fd(attrs({ 2 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "X" }), attrs({ "V" }));
+  auto f = fd(attrs({ 0 }), attrs({ 4 }));
 
   ASSERT_FALSE(is_direct(F, f));
 }
@@ -23,13 +23,13 @@ TEST(algorithm, is_direct_2) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
-    fd(attrs({ "Y" }), attrs({ "Z" })),
-    fd(attrs({ "Z" }), attrs({ "X" })),
-    fd(attrs({ "X" }), attrs({ "V" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 1 }), attrs({ 2 })),
+    fd(attrs({ 2 }), attrs({ 0 })),
+    fd(attrs({ 0 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "X" }), attrs({ "X", "Y", "Z" }));
+  auto f = fd(attrs({ 0 }), attrs({ 0, 1, 2 }));
 
   ASSERT_FALSE(is_direct(F, f));
 }
@@ -38,10 +38,10 @@ TEST(algorithm, is_direct_3) {
 
   auto F = fds({
 
-    fd(attrs({ "X" }), attrs({ "Y" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
   });
 
-  auto f = fd(attrs({ "X", "Z" }), attrs({ "Y", "Z" }));
+  auto f = fd(attrs({ 0, 2 }), attrs({ 1, 2 }));
 
   ASSERT_TRUE(is_direct(F, f));
 }
@@ -51,12 +51,12 @@ TEST(algorithm, is_direct_4) {
 
   auto F = fds({
 
-    fd(attrs({ "A" }), attrs({ "B" })),
-    fd(attrs({ "C" }), attrs({ "D" })),
-    fd(attrs({ "A", "C" }), attrs({ "E" })),
+    fd(attrs({ 0 }), attrs({ 1 })),
+    fd(attrs({ 2 }), attrs({ 3 })),
+    fd(attrs({ 0, 2 }), attrs({ 4 })),
   });
 
-  auto f = fd(attrs({ "A", "C" }), attrs({ "B", "D" }));
+  auto f = fd(attrs({ 0, 2 }), attrs({ 1, 3 }));
 
   ASSERT_TRUE(is_direct(F, f));
 }

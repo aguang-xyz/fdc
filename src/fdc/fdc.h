@@ -17,7 +17,7 @@ namespace fdc {
 
 
   /*! \brief Attribute. */
-  typedef std::string attr;
+  typedef int attr;
 
   /*! \brief A set of attributes. */
   typedef std::set<attr> attrs;
