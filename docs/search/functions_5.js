@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['is_5fcanonical',['is_canonical',['../group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6',1,'fdc']]],
-  ['is_5fdirect',['is_direct',['../group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70',1,'fdc']]],
-  ['is_5fmembership',['is_membership',['../group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe',1,'fdc']]],
-  ['is_5fminimum',['is_minimum',['../group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1',1,'fdc']]],
-  ['is_5fredundant',['is_redundant',['../group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122',1,'fdc']]],
-  ['is_5fsubset_5feq',['is_subset_eq',['../group__set__algebra.html#ga4eae647ddd9aec0bb39997686293198d',1,'fdc::is_subset_eq(const attrs &amp;X, const attrs &amp;Y)'],['../group__set__algebra.html#ga2c0fc55261aa2b2bcb5da9871e6bd5ea',1,'fdc::is_subset_eq(const fds &amp;X, const fds &amp;Y)']]]
+  ['minimum',['minimum',['../group__algorithms.html#ga593e7fa977c8be828fe7b12c027e1cf8',1,'fdc']]],
+  ['minus',['minus',['../group__set__algebra.html#ga0535b66f93412c2a661cb21eb3c128f1',1,'fdc::minus(const attrs &amp;X, const attrs &amp;Y)'],['../group__set__algebra.html#ga05d5e45644b6d154ceabc4b397df6de9',1,'fdc::minus(const fds &amp;X, const fds &amp;Y)']]]
 ];
