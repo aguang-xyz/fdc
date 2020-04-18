@@ -140,6 +140,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga4366e0efe33ff07476e11e301a2246a1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1">fdc::is_minimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga4366e0efe33ff07476e11e301a2246a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum determination.  <a href="group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1">More...</a><br /></td></tr>
 <tr class="separator:ga4366e0efe33ff07476e11e301a2246a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9451f7e7dce4ba496860a0bccc9b363b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga9451f7e7dce4ba496860a0bccc9b363b">fdc::is_lminimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga9451f7e7dce4ba496860a0bccc9b363b"><td class="mdescLeft">&#160;</td><td class="mdescRight">L-minimum determination.  <a href="group__algorithms.html#ga9451f7e7dce4ba496860a0bccc9b363b">More...</a><br /></td></tr>
+<tr class="separator:ga9451f7e7dce4ba496860a0bccc9b363b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaf764a60a4a782d4e4d7a1c154ef5a58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaaf764a60a4a782d4e4d7a1c154ef5a58">fdc::lminimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:gaaf764a60a4a782d4e4d7a1c154ef5a58"><td class="mdescLeft">&#160;</td><td class="mdescRight">L-minimum calculation.  <a href="group__algorithms.html#gaaf764a60a4a782d4e4d7a1c154ef5a58">More...</a><br /></td></tr>
+<tr class="separator:gaaf764a60a4a782d4e4d7a1c154ef5a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -174,7 +180,7 @@ Functions</h2></td></tr>
 <li>For every \( X \to Y \in G \), \( |Y| = 1 \) and there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in G \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<p>See also: 5.2 Redundancy Tests in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of cuntional dependencies. </td></tr>
@@ -211,7 +217,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Given a set of functional dependencies \( F \) and a set of attributes \( X \), calculate the set of attributes \( \{ y \mid X \to y \in F^+ \} \).</p>
 <p>Time complexity: \( O(|F|) \)</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
+<p>See also: Algorithm 2. A linear-time membership algorithm in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -328,7 +334,7 @@ Functions</h2></td></tr>
 <li>For every \( X \to Y \in F \), \( |Y| = 1\) and there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: Removing extraneous attributes in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<p>See also: 5.2 Redundancy Tests in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of cuntional dependencies. </td></tr>
@@ -365,11 +371,42 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Given a set of functional dependencies \( F \) and a functional dependency \( f:X \to Y \), determine if \( X \) directly determines \( Y \).</p>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<p>See also: Direct determination in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
     <tr><td class="paramname">f</td><td>A functional dependency. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga9451f7e7dce4ba496860a0bccc9b363b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9451f7e7dce4ba496860a0bccc9b363b">&#9670;&nbsp;</a></span>is_lminimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_lminimum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), determine if:</p>
+<ul>
+<li>\( \forall G^+ = F^+, |G| \geq |F| \).</li>
+<li>For every \( X \to Y \in F \), there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
+</ul>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: The definition of L-minimum in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 331)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
   </table>
   </dd>
 </dl>
@@ -403,7 +440,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Given a set of functional dependencies \( F \) and a functional dependency \( f \) , determine if \( f \in F^{+} \).</p>
 <p>Time complexity: \( O(|F|) \)</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
+<p>See also: Algorithm 2. A linear-time membership algorithm in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 46)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -434,7 +471,7 @@ Functions</h2></td></tr>
 <li>\( \forall G^+ = F^+, |G| \geq |F| \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<p>See also: The definition of minimum in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 331)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -462,7 +499,39 @@ Functions</h2></td></tr>
 <p>Check if a set of functional dependencies \( F \) is redundant.</p>
 <p>If there is a \( \ f \in F \), where \( (F - \{f\})^+ = F^+ \), then we say \( F \) is redundant.</p>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
+<p>See also: 5.2 Redundancy Tests in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gaaf764a60a4a782d4e4d7a1c154ef5a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaf764a60a4a782d4e4d7a1c154ef5a58">&#9670;&nbsp;</a></span>lminimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> fdc::lminimum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate \( G \) where:</p>
+<ul>
+<li>\( G^+ = F^+ \)</li>
+<li>\( \forall H^+ = G^+, |H| \geq |G| \).</li>
+<li>For every \( X \to Y \in G \), there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in G \).</li>
+</ul>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: Corollary 2. in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -493,7 +562,7 @@ Functions</h2></td></tr>
 <li>\( \forall H^+ = F^+, |H| \geq |G| \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<p>See also: Theorem 3. in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
@@ -524,7 +593,7 @@ Functions</h2></td></tr>
 <li>\( \forall H \subset G: H^{+} \neq F^+ \)</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
-<p>See also: <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 48)</a></p>
+<p>See also: 5.2 Redundancy Tests in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>

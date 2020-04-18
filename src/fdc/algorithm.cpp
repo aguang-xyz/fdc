@@ -169,7 +169,7 @@ namespace fdc {
       auto &X = f.first;
       auto &Y = f.second;
 
-      if (X.size() > 0) {
+      if (X.size() > 1) {
 
         for (auto &x : X) {
 
@@ -355,5 +355,62 @@ namespace fdc {
   bool is_minimum(const fds &F) {
 
     return minimum(F).size() == F.size();
+  }
+
+
+  bool is_lminimum(const fds &F) {
+
+    if (!is_minimum(F)) {
+
+      return false;
+    }
+    
+    for (auto &f : F) {
+
+      auto &X = f.first;
+      auto &Y = f.second;
+
+      if (X.size() > 1) {
+
+        for (auto &x : X) {
+
+          if (is_membership(F, fd(minus(X, attrs({ x })), Y))) {
+
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+  
+  fds lminimum(const fds &F) {
+
+    auto G = minimum(F);
+
+    again:
+      for (auto &f : G) {
+
+        auto &X = f.first;
+        auto &Y = f.second;
+
+        for (auto &x : X) {
+
+          auto f2 = fd(minus(X, attrs({ x })), Y);
+
+          // $ (X - {x}) \to Y \in G^+ $.
+          if (is_membership(G, f2)) {
+
+            // Replace X \to Y with (X - {x}) \to Y.
+            G.erase(f);
+            G.insert(f2);
+
+            goto again;
+          }
+        }
+      }
+
+    return G;
   }
 }

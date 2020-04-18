@@ -255,7 +255,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|) \f$
    *
-   * See also: [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * See also: Algorithm 2. A linear-time membership algorithm in
+   *   [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    * @param X: A set of attributes.
@@ -269,7 +270,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|) \f$
    *
-   * See also: [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * See also: Algorithm 2. A linear-time membership algorithm in
+   *   [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
@@ -311,7 +313,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * See also: [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * See also: 5.2 Redundancy Tests in
+   *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    */
@@ -327,7 +330,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * See also: [Beeri and Bernstein (1979, p. 48)](https://dl.acm.org/doi/10.1145/320064.320066)
+   * See also: 5.2 Redundancy Tests in
+   *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of functional dependencies.
    */
@@ -346,7 +350,7 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    * 
-   * See also: Removing extraneous attributes in
+   * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of cuntional dependencies.
@@ -364,7 +368,7 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    * 
-   * See also: Removing extraneous attributes in
+   * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
    * @param F: A set of cuntional dependencies.
@@ -379,7 +383,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   * See also: Direct determination in
+   *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
@@ -396,7 +401,8 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   * See also: Theorem 3. in
+   *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
    * @param F: A set of functional dependencies.
    */
@@ -410,11 +416,48 @@ namespace fdc {
    *
    * Time complexity: \f$ O(|F|^2) \f$.
    *
-   * See also: [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   * See also: The definition of minimum in
+   *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
    * @param F: A set of functional dependencies.
    */
   bool is_minimum(const fds &F);
+  
+  /*! \brief L-minimum determination.
+   *
+   * Given a set of functional dependencies \f$ F \f$, determine if:
+   *
+   *   * \f$ \forall G^+ = F^+, |G| \geq |F| \f$.
+   *   * For every \f$ X \to Y \in F \f$, there is no such
+   *     a \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in F \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: The definition of L-minimum in
+   *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  bool is_lminimum(const fds &F);
+
+  /*! \brief L-minimum calculation.
+   *
+   * Given a set of functional dependencies \f$ F \f$, calculate \f$ G \f$
+   * where:
+   *
+   *   * \f$ G^+ = F^+ \f$
+   *   * \f$ \forall H^+ = G^+, |H| \geq |G| \f$.
+   *   * For every \f$ X \to Y \in G \f$, there is no such
+   *     a \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in G \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: Corollary 2. in
+   *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  fds lminimum(const fds &F);
 
   /** @} */
 }
