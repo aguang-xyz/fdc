@@ -4,21 +4,21 @@
 using namespace std;
 using namespace fdc;
 
-TEST(basic, attr) {
+TEST(io, to_str_attr) {
 
   auto x = attr("X");
 
   EXPECT_EQ(to_str(x), "X");
 }
 
-TEST(basic, attrs) {
+TEST(io, to_str_attrs) {
 
   auto X = attrs({ attr("X"), attr("Y") });
   
   EXPECT_EQ(to_str(X), "(X, Y)");
 }
 
-TEST(basic, fd) {
+TEST(io, to_str_fd) {
 
   auto f = fd(
       
@@ -29,7 +29,7 @@ TEST(basic, fd) {
   EXPECT_EQ(to_str(f), "(X) -> (Y)");
 }
 
-TEST(basic, fds) {
+TEST(io, to_str_fds) {
 
   auto F = fds({
       

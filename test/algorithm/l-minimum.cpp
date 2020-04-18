@@ -4,7 +4,7 @@
 using namespace std;
 using namespace fdc;
 
-TEST(algorithm, lminimum_1) {
+TEST(algorithm, l_minimum_1) {
 
   // F can be minimized to G.
 

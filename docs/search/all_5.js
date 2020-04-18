@@ -4,6 +4,7 @@ var searchData=
   ['is_5fcanonical',['is_canonical',['../group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6',1,'fdc']]],
   ['is_5fdirect',['is_direct',['../group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70',1,'fdc']]],
   ['is_5flminimum',['is_lminimum',['../group__algorithms.html#ga9451f7e7dce4ba496860a0bccc9b363b',1,'fdc']]],
+  ['is_5flrminimum',['is_lrminimum',['../group__algorithms.html#gafcc19bab0f9b7dc2c803a9c6909ba10a',1,'fdc']]],
   ['is_5fmembership',['is_membership',['../group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe',1,'fdc']]],
   ['is_5fminimum',['is_minimum',['../group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1',1,'fdc']]],
   ['is_5fredundant',['is_redundant',['../group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122',1,'fdc']]],

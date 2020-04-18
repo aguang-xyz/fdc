@@ -243,8 +243,6 @@ namespace fdc {
     // 2.1 Calculate X^+.
     auto D = depend(G, X);
 
-    cout<<"D = "<<to_str(D)<<endl;
-
     auto EFX = fds();
 
     // 2.2 Determine ef(X). 
@@ -412,5 +410,45 @@ namespace fdc {
       }
 
     return G;
+  }
+
+
+  bool is_lrminimum(const fds &F) {
+
+    if (!is_lminimum(F)) {
+
+      return false;
+    }
+
+    auto G = fds(F);
+
+    for (auto &f : F) {
+
+      auto &X = f.first;
+      auto &Y = f.second;
+
+      if (Y.size() > 1) {
+
+        for (auto &y : Y) {
+
+          auto f2 = fd(X, minus(Y, attrs({ y })));
+         
+          // Replace $ X \to Y with X \to Y - { y } $.
+          G.erase(f);
+          G.insert(f2);
+
+          if (is_membership(G, f)) {
+
+            return false;
+          }
+
+          // Recovery $ X \to Y $.
+          G.erase(f2);
+          G.insert(f);
+        }
+      }
+    }
+
+    return true;
   }
 }

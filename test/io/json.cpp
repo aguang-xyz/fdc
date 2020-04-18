@@ -25,9 +25,6 @@ TEST(io, from_json) {
     fd(attrs({ "0", "2", "3" }), attrs({ "4" })),
     fd(attrs({ "1", "2", "3" }), attrs({ "4" })),
   });
-  
-  cout<<"U = "<<to_str(U1)<<endl;
-  cout<<"F = "<<to_str(F1)<<endl;
 
   ASSERT_EQ(U1, U2);
   ASSERT_EQ(F1, F2);
@@ -48,8 +45,6 @@ TEST(io, to_json) {
   char filename[1024];
 
   mkstemp(filename);
-  
-  cout<<"tmp file name = "<<filename<<endl;
 
   auto tmpOut = ofstream(filename);
 
@@ -61,9 +56,6 @@ TEST(io, to_json) {
   auto tmpIn = ifstream(filename);
 
   from_json(tmpIn, U2, F2);
-
-  cout<<"U = "<<to_str(U2)<<endl;
-  cout<<"F = "<<to_str(F2)<<endl;
 
   ASSERT_EQ(U1, U2);
   ASSERT_EQ(F1, F2);

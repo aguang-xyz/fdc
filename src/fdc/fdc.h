@@ -459,6 +459,23 @@ namespace fdc {
    */
   fds lminimum(const fds &F);
 
+  /*! \brief LR-minimum determination.
+   *
+   * Given a set of functional dependencies \f$ F \f$, determine if:
+   *
+   *   * \f$ \forall G^+ = F^+, |G| \geq |F| \f$.
+   *   * For every \f$ X \to Y \in F \f$, there is no such
+   *     a \f$ X^{'} \subset X \f$ where \f$ X^{'} \to Y \in F \f$.
+   *
+   * Time complexity: \f$ O(|F|^2) \f$.
+   *
+   * See also: The definition of LR-minimum in
+   *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
+   *
+   * @param F: A set of functional dependencies.
+   */
+  bool is_lrminimum(const fds &F);
+
   /** @} */
 }
 #endif
