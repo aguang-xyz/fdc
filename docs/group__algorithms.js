@@ -12,6 +12,7 @@ var group__algorithms =
     [ "is_minimum", "group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1", null ],
     [ "is_redundant", "group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122", null ],
     [ "lminimum", "group__algorithms.html#gaaf764a60a4a782d4e4d7a1c154ef5a58", null ],
+    [ "lrminimum", "group__algorithms.html#ga5f0a53e5324ac2c8d88ba7a0562f2f22", null ],
     [ "minimum", "group__algorithms.html#ga593e7fa977c8be828fe7b12c027e1cf8", null ],
     [ "non_redundant", "group__algorithms.html#ga40f20f64f21360947f32bec8fc771280", null ]
 ];

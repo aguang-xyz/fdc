@@ -149,6 +149,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gafcc19bab0f9b7dc2c803a9c6909ba10a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gafcc19bab0f9b7dc2c803a9c6909ba10a">fdc::is_lrminimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:gafcc19bab0f9b7dc2c803a9c6909ba10a"><td class="mdescLeft">&#160;</td><td class="mdescRight">LR-minimum determination.  <a href="group__algorithms.html#gafcc19bab0f9b7dc2c803a9c6909ba10a">More...</a><br /></td></tr>
 <tr class="separator:gafcc19bab0f9b7dc2c803a9c6909ba10a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5f0a53e5324ac2c8d88ba7a0562f2f22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga5f0a53e5324ac2c8d88ba7a0562f2f22">fdc::lrminimum</a> (const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga5f0a53e5324ac2c8d88ba7a0562f2f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">LR-minimum calculation.  <a href="group__algorithms.html#ga5f0a53e5324ac2c8d88ba7a0562f2f22">More...</a><br /></td></tr>
+<tr class="separator:ga5f0a53e5324ac2c8d88ba7a0562f2f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -435,6 +438,7 @@ Functions</h2></td></tr>
 <ul>
 <li>\( \forall G^+ = F^+, |G| \geq |F| \).</li>
 <li>For every \( X \to Y \in F \), there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in F \).</li>
+<li>For every \( X \to Y \in F \), there is no such a \( Y^{&#39;} \subset Y \) where \( (F - \{X \to Y\} + \{X \to Y^{&#39;}\})^+ = F^+ \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: The definition of LR-minimum in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 331)</a></p>
@@ -563,6 +567,39 @@ Functions</h2></td></tr>
 <li>\( G^+ = F^+ \)</li>
 <li>\( \forall H^+ = G^+, |H| \geq |G| \).</li>
 <li>For every \( X \to Y \in G \), there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in G \).</li>
+</ul>
+<p>Time complexity: \( O(|F|^2) \).</p>
+<p>See also: Corollary 2. in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5f0a53e5324ac2c8d88ba7a0562f2f22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5f0a53e5324ac2c8d88ba7a0562f2f22">&#9670;&nbsp;</a></span>lrminimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> fdc::lrminimum </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate \( G \) where:</p>
+<ul>
+<li>\( G^+ = F^+ \)</li>
+<li>\( \forall H^+ = F^+, |H| \geq |G| \).</li>
+<li>For every \( X \to Y \in G \), there is no such a \( X^{&#39;} \subset X \) where \( X^{&#39;} \to Y \in G \).</li>
+<li>For every \( X \to Y \in G \), there is no such a \( Y^{&#39;} \subset Y \) where \( (G - \{X \to Y\} + \{X \to Y^{&#39;}\})^+ = G^+ \).</li>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: Corollary 2. in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
