@@ -1,6 +1,5 @@
 #include <iostream>
-#include <set>
-#include <string>
+#include <vector>
 
 #ifndef __fdc_inc__
 #define __fdc_inc__
@@ -20,13 +19,13 @@ namespace fdc {
   typedef int attr;
 
   /*! \brief A set of attributes. */
-  typedef std::set<attr> attrs;
+  typedef std::vector<attr> attrs;
 
   /*! \brief Functional dependency. */
   typedef std::pair<attrs, attrs> fd;
 
   /*! \brief A set of functional dependencies. */
-  typedef std::set<fd> fds;
+  typedef std::vector<fd> fds;
 
 
 
@@ -63,8 +62,9 @@ namespace fdc {
    */
 
   std::string to_str(const fds &F);
-  /*! \brief Convert a json string `input` into a set of attributes `U` and a
-   * set of functional dependencies `F`.
+
+  /*! \brief Convert a json string `input` into a set of functional
+   * dependencies `F`.
    *
    * The json string `input` is expected to be under the structure below:
    *
@@ -79,13 +79,13 @@ namespace fdc {
    * }
    *
    * @param input: A json string.
-   * @param U: A set of attributes for output.
+   * @param N: The total number of attributes for output.
    * @param F: A set of functional dependencies for output.
    */
-  void from_json(const std::string input, attrs &U, fds &F);
+  void from_json(const std::string input, int &N, fds &F);
  
-  /*! \brief Convert a input stream `input` into a set of attributes `U` and a
-   * set of functional dependencies `F`.
+  /*! \brief Convert a input stream `input` into a set of functional
+   * dependencies `F`.
    *
    * The input stream `input` is expected to be under the structure below:
    *
@@ -100,13 +100,13 @@ namespace fdc {
    * }
    *
    * @param input: A input stream.
-   * @param U: A set of attributes for output.
+   * @param N: The total number of attributes for output.
    * @param F: A set of functional dependencies for output.
    */
-  void from_json(std::istream &input, attrs &U, fds &F);
+  void from_json(std::istream &input, int &N, fds &F);
 
-  /*! \brief Convert given set of attributes `U` and given set of functional
-   * dependencies `F` to json string and write it into output.
+  /*! \brief Convert a set of functional dependencies `F` to json string and
+   * write it into output.
    *
    * The output stream `output` is expected to be written under the structure
    * below:
@@ -122,71 +122,10 @@ namespace fdc {
    * }
    *
    * @param output: An output stream.
-   * @param U: A set of attributes.
+   * @param N: The total number of attributes for output.
    * @param F: A set of functional dependencies.
    */
-  void to_json(std::ostream &output, const attrs &U, const fds &F);
-
-  /** @} */
-
-
-
-  /*! \brief Basic algebras of sets implemented in `FDC`.
-   *
-   * This module contains the basic algebras of sets implemented in `FDC`.
-   *
-   * @defgroup set_algebra
-   *
-   * @{
-   */
-
-  /*! \brief Atributes minus.
-   *
-   * Given two set of attributes \f$ X \f$, \f$ Y \f$, calculate \f$ X - Y \f$.
-   *
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
-   */
-  attrs minus(const attrs &X, const attrs &Y);
- 
-  /*! \brief Functional dependencies minus.
-   *
-   * Given two set of functional dependencies \f$ X \f$, \f$ Y \f$,
-   * calculate \f$ X - Y \f$.
-   *
-   * @param X: A set of functional dependencies.
-   * @param Y: A set of attributes dependencies.
-   */
-  fds minus(const fds &X, const fds &Y);
-
-  /*! \brief Attributes subset or equal determination.
-   *
-   * Given two set of attributes \f$ X\f$, \f$ Y \f$, determine if
-   * \f$ X \subseteq Y \f$.
-   *
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
-   */
-  bool is_subset_eq(const attrs &X, const attrs &Y);
-
-  /*! \brief Functional dependencies subset or equal determination.
-   *
-   * Given two set of functioanl dependencies \f$ X\f$, \f$ Y \f$, determine if
-   * \f$ X \subseteq Y \f$.
-   *
-   * @param X: A set of functional dependencies.
-   * @param Y: A set of functional dependencies.
-   */
-  bool is_subset_eq(const fds &X, const fds &Y);
-
-  /*! \brief Attributes set union.
-   * 
-   * Given two sets of attributes `X`, `Y`, calculate \f$ X \cup Y \f$.
-   *
-   * @param X: A set of attributes.
-   * @param Y: A set of attributes.
-   */
-  attrs union_of(const attrs &X, const attrs &Y);
+  void to_json(std::ostream &output, const int &N, const fds &F);
 
   /** @} */
 
@@ -248,6 +187,7 @@ namespace fdc {
    * @{
    */
 
+
   /*! \brief Dependent calculation.
    *
    * Given a set of functional dependencies \f$ F \f$ and a set of attributes
@@ -258,10 +198,13 @@ namespace fdc {
    * See also: Algorithm 2. A linear-time membership algorithm in
    *   [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The total number of attributes.
    * @param F: A set of functional dependencies.
    * @param X: A set of attributes.
+   * @param D: The output of the depend result.
    */
-  attrs depend(const fds &F, const attrs &X);
+  void depend(const int N, const fds &F, const std::vector<int> X, bool D[]);
+
 
   /*! \brief Membership determination.
    *
@@ -273,10 +216,11 @@ namespace fdc {
    * See also: Algorithm 2. A linear-time membership algorithm in
    *   [Beeri and Bernstein (1979, p. 46)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The total number of attributes.
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
    */
-  bool is_membership(const fds &F, const fd &f);
+  bool is_membership(const int N, const fds &F, const fd &f);
 
   /*! \brief Sets of attributes equivalence determination.
    *
@@ -288,21 +232,23 @@ namespace fdc {
    *   * \f$ X \to Y \in F^+ \f$
    *   * \f$ Y \to X \in F^+ \f$
    *
+   * @param N: The number of attributes.
+   * @param F: A set of functional dependencies.
    * @param X: A set of attributes.
    * @param Y: A set of attributes.
-   * @param F: A set of functional dependencies.
    */
-  bool equal(const attrs &X, const attrs &Y, const fds &F);
+  bool equal(const int N, const fds &F, const attrs &X, const attrs &Y);
 
   /*! \brief Functional dependencies equivalence determination.
    *
    * Given two sets of functional dependencies.
    * Determine if \f$ F^+ = G^+ \f$.
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    * @param G: A set of functional dependencies.
    */
-  bool equal(const fds &F, const fds &G);
+  bool equal(const int N, const fds &F, const fds &G);
 
   /*! \brief Redundant determination.
    *
@@ -316,9 +262,10 @@ namespace fdc {
    * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  bool is_redundant(const fds &F);
+  bool is_redundant(const int N, const fds &F);
 
   /*! \brief Redundant cover calculation.
    *
@@ -333,9 +280,10 @@ namespace fdc {
    * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  fds non_redundant(const fds &F);
+  fds non_redundant(const int N, const fds &F);
 
   /*! \brief Canonical determination.
    *
@@ -353,9 +301,10 @@ namespace fdc {
    * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The number of attributes.
    * @param F: A set of cuntional dependencies.
    */
-  bool is_canonical(const fds &F);
+  bool is_canonical(const int N, const fds &F);
 
   /*! \brief Canonical calculation.
    *
@@ -371,9 +320,10 @@ namespace fdc {
    * See also: 5.2 Redundancy Tests in
    *   [Beeri and Bernstein (1979, p. 47)](https://dl.acm.org/doi/10.1145/320064.320066)
    *
+   * @param N: The number of attributes.
    * @param F: A set of cuntional dependencies.
    */
-  fds canonical(const fds &F);
+  fds canonical(const int N, const fds &F);
 
   /*! \brief Direct determination.
    *
@@ -386,10 +336,11 @@ namespace fdc {
    * See also: Direct determination in
    *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    * @param f: A functional dependency.
    */
-  bool is_direct(const fds &F, const fd &f);
+  bool is_direct(const int N, const fds &F, const fd &f);
 
   /*! \brief Minimum cover calculation.
    *
@@ -404,9 +355,10 @@ namespace fdc {
    * See also: Theorem 3. in
    *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  fds minimum(const fds &F);
+  fds minimum(const int N, const fds &F);
 
   /*! \brief Minimum determination.
    *
@@ -419,9 +371,10 @@ namespace fdc {
    * See also: The definition of minimum in
    *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  bool is_minimum(const fds &F);
+  bool is_minimum(const int N, const fds &F);
   
   /*! \brief L-minimum determination.
    *
@@ -436,9 +389,10 @@ namespace fdc {
    * See also: The definition of L-minimum in
    *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  bool is_lminimum(const fds &F);
+  bool is_lminimum(const int N, const fds &F);
 
   /*! \brief L-minimum calculation.
    *
@@ -455,9 +409,10 @@ namespace fdc {
    * See also: Corollary 2. in
    *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  fds lminimum(const fds &F);
+  fds lminimum(const int N, const fds &F);
 
   /*! \brief LR-minimum determination.
    *
@@ -475,9 +430,10 @@ namespace fdc {
    * See also: The definition of LR-minimum in
    *   [Maier(1979, p. 331)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  bool is_lrminimum(const fds &F);
+  bool is_lrminimum(const int N, const fds &F);
 
   /*! \brief LR-minimum calculation.
    *
@@ -497,9 +453,10 @@ namespace fdc {
    * See also: Corollary 2. in
    *   [Maier(1979, p. 335)](https://dl.acm.org/doi/10.1145/800135.804425)
    *
+   * @param N: The number of attributes.
    * @param F: A set of functional dependencies.
    */
-  fds  lrminimum(const fds &F);
+  fds  lrminimum(const int N, const fds &F);
 
   /** @} */
 }

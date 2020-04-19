@@ -17,10 +17,10 @@ TEST(algorithm, minimum_1) {
     fd(attrs({ 0 }), attrs({ 1, 2 })),
   });
 
-  ASSERT_FALSE(is_minimum(F));
+  ASSERT_FALSE(is_minimum(3, F));
 
-  ASSERT_EQ(minimum(F), G);
+  ASSERT_EQ(minimum(3, F), G);
 
-  ASSERT_TRUE(is_minimum(G));
+  ASSERT_TRUE(is_minimum(3, G));
 }
 

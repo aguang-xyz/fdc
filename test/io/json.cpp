@@ -11,12 +11,11 @@ TEST(io, from_json) {
 
   auto iris = ifstream("../../dataset/Complete Data/iris.json");
 
-  auto U1 = attrs();
+  int N;
+
   auto F1 = fds();
 
-  fdc::from_json(iris, U1, F1);
-
-  auto U2 = attrs({ 0, 1, 2, 3, 4 });
+  fdc::from_json(iris, N, F1);
 
   auto F2 = fds({
  
@@ -26,13 +25,13 @@ TEST(io, from_json) {
     fd(attrs({ 1, 2, 3 }), attrs({ 4 })),
   });
 
-  ASSERT_EQ(U1, U2);
+  ASSERT_EQ(N, 5);
   ASSERT_EQ(F1, F2);
 }
 
 TEST(io, to_json) {
 
-  auto U1 = attrs({ 0,1,2,3,4 });
+  auto N1 = 5;
 
   auto F1 = fds({
  
@@ -46,15 +45,16 @@ TEST(io, to_json) {
 
   auto tmpOut = ofstream(filename);
 
-  to_json(tmpOut, U1, F1);
+  to_json(tmpOut, N1, F1);
 
-  auto U2 = attrs();
+  int N2;
+
   auto F2 = fds();
 
   auto tmpIn = ifstream(filename);
 
-  from_json(tmpIn, U2, F2);
+  from_json(tmpIn, N2, F2);
 
-  ASSERT_EQ(U1, U2);
+  ASSERT_EQ(N1, N2);
   ASSERT_EQ(F1, F2);
 }

@@ -4,7 +4,7 @@
 using namespace std;
 using namespace fdc;
 
-TEST(algorithm, is_canonical_1) {
+TEST(algorithm, is_canonical_2) {
 
   auto F = fds({
 
@@ -18,11 +18,11 @@ TEST(algorithm, is_canonical_1) {
     fd(attrs({ 0 }), attrs({ 1 })),
   });
 
-  ASSERT_FALSE(is_canonical(F));
+  ASSERT_FALSE(is_canonical(4, F));
 
-  ASSERT_EQ(canonical(F), G);
+  ASSERT_EQ(canonical(4, F), G);
 
-  ASSERT_TRUE(is_canonical(G));
+  ASSERT_TRUE(is_canonical(4, G));
 }
 
 TEST(algorithm, canonical_2) {
@@ -38,9 +38,9 @@ TEST(algorithm, canonical_2) {
     fd(attrs({ 0 }), attrs({ 2 })),
   });
 
-  ASSERT_FALSE(is_canonical(F));
+  ASSERT_FALSE(is_canonical(3, F));
 
-  ASSERT_EQ(canonical(F), G);
+  ASSERT_EQ(canonical(3, F), G);
   
-  ASSERT_TRUE(is_canonical(G));
+  ASSERT_TRUE(is_canonical(3, G));
 }

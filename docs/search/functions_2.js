@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['equal',['equal',['../group__algorithms.html#ga8eb059ca0fc991071faed60edade40f9',1,'fdc::equal(const attrs &amp;X, const attrs &amp;Y, const fds &amp;F)'],['../group__algorithms.html#gafd2792679098c7b549c7f898bca33a50',1,'fdc::equal(const fds &amp;F, const fds &amp;G)']]]
+  ['equal',['equal',['../group__algorithms.html#gacec87e7f9a1945132d41dd6109200f15',1,'fdc::equal(const int N, const fds &amp;F, const attrs &amp;X, const attrs &amp;Y)'],['../group__algorithms.html#gade3d696ff18c1a349664d799ed1035c6',1,'fdc::equal(const int N, const fds &amp;F, const fds &amp;G)']]]
 ];

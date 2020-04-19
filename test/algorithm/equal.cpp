@@ -16,7 +16,7 @@ TEST(algorithm, equal_attrs_1) {
   auto X = attrs({ 0 });
   auto Y = attrs({ 1 });
 
-  ASSERT_TRUE(equal(X, Y, F));
+  ASSERT_TRUE(equal(3, F, X, Y));
 }
 
 TEST(algorithm, equal_fds_1) {
@@ -32,6 +32,6 @@ TEST(algorithm, equal_fds_1) {
     fd(attrs({ 0 }), attrs({ 1, 2 })),
   });
 
-  ASSERT_TRUE(equal(F, G));
+  ASSERT_TRUE(equal(3, F, G));
 }
 

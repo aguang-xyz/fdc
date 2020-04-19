@@ -1,18 +1,18 @@
 var group__algorithms =
 [
-    [ "canonical", "group__algorithms.html#ga22211622a812c6160ef041e025ab7c9b", null ],
-    [ "depend", "group__algorithms.html#ga8610b34d6f680cb3e888518cb7f2f856", null ],
-    [ "equal", "group__algorithms.html#ga8eb059ca0fc991071faed60edade40f9", null ],
-    [ "equal", "group__algorithms.html#gafd2792679098c7b549c7f898bca33a50", null ],
-    [ "is_canonical", "group__algorithms.html#ga6f7c3eebb058e80db712ff650fe3fcd6", null ],
-    [ "is_direct", "group__algorithms.html#ga24ba2bdfb3a127af0b2e0054da08bf70", null ],
-    [ "is_lminimum", "group__algorithms.html#ga9451f7e7dce4ba496860a0bccc9b363b", null ],
-    [ "is_lrminimum", "group__algorithms.html#gafcc19bab0f9b7dc2c803a9c6909ba10a", null ],
-    [ "is_membership", "group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe", null ],
-    [ "is_minimum", "group__algorithms.html#ga4366e0efe33ff07476e11e301a2246a1", null ],
-    [ "is_redundant", "group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122", null ],
-    [ "lminimum", "group__algorithms.html#gaaf764a60a4a782d4e4d7a1c154ef5a58", null ],
-    [ "lrminimum", "group__algorithms.html#ga5f0a53e5324ac2c8d88ba7a0562f2f22", null ],
-    [ "minimum", "group__algorithms.html#ga593e7fa977c8be828fe7b12c027e1cf8", null ],
-    [ "non_redundant", "group__algorithms.html#ga40f20f64f21360947f32bec8fc771280", null ]
+    [ "canonical", "group__algorithms.html#ga87145f95efd3421f4280493dc203c56a", null ],
+    [ "depend", "group__algorithms.html#ga02987d32ad8bec3488ae8a8f86086b4d", null ],
+    [ "equal", "group__algorithms.html#gacec87e7f9a1945132d41dd6109200f15", null ],
+    [ "equal", "group__algorithms.html#gade3d696ff18c1a349664d799ed1035c6", null ],
+    [ "is_canonical", "group__algorithms.html#ga629b492a2bc73251ef441daf107aa32e", null ],
+    [ "is_direct", "group__algorithms.html#ga5e9ad80acf84ba8db47e9b93a518fb83", null ],
+    [ "is_lminimum", "group__algorithms.html#gad891954554bf7582c4432f55c63461ac", null ],
+    [ "is_lrminimum", "group__algorithms.html#ga3666e257f63ccceea357d0260d19f40c", null ],
+    [ "is_membership", "group__algorithms.html#gaf3875762dfd1a9029c6ac00c24ddd8fb", null ],
+    [ "is_minimum", "group__algorithms.html#ga524d6230f67fa9b47e897ffac9d5aa81", null ],
+    [ "is_redundant", "group__algorithms.html#ga80983183955c8ec5a387980206976ecf", null ],
+    [ "lminimum", "group__algorithms.html#ga3552c3b760d686831ca45988d99f240e", null ],
+    [ "lrminimum", "group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e", null ],
+    [ "minimum", "group__algorithms.html#gab63892073a1fefd2c7eeff939afaa645", null ],
+    [ "non_redundant", "group__algorithms.html#gac9021e04da8e9bcba926a7d000724712", null ]
 ];

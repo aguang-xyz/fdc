@@ -12,7 +12,7 @@ TEST(algorithm, is_redundant_1) {
     fd(attrs({ 0 }), attrs({ 2 })),
   });
 
-  ASSERT_FALSE(is_redundant(F));
+  ASSERT_FALSE(is_redundant(3, F));
 }
 
 TEST(algorithm, is_redundant_2) {
@@ -24,7 +24,7 @@ TEST(algorithm, is_redundant_2) {
     fd(attrs({ 1 }), attrs({ 2 })),
   });
 
-  ASSERT_TRUE(is_redundant(F));
+  ASSERT_TRUE(is_redundant(3, F));
 }
 
 TEST(algorithm, non_redundant_1) {
@@ -43,5 +43,5 @@ TEST(algorithm, non_redundant_1) {
   });
 
 
-  ASSERT_EQ(non_redundant(F), G);
+  ASSERT_EQ(non_redundant(3, F), G);
 }
