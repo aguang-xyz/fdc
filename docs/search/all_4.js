@@ -2,6 +2,6 @@ var searchData=
 [
   ['fd',['fd',['../namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2',1,'fdc']]],
   ['fdc',['fdc',['../namespacefdc.html',1,'']]],
-  ['fds',['fds',['../namespacefdc.html#a7bcb6044ef326f8b3fcefe603dd18fbb',1,'fdc']]],
-  ['from_5fjson',['from_json',['../group__IO.html#ga3c75e85ecef59ee445ea08ba09ee11be',1,'fdc::from_json(const std::string input, attrs &amp;U, fds &amp;F)'],['../group__IO.html#ga3f22d2e6196b4cc3f54d39b53140da8e',1,'fdc::from_json(std::istream &amp;input, attrs &amp;U, fds &amp;F)']]]
+  ['fds',['fds',['../namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc',1,'fdc']]],
+  ['from_5fjson',['from_json',['../group__IO.html#gace7f87adbda7b15acda7b0f252e5cacb',1,'fdc::from_json(const std::string input, int &amp;N, fds &amp;F)'],['../group__IO.html#gaae7f117700551176730d181f3825696e',1,'fdc::from_json(std::istream &amp;input, int &amp;N, fds &amp;F)']]]
 ];

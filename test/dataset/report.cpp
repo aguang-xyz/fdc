@@ -56,34 +56,36 @@ const auto inputs = vector<string>({
 	"../../dataset/Incomplete Data NullEQ/horse.json",
 });
 
-auto report = ofstream("../../dataset.report.csv", fstream::app);
+auto report = ofstream("../../dataset.report.log", fstream::app);
 
 #define RECORD(desc, exp) { \
   double t0 = clock(); \
   exp; \
-  report<<"["<<desc<<"] runs for "<<(clock() - t0) / CLOCKS_PER_SEC<<"secs"<<endl; \
+  report<<" - Task `"<<desc<<"` runs for "<<\
+    (clock() - t0) / CLOCKS_PER_SEC<<" seconds."<<endl; \
 }
 
 
 void solve(string input) {
-
-    report<<"Dataset = "<<input<<endl;
+   
+    int N;
+    fds F = fds();
     
-    auto U = attrs();
-    auto F = fds();
+    ifstream file = ifstream(input);
     
-    auto file = ifstream(input);
-    
-    from_json(file, U, F);
+    from_json(file, N, F);
 
-    report<<"|U| = "<<U.size()<<endl;
-    report<<"|F| = "<<F.size()<<endl;
+    report<<"Start to solve `"<<input<<"`."<<endl;
+    report<<" - "<<N<<" attributes, "<<F.size()<<" functional dependencies."<<endl;
 
-    RECORD("is_membership", is_membership(F, *(F.begin())));
-    RECORD("non_redundant", non_redundant(F));
-    RECORD("minimum", minimum(F));
-    RECORD("lminimum", lminimum(F));
-    RECORD("lrminimum", lrminimum(F));
+    RECORD("is_membership.", is_membership(N, F, *(F.begin())));
+    RECORD("is_redundant.", is_redundant(N, F));
+    RECORD("non_redundant.", non_redundant(N, F));
+    RECORD("is_canonical.", is_canonical(N, F));
+    RECORD("canonical.", canonical(N, F));
+    RECORD("is_direct.", is_direct(N, F, *(F.begin())));
+    RECORD("minimum.", minimum(N, F));
+    RECORD("is_minimum.", is_minimum(N, F));
 }
 
 // TEST(dataset, all) {
@@ -95,7 +97,7 @@ void solve(string input) {
 //   }
 // }
 
-TEST(dataset, line_item) {
+TEST(dataset, specific) {
 
-	solve("../../dataset/Complete Data/lineitem.json");
+	solve("../../dataset/Complete Data/fd_reduced.json");
 }
