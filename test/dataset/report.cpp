@@ -58,13 +58,19 @@ const auto inputs = vector<string>({
 
 auto report = ofstream("../../dataset.report.log", fstream::app);
 
+#define RECORDT(desc, exp, sec) { \
+  double t0 = clock(); \
+  exp; \
+  report<<" - Task `"<<desc<<"` runs for "<<\
+    (sec = (clock() - t0) / CLOCKS_PER_SEC)<<" seconds."<<endl; \
+}
+
 #define RECORD(desc, exp) { \
   double t0 = clock(); \
   exp; \
   report<<" - Task `"<<desc<<"` runs for "<<\
     (clock() - t0) / CLOCKS_PER_SEC<<" seconds."<<endl; \
 }
-
 
 void solve(string input) {
    
@@ -76,28 +82,46 @@ void solve(string input) {
     from_json(file, N, F);
 
     report<<"Start to solve `"<<input<<"`."<<endl;
-    report<<" - "<<N<<" attributes, "<<F.size()<<" functional dependencies."<<endl;
+    report<<" - "<<N<<" attributes, ";
+    report<<F.size()<<" functional dependencies."<<endl;
 
-    RECORD("is_membership.", is_membership(N, F, *(F.begin())));
-    RECORD("is_redundant.", is_redundant(N, F));
-    RECORD("non_redundant.", non_redundant(N, F));
-    RECORD("is_canonical.", is_canonical(N, F));
-    RECORD("canonical.", canonical(N, F));
-    RECORD("is_direct.", is_direct(N, F, *(F.begin())));
-    RECORD("minimum.", minimum(N, F));
-    RECORD("is_minimum.", is_minimum(N, F));
+    bool res_redundant, res_canonical, res_minimum,
+         res_lminimum, res_lrminimum;
+
+    double t_redundant, t_canonical, t_minimum,
+           t_lminimum, t_lrminimum;
+
+    RECORD("is_redundant.", res_redundant = is_redundant(N, F));
+    RECORDT("non_redundant.", non_redundant(N, F), t_redundant);
+    
+    RECORD("is_canonical.", res_canonical = is_canonical(N, F));
+    RECORDT("canonical.", canonical(N, F), t_canonical);
+    
+    RECORD("is_minimum.", res_minimum = is_minimum(N, F));
+    RECORDT("minimum.", minimum(N, F), t_minimum);
+    
+    RECORD("is_lminimum.", res_lminimum = is_lminimum(N, F));
+    RECORDT("lminimum.", lminimum(N, F), t_lminimum);
+    
+    RECORD("is_lrminimum.", res_lrminimum = is_lrminimum(N, F));
+    RECORDT("lrminimum.", lrminimum(N, F), t_lrminimum);
+
+    report<<"[csv]"<<input<<","<<N<<","<<F.size()<<","
+          <<res_redundant<<","<<res_canonical
+          <<","<<res_minimum<<","<<res_lminimum<<","<<res_lrminimum
+          <<","<<t_redundant<<","<<t_canonical<<","<<t_minimum
+          <<","<<t_lminimum<<","<<t_lrminimum<<endl;
 }
 
-// TEST(dataset, all) {
+TEST(dataset, all) {
+
+  for (int i = 0; i < inputs.size(); i++) {
+
+    solve(inputs[i]);
+  }
+}
+
+// TEST(dataset, specific) {
 // 
-// 
-//   for (int i = 0; i < inputs.size(); i++) {
-// 
-//     solve(inputs[i]);
-//   }
+// 	solve("../../dataset/Complete Data/fd_reduced.json");
 // }
-
-TEST(dataset, specific) {
-
-	solve("../../dataset/Complete Data/fd_reduced.json");
-}

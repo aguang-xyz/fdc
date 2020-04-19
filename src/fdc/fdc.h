@@ -148,6 +148,8 @@ namespace fdc {
    *     non_redundant[label = "Redundant Cover"]
    *     is_direct[label = "Direct Determination"]
    *     minimum[label = "Minimum Cover"]
+   *     l_minimum[label = "L-Minimum Cover"]
+   *     lr_minimum[label = "LR-Minimum Cover"]
    *
    *     is_membership -> depend
    *     equal_attrs -> is_membership
@@ -156,6 +158,8 @@ namespace fdc {
    *     non_redundant -> is_membership
    *     is_direct -> non_redundant
    *     minimum -> non_redundant
+   *     l_minimum -> minimum
+   *     lr_minimum -> l_minimum
    *   }
    * \enddot
    *
