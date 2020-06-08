@@ -1,604 +1,588 @@
-#include <vector>
-#include <queue>
 #include <cstring>
+#include <queue>
 #include <set>
+#include <vector>
 
 #include "fdc.h"
 
 namespace fdc {
 
-  using namespace std;
+using namespace std;
 
-  const fd FD_EMPTY = fd(attrs({}), attrs({}));
+const fd FD_EMPTY = fd(attrs({}), attrs({}));
 
+void depend(const int N, const fds &F, const attrs X, bool D[]) {
 
-  void depend(const int N, const fds &F, const attrs X, bool D[]) {
+  vector<int> attrlist[N];
 
-    vector<int> attrlist[N];
-    
-    int counter[F.size()];
+  int counter[F.size()];
 
-    for (int i = 0; i < F.size(); i++) {
+  for (int i = 0; i < F.size(); i++) {
 
-      const fd &f = F[i];
+    const fd &f = F[i];
 
-      counter[i] = f.first.size();
+    counter[i] = f.first.size();
 
-      for (const int &x : f.first) {
+    for (const int &x : f.first) {
 
-        attrlist[x].push_back(i);
-      }
+      attrlist[x].push_back(i);
     }
+  }
 
-    memset(D, 0x00, sizeof(bool) * N);
+  memset(D, 0x00, sizeof(bool) * N);
 
-    queue<int> que;
+  queue<int> que;
 
-    for (const int &x : X) {
+  for (const int &x : X) {
 
-      if (!D[x]) {
+    if (!D[x]) {
 
-        D[x] = true;
+      D[x] = true;
 
-        que.push(x);
-      }
+      que.push(x);
     }
+  }
 
-    for (; que.size() > 0; que.pop()) {
+  for (; que.size() > 0; que.pop()) {
 
-      int x = que.front();
+    int x = que.front();
 
-      for (const int &i : attrlist[x]) {
+    for (const int &i : attrlist[x]) {
 
-        if (--(counter[i]) == 0) {
+      if (--(counter[i]) == 0) {
 
-          for (const int &y : F[i].second) {
+        for (const int &y : F[i].second) {
 
-            if (!D[y]) {
+          if (!D[y]) {
 
-              D[y] = true;
+            D[y] = true;
 
-              que.push(y);
-            }
+            que.push(y);
           }
         }
       }
     }
   }
+}
 
+bool is_membership(const int N, const fds &F, const fd &f) {
 
-  bool is_membership(const int N, const fds &F, const fd &f) {
+  bool D[N];
 
-    bool D[N];
+  depend(N, F, f.first, D);
 
-    depend(N, F, f.first, D);
+  for (const int &y : f.second) {
 
-    for (const int &y : f.second) {
-
-      if (!D[y]) {
-
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-
-  bool equal(const int N, const fds &F, const attrs &X, const attrs &Y) {
-
-    return is_membership(N, F, fd(X, Y)) && is_membership(N, F, fd(Y, X));
-  }
-
-
-  bool equal(const int N, const fds &F, const fds &G) {
-
-    for (const fd &f : F) {
-
-      if (!is_membership(N, G, f)) {
-        
-        return false;
-      }
-    }
-
-    for (const fd &f : G) {
-
-      if (!is_membership(N, F, f)) {
-
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-
-  bool is_redundant(const int N, const fds &F) {
-
-    fds G = fds(F);
-
-    for (int i = 0; i < G.size(); i++) {
-
-      const fd f = G[i];
-
-      // Assigning G[i] to $\empty \to \empty$ is equivalent to removing G[i],
-      // but assigning operating takes less time.
-      G[i] = FD_EMPTY;
-
-      if (is_membership(N, G, f)) {
-
-        return true;
-      }
-
-      // Recovery G[i].
-      G[i] = f;
-    }
-
-    return false;
-  }
-
-
-  fds non_redundant(const int N, const fds &F) {
-
-    fds G = fds(F);
-
-    for (int i = 0; i < G.size(); ) {
-
-      const fd f = G[i];
-
-      // Assigning G[i] to $\empty \to \empty$ is equivalent to removing G[i],
-      // but assigning operating takes less time.
-      G[i] = FD_EMPTY;
-
-      if (is_membership(N, G, f)) {
-
-        // Since the erasing operation of vector is linear to the number of
-        // elements between the erasing position and the end of the vector,
-        // swapping G[i] to the end first can reduce time cost efficiently.
-        G[i] = G[G.size() - 1];
-        G.erase(G.end() - 1);
-
-      } else {
-
-        G[i++] = f;
-      }
-    }
-
-    return G;
-  }
-
-
-  bool is_canonical(const int N, const fds &F) {
-
-    for (const fd &f : F) {
-
-      if (f.second.size() > 1) {
-
-        return false;
-      }
-    }
-
-    if (is_redundant(N, F)) {
+    if (!D[y]) {
 
       return false;
     }
-
-    for (const fd &f : F) {
-
-      if (f.first.size() > 1) {
-      
-        fd f2 = fd(f);
-        attrs &X = f2.first;
-
-        for (int i = 0; i < X.size(); i++) {
-
-          const attr x = X[i];
-
-          X[i] = X[X.size() - 1];
-          X.erase(X.end() - 1);
-
-          if (is_membership(N, F, f2)) {
-
-            return false;
-          }
-
-          X.push_back(X[i]);
-          X[i] = x;
-        }
-      }
-    }
-
-    return true;
   }
 
+  return true;
+}
 
-  fds canonical(const int N, const fds &F) {
+bool equal(const int N, const fds &F, const attrs &X, const attrs &Y) {
 
-    fds G = non_redundant(N, F);
+  return is_membership(N, F, fd(X, Y)) && is_membership(N, F, fd(Y, X));
+}
 
-    for (fd &f : G) {
+bool equal(const int N, const fds &F, const fds &G) {
 
-      if (f.first.size() > 1) {
-      
-        fd f2 = fd(f);
-        attrs &X = f2.first;
+  for (const fd &f : F) {
 
-        for (int i = 0; i < X.size();) {
+    if (!is_membership(N, G, f)) {
 
-          const attr x = X[i];
-
-          X[i] = X[X.size() - 1];
-          X.erase(X.end() - 1);
-
-          if (!is_membership(N, G, f2)) {
-
-            X.push_back(X[i]);
-            X[i++] = x;
-          }
-        }
-
-        if (X.size() < f.first.size()) {
-
-          f = f2;
-        }
-      }
+      return false;
     }
-
-    fds H = fds();
-
-    for (const fd &f : G) {
-      for (const attr &y : f.second) {
-
-        H.push_back(fd(f.first, attrs({ y })));
-      }
-    }
-
-    return H;
   }
 
+  for (const fd &f : G) {
 
-  bool is_direct(const int N, const fds &F, const fd &f) {
-
-    // 0. Check if \f$ X \to Y \in F^+ \f$.
     if (!is_membership(N, F, f)) {
 
       return false;
     }
-
-    const attrs &X = f.first;
-
-    // 1. Find a non-redundant cover for `F`.
-    fds G = non_redundant(N, F);
-
-    // 2.1 Calculate X^+.
-    bool D[N];
-
-    depend(N, G, X, D);
-
-    // 2.2 Determine ef(X). 
-    bool EFX[G.size()];
-
-    for (int i = 0; i < G.size(); i++) {
-
-      const attrs &Y = G[i].first;
-
-      bool contained = true;
-
-      for (const int &y : Y) {
-
-        if (!D[y]) {
-
-          contained = false;
-
-          break;
-        }
-      }
-
-      if (contained && is_membership(N, G, fd(Y, X))) {
-
-        EFX[i] = true;
-
-      } else {
-
-        EFX[i] = false;
-      }
-    }
-
-    // 3. Check if X \to Y \in (F - EF(X))^+.
-
-    fds H = fds();
-
-    for (int i = 0; i < G.size(); i++) {
-
-      if (!EFX[i]) {
-
-        H.push_back(G[i]);
-      }
-    }
-
-    return is_membership(N, H, f);
   }
 
+  return true;
+}
 
-  fds minimum(const int N, const fds &F) {
+bool is_redundant(const int N, const fds &F) {
 
-    // 1. Find a non-redundant cover for `F`.
-    fds G = non_redundant(N, F);
+  fds G = fds(F);
 
-    // 2. Find all equivalence classes for `G`.
+  for (int i = 0; i < G.size(); i++) {
 
-    // 2.1 Calculate $ X^+ for each X \to Y \in G $.
-    bool **D = new bool*[F.size()];
-    
-    for (int i = 0; i < F.size(); i++) {
-      
-      D[i] = new bool[N];
+    const fd f = G[i];
+
+    // Assigning G[i] to $\empty \to \empty$ is equivalent to removing G[i],
+    // but assigning operating takes less time.
+    G[i] = FD_EMPTY;
+
+    if (is_membership(N, G, f)) {
+
+      return true;
     }
 
-    for (int i = 0; i < G.size(); i++) {
+    // Recovery G[i].
+    G[i] = f;
+  }
 
-      depend(N, G, F[i].first, &(D[i][0]));
+  return false;
+}
+
+fds non_redundant(const int N, const fds &F) {
+
+  fds G = fds(F);
+
+  for (int i = 0; i < G.size();) {
+
+    const fd f = G[i];
+
+    // Assigning G[i] to $\empty \to \empty$ is equivalent to removing G[i],
+    // but assigning operating takes less time.
+    G[i] = FD_EMPTY;
+
+    if (is_membership(N, G, f)) {
+
+      // Since the erasing operation of vector is linear to the number of
+      // elements between the erasing position and the end of the vector,
+      // swapping G[i] to the end first can reduce time cost efficiently.
+      G[i] = G[G.size() - 1];
+      G.erase(G.end() - 1);
+
+    } else {
+
+      G[i++] = f;
     }
+  }
 
-    // 2.2 Calculate equivalence classes.
-    bool **M = new bool*[F.size()];
+  return G;
+}
 
-    for (int i = 0; i < F.size(); i++) {
+bool is_canonical(const int N, const fds &F) {
 
-      M[i] = new bool[F.size()];
+  for (const fd &f : F) {
+
+    if (f.second.size() > 1) {
+
+      return false;
     }
+  }
 
-    for (int i = 0; i < G.size(); i++) {
-      for (int j = 0; j < G.size(); j++) {
+  if (is_redundant(N, F)) {
 
-        M[i][j] = true;
+    return false;
+  }
 
-        if (i != j) {
+  for (const fd &f : F) {
 
-          for (const int &x : G[j].first) {
+    if (f.first.size() > 1) {
 
-            if (!D[i][x]) {
+      fd f2 = fd(f);
+      attrs &X = f2.first;
 
-              M[i][j] = false;
+      for (int i = 0; i < X.size(); i++) {
 
-              break;
-            }
-          }
+        const attr x = X[i];
+
+        X[i] = X[X.size() - 1];
+        X.erase(X.end() - 1);
+
+        if (is_membership(N, F, f2)) {
+
+          return false;
         }
+
+        X.push_back(X[i]);
+        X[i] = x;
+      }
+    }
+  }
+
+  return true;
+}
+
+fds canonical(const int N, const fds &F) {
+
+  fds G = non_redundant(N, F);
+
+  for (fd &f : G) {
+
+    if (f.first.size() > 1) {
+
+      fd f2 = fd(f);
+      attrs &X = f2.first;
+
+      for (int i = 0; i < X.size();) {
+
+        const attr x = X[i];
+
+        X[i] = X[X.size() - 1];
+        X.erase(X.end() - 1);
+
+        if (!is_membership(N, G, f2)) {
+
+          X.push_back(X[i]);
+          X[i++] = x;
+        }
+      }
+
+      if (X.size() < f.first.size()) {
+
+        f = f2;
+      }
+    }
+  }
+
+  fds H = fds();
+
+  for (const fd &f : G) {
+    for (const attr &y : f.second) {
+
+      H.push_back(fd(f.first, attrs({y})));
+    }
+  }
+
+  return H;
+}
+
+bool is_direct(const int N, const fds &F, const fd &f) {
+
+  // 0. Check if \f$ X \to Y \in F^+ \f$.
+  if (!is_membership(N, F, f)) {
+
+    return false;
+  }
+
+  const attrs &X = f.first;
+
+  // 1. Find a non-redundant cover for `F`.
+  fds G = non_redundant(N, F);
+
+  // 2.1 Calculate X^+.
+  bool D[N];
+
+  depend(N, G, X, D);
+
+  // 2.2 Determine ef(X).
+  bool EFX[G.size()];
+
+  for (int i = 0; i < G.size(); i++) {
+
+    const attrs &Y = G[i].first;
+
+    bool contained = true;
+
+    for (const int &y : Y) {
+
+      if (!D[y]) {
+
+        contained = false;
+
+        break;
       }
     }
 
-    // 3. Replacing process.
-    for (int i = 0; i < G.size(); i++) {
-    
-      // Since G[i] has already been merged into another functional dependency,
-      // ignore G[i].
-      if (G[i].first.size() == 0) continue;
-    
-      // H is $ F - EF(X) $.
-      fds H = fds();
+    if (contained && is_membership(N, G, fd(Y, X))) {
 
-      for (int j = 0; j < G.size(); j++) {
+      EFX[i] = true;
 
-        if (!(M[i][j] && M[j][i])) {
+    } else {
 
-          H.push_back(G[j]);
-        }
-      }
-     
-      // D2 is $ X^+ $ under $ H $.
-      bool D2[N];
+      EFX[i] = false;
+    }
+  }
 
-      depend(N, H, G[i].first, D2);
+  // 3. Check if X \to Y \in (F - EF(X))^+.
 
-      for (int j = 0; j < G.size(); j++) {
-        if (j != i && G[j].first.size() > 0 && M[i][j] && M[j][i]) {
+  fds H = fds();
 
-          bool direct = true;
+  for (int i = 0; i < G.size(); i++) {
 
-          for (const int &x : G[j].first) {
+    if (!EFX[i]) {
 
-            if (!D2[x]) {
+      H.push_back(G[i]);
+    }
+  }
 
-              direct = false;
+  return is_membership(N, H, f);
+}
 
-              break;
-            }
-          }
+fds minimum(const int N, const fds &F) {
 
-          if (direct) {
+  // 1. Find a non-redundant cover for `F`.
+  fds G = non_redundant(N, F);
 
-            // Let's say:
-            //   G[i]: Y1 \to Y2
-            //   G[j]: Z1 \to Z2
-            // 
-            // Since Y1 <-> Z1 and Y1 directly determine Z2, we can replace
-            // G[i], G[j] with Z1 \to Y2Z2.
-            
-            set<int> Z2;
+  // 2. Find all equivalence classes for `G`.
 
-            copy(G[i].second.begin(), G[i].second.end(),
-              inserter(Z2, Z2.end()));
+  // 2.1 Calculate $ X^+ for each X \to Y \in G $.
+  bool **D = new bool *[F.size()];
 
-            copy(G[j].second.begin(), G[j].second.end(),
-              inserter(Z2, Z2.end()));
-           
-            G[i] = FD_EMPTY;
-            G[j].second = attrs(Z2.begin(), Z2.end());
+  for (int i = 0; i < F.size(); i++) {
+
+    D[i] = new bool[N];
+  }
+
+  for (int i = 0; i < G.size(); i++) {
+
+    depend(N, G, F[i].first, &(D[i][0]));
+  }
+
+  // 2.2 Calculate equivalence classes.
+  bool **M = new bool *[F.size()];
+
+  for (int i = 0; i < F.size(); i++) {
+
+    M[i] = new bool[F.size()];
+  }
+
+  for (int i = 0; i < G.size(); i++) {
+    for (int j = 0; j < G.size(); j++) {
+
+      M[i][j] = true;
+
+      if (i != j) {
+
+        for (const int &x : G[j].first) {
+
+          if (!D[i][x]) {
+
+            M[i][j] = false;
 
             break;
           }
         }
       }
     }
-    
-    // 4. Since we use two dynamic array D, M, clean up here.
-    for (int i = 0; i < F.size(); i++) {
+  }
 
-      delete [] D[i];
-      delete [] M[i];
-    }
+  // 3. Replacing process.
+  for (int i = 0; i < G.size(); i++) {
 
-    delete [] D;
-    delete [] M;
+    // Since G[i] has already been merged into another functional dependency,
+    // ignore G[i].
+    if (G[i].first.size() == 0)
+      continue;
 
-    // 5. Filter the functional dependencies which are already been assigned
-    // to FD_EMPTY.
-    fds J = fds();
+    // H is $ F - EF(X) $.
+    fds H = fds();
 
-    for (const fd &f: G) {
+    for (int j = 0; j < G.size(); j++) {
 
-      if (f.first.size() != 0 && f.second.size() != 0) {
+      if (!(M[i][j] && M[j][i])) {
 
-        J.push_back(f);
+        H.push_back(G[j]);
       }
     }
 
-    return J;
-  }
+    // D2 is $ X^+ $ under $ H $.
+    bool D2[N];
 
+    depend(N, H, G[i].first, D2);
 
-  bool is_minimum(const int N, const fds &F) {
+    for (int j = 0; j < G.size(); j++) {
+      if (j != i && G[j].first.size() > 0 && M[i][j] && M[j][i]) {
 
-    return minimum(N, F).size() == F.size();
-  }
+        bool direct = true;
 
+        for (const int &x : G[j].first) {
 
-  bool is_lminimum(const int N, const fds &F) {
+          if (!D2[x]) {
 
-    if (!is_minimum(N, F)) {
+            direct = false;
 
-      return false;
-    }
-
-    for (const fd &f : F) {
-
-      if (f.first.size() > 1) {
-      
-        fd f2 = fd(f);
-        attrs &X = f2.first;
-
-        for (int i = 0; i < X.size(); i++) {
-
-          const attr x = X[i];
-
-          X[i] = X[X.size() - 1];
-          X.erase(X.end() - 1);
-
-          if (is_membership(N, F, f2)) {
-
-            return false;
+            break;
           }
+        }
+
+        if (direct) {
+
+          // Let's say:
+          //   G[i]: Y1 \to Y2
+          //   G[j]: Z1 \to Z2
+          //
+          // Since Y1 <-> Z1 and Y1 directly determine Z2, we can replace
+          // G[i], G[j] with Z1 \to Y2Z2.
+
+          set<int> Z2;
+
+          copy(G[i].second.begin(), G[i].second.end(), inserter(Z2, Z2.end()));
+
+          copy(G[j].second.begin(), G[j].second.end(), inserter(Z2, Z2.end()));
+
+          G[i] = FD_EMPTY;
+          G[j].second = attrs(Z2.begin(), Z2.end());
+
+          break;
+        }
+      }
+    }
+  }
+
+  // 4. Since we use two dynamic array D, M, clean up here.
+  for (int i = 0; i < F.size(); i++) {
+
+    delete[] D[i];
+    delete[] M[i];
+  }
+
+  delete[] D;
+  delete[] M;
+
+  // 5. Filter the functional dependencies which are already been assigned
+  // to FD_EMPTY.
+  fds J = fds();
+
+  for (const fd &f : G) {
+
+    if (f.first.size() != 0 && f.second.size() != 0) {
+
+      J.push_back(f);
+    }
+  }
+
+  return J;
+}
+
+bool is_minimum(const int N, const fds &F) {
+
+  return minimum(N, F).size() == F.size();
+}
+
+bool is_lminimum(const int N, const fds &F) {
+
+  if (!is_minimum(N, F)) {
+
+    return false;
+  }
+
+  for (const fd &f : F) {
+
+    if (f.first.size() > 1) {
+
+      fd f2 = fd(f);
+      attrs &X = f2.first;
+
+      for (int i = 0; i < X.size(); i++) {
+
+        const attr x = X[i];
+
+        X[i] = X[X.size() - 1];
+        X.erase(X.end() - 1);
+
+        if (is_membership(N, F, f2)) {
+
+          return false;
+        }
+
+        X.push_back(X[i]);
+        X[i] = x;
+      }
+    }
+  }
+
+  return true;
+}
+
+fds lminimum(const int N, const fds &F) {
+
+  fds G = minimum(N, F);
+
+  for (fd &f : G) {
+
+    if (f.first.size() > 1) {
+
+      fd f2 = fd(f);
+      attrs &X = f2.first;
+
+      for (int i = 0; i < X.size(); i) {
+
+        const attr x = X[i];
+
+        X[i] = X[X.size() - 1];
+        X.erase(X.end() - 1);
+
+        if (!is_membership(N, G, f2)) {
 
           X.push_back(X[i]);
-          X[i] = x;
+          X[i++] = x;
         }
       }
-    }
 
-    return true;
-  }
+      if (X.size() < f.first.size()) {
 
-
-  fds lminimum(const int N, const fds &F) {
- 
-    fds G = minimum(N, F);
-
-    for (fd &f : G) {
-
-      if (f.first.size() > 1) {
-
-        fd f2 = fd(f);
-        attrs &X = f2.first;
-
-        for (int i = 0; i < X.size(); i) {
-
-          const attr x = X[i];
-
-          X[i] = X[X.size() - 1];
-          X.erase(X.end() - 1);
-
-          if (!is_membership(N, G, f2)) {
-
-            X.push_back(X[i]);
-            X[i++] = x;
-          }
-        }
-
-        if (X.size() < f.first.size()) {
-
-          f = f2;
-        }
+        f = f2;
       }
     }
-
-    return G;
   }
 
+  return G;
+}
 
-  bool is_lrminimum(const int N, const fds &F) {
+bool is_lrminimum(const int N, const fds &F) {
 
-    if (!is_lminimum(N, F)) {
+  if (!is_lminimum(N, F)) {
 
-      return false;
+    return false;
+  }
+
+  fds G = fds(F);
+
+  for (fd &f : G) {
+    if (f.second.size() > 1) {
+
+      fd f2 = fd(f);
+      attrs &Y = f.second;
+
+      for (int i = 0; i < Y.size(); i++) {
+
+        const attr y = Y[i];
+
+        Y[i] = Y[Y.size() - 1];
+        Y.erase(Y.end() - 1);
+
+        if (is_membership(N, G, f2)) {
+
+          return false;
+        }
+
+        Y.push_back(Y[i]);
+        Y[i] = y;
+      }
     }
+  }
 
-    fds G = fds(F);
+  return true;
+}
 
-    for (fd &f : G) {
-      if (f.second.size() > 1) {
+fds lrminimum(const int N, const fds &F) {
 
-        fd f2 = fd(f);
-        attrs &Y = f.second;
+  fds G = lminimum(N, F);
 
-        for (int i = 0; i < Y.size(); i++) {
+  for (fd &f : G) {
+    if (f.second.size() > 1) {
 
-          const attr y = Y[i];
+      fd f2 = fd(f);
+      attrs &Y = f.second;
 
-          Y[i] = Y[Y.size() - 1];
-          Y.erase(Y.end() - 1);
+      for (int i = 0; i < Y.size();) {
 
-          if (is_membership(N, G, f2)) {
+        const attr y = Y[i];
 
-            return false;
-          }
+        Y[i] = Y[Y.size() - 1];
+        Y.erase(Y.end() - 1);
+
+        if (!is_membership(N, G, f2)) {
 
           Y.push_back(Y[i]);
-          Y[i] = y;
+          Y[i++] = y;
         }
       }
     }
-
-    return true;
   }
 
-
-  fds lrminimum(const int N, const fds &F) {
-
-    fds G = lminimum(N, F);
-
-    for (fd &f : G) {
-      if (f.second.size() > 1) {
-
-        fd f2 = fd(f);
-        attrs &Y = f.second;
-
-        for (int i = 0; i < Y.size(); ) {
-
-          const attr y = Y[i];
-
-          Y[i] = Y[Y.size() - 1];
-          Y.erase(Y.end() - 1);
-
-          if (!is_membership(N, G, f2)) {
-
-            Y.push_back(Y[i]);
-            Y[i++] = y;
-          }
-        }
-      }
-    }
-
-    return G;
-  }
+  return G;
 }
+} // namespace fdc
