@@ -122,6 +122,7 @@ void solve(const string dataset) {
 
     yaml << "    - Pct: " << pct << endl;
     yaml << "      Fds: " << G.size() << endl;
+    yaml << "      Algos: " << endl;
 
     record("Non-Redundant", non_redundant, N, G);
     record("Canonical", canonical, N, G);
@@ -133,6 +134,9 @@ void solve(const string dataset) {
 
 TEST(dataset, complete_fd_reduced) {
 
-  // Solve.
+  // 3573 FDs.
   solve("../../dataset/Complete Data/fd_reduced.json");
+
+  // 5794 FDs.
+  solve("../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json");
 }
