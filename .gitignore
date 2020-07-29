@@ -17,3 +17,4 @@ build
 *.report.yaml
 *.report.csv
 *.report.log
+.ipynb_checkpoints
