@@ -20,3 +20,4 @@ build
 *.analyse.yaml
 *.analyse.csv
 *.analyse.log
+.ipynb_checkpoints
