@@ -8,8 +8,7 @@
 using namespace std;
 using namespace fdc;
 
-const auto inputs = vector<string>({
-
+const auto datasets = vector<string>({
     "../../dataset/Complete Data/balance-scale.json",
     "../../dataset/Complete Data/iris.json",
     "../../dataset/Complete Data/letter.json",
@@ -56,72 +55,88 @@ const auto inputs = vector<string>({
     "../../dataset/Incomplete Data NullEQ/horse.json",
 });
 
-auto report = ofstream("../../dataset.report.log", fstream::app);
+/**
+ * Sort functional dependencies in ascending order and return the first M
+ * functional dependencies.
+ */
+fds head(const fds &F, const int M) {
 
-#define RECORDT(desc, exp, sec)                                                \
-  {                                                                            \
-    double t0 = clock();                                                       \
-    exp;                                                                       \
-    report << " - Task `" << desc << "` runs for "                             \
-           << (sec = (clock() - t0) / CLOCKS_PER_SEC) << " seconds." << endl;  \
-  }
+  // Copy.
+  fds G = fds(F);
 
-#define RECORD(desc, exp)                                                      \
-  {                                                                            \
-    double t0 = clock();                                                       \
-    exp;                                                                       \
-    report << " - Task `" << desc << "` runs for "                             \
-           << (clock() - t0) / CLOCKS_PER_SEC << " seconds." << endl;          \
-  }
+  // Sort.
+  sort(G.begin(), G.end());
 
-void solve(string input) {
-
-  int N;
-  fds F = fds();
-
-  ifstream file = ifstream(input);
-
-  from_json(file, N, F);
-
-  report << "Start to solve `" << input << "`." << endl;
-  report << " - " << N << " attributes, ";
-  report << F.size() << " functional dependencies." << endl;
-
-  bool res_redundant, res_canonical, res_minimum, res_lminimum, res_lrminimum;
-
-  double t_redundant, t_canonical, t_minimum, t_lminimum, t_lrminimum;
-
-  RECORD("is_redundant.", res_redundant = is_redundant(N, F));
-  RECORDT("non_redundant.", non_redundant(N, F), t_redundant);
-
-  RECORD("is_canonical.", res_canonical = is_canonical(N, F));
-  RECORDT("canonical.", canonical(N, F), t_canonical);
-
-  RECORD("is_minimum.", res_minimum = is_minimum(N, F));
-  RECORDT("minimum.", minimum(N, F), t_minimum);
-
-  RECORD("is_lminimum.", res_lminimum = is_lminimum(N, F));
-  RECORDT("lminimum.", lminimum(N, F), t_lminimum);
-
-  RECORD("is_lrminimum.", res_lrminimum = is_lrminimum(N, F));
-  RECORDT("lrminimum.", lrminimum(N, F), t_lrminimum);
-
-  report << "[csv]" << input << "," << N << "," << F.size() << ","
-         << res_redundant << "," << res_canonical << "," << res_minimum << ","
-         << res_lminimum << "," << res_lrminimum << "," << t_redundant << ","
-         << t_canonical << "," << t_minimum << "," << t_lminimum << ","
-         << t_lrminimum << endl;
+  // Slice.
+  return fds(G.begin(), G.begin() + M);
 }
 
-// TEST(dataset, all) {
-//
-//   for (int i = 0; i < inputs.size(); i++) {
-//
-//     solve(inputs[i]);
-//   }
-// }
+/**
+ * Calculate the total number of attributes in F.
+ */
+int calc(const fds &F) {
 
-TEST(dataset, specific) {
+  int total = 0;
 
+  for (const fd &f : F) {
+    total += f.first.size() + f.second.size();
+  }
+
+  return total;
+}
+
+// Yaml file.
+auto yaml = ofstream("../../dataset.analyse.yaml", fstream::out);
+
+#define record(name, algo, N, F)                                               \
+  {                                                                            \
+    double t0 = clock();                                                       \
+    yaml << "       - Name: " << name << endl;                                 \
+    yaml << "         Attrs: " << calc(algo(N, F)) << endl;                    \
+    yaml << "         Time: " << (clock() - t0) / CLOCKS_PER_SEC << endl;      \
+  }
+
+void solve(const string dataset) {
+
+  // The number of attributes.
+  int N;
+
+  // Functional dependencies.
+  fds F = fds();
+
+  // Open json file.
+  ifstream json = ifstream(dataset);
+
+  // Load dataset.
+  from_json(json, N, F);
+
+  // Print result.
+  yaml << " - Dataset: " << dataset << endl;
+  yaml << "   Attrs: " << N << endl;
+  yaml << "   Metrics: " << endl;
+
+  for (int pct = 1; pct <= 100; pct++) {
+
+    // Retrieve pct% functional dependencies.
+    const fds G = head(F, pct * F.size() / 100);
+
+    yaml << "    - Pct: " << pct << endl;
+    yaml << "      Fds: " << G.size() << endl;
+    yaml << "      Algos: " << endl;
+
+    record("Non-Redundant", non_redundant, N, G);
+    record("Canonical", canonical, N, G);
+    record("Minimum", minimum, N, G);
+    record("L-Minimum", lminimum, N, G);
+    record("LR-Minimum", lrminimum, N, G);
+  }
+}
+
+TEST(dataset, complete_fd_reduced) {
+
+  // 3573 FDs.
   solve("../../dataset/Complete Data/fd_reduced.json");
+
+  // 5794 FDs.
+  solve("../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json");
 }
