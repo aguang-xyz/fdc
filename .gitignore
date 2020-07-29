@@ -17,3 +17,6 @@ build
 *.report.yaml
 *.report.csv
 *.report.log
+*.analyse.yaml
+*.analyse.csv
+*.analyse.log
