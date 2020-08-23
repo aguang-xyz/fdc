@@ -462,6 +462,43 @@ bool is_lrminimum(const int N, const fds &F);
  */
 fds lrminimum(const int N, const fds &F);
 
+/*! \brief Mini determination.
+ *
+ * Given a set of functional dependencies \f$ F \f$, determine if:
+ *
+ *   * For every \f$ X \to Y \in F \f$, \f$ | Y | = 1 \f$.
+ *   * \f$ F \f$ has fewest FDs.
+ *   * With the previous constraint, \f$ F \f$ has fewest attributes.
+ *
+ * Time complexity: \f$ O(2^N) \f$.
+ *
+ * See also: The definition of Mini in [Peng & Xiao (2015, p.
+ * 461)](https://doi.org/10.1007/s00236-015-0247-9).
+ *
+ * @param N: The number of attributes.
+ * @param F: A set of functional dependencies.
+ */
+bool is_mini(const int N, const fds &F);
+
+/*! \brief Mini determination.
+ *
+ * Given a set of functional dependencies \f$ F \f$, calculate \f$ G \f$
+ * where:
+ *
+ *   * For every \f$ X \to Y \in G \f$, \f$ | Y | = 1 \f$.
+ *   * \f$ G \f$ has fewest FDs.
+ *   * With the previous constraint, \f$ G \f$ has fewest attributes.
+ *
+ * Time complexity: \f$ O(2^N) \f$.
+ *
+ * See also: The definition of Mini in [Peng & Xiao (2015, p.
+ * 461)](https://doi.org/10.1007/s00236-015-0247-9).
+ *
+ * @param N: The number of attributes.
+ * @param F: A set of functional dependencies.
+ */
+fds mini(const int N, const fds &F);
+
 /** @} */
 } // namespace fdc
 #endif

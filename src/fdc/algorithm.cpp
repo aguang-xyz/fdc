@@ -585,4 +585,18 @@ fds lrminimum(const int N, const fds &F) {
 
   return G;
 }
+
+bool is_mini(const int N, const fds &F) {
+
+  // TODO
+
+  return false;
+}
+
+fds mini(const int N, const fds &F) {
+
+  // TODO
+
+  return fds(F);
+}
 } // namespace fdc

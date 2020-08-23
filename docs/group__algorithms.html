@@ -152,6 +152,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e">fdc::lrminimum</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">LR-minimum calculation.  <a href="group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e">More...</a><br /></td></tr>
 <tr class="separator:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga54a91a08d929dfd415d459f22c602330"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga54a91a08d929dfd415d459f22c602330">fdc::is_mini</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga54a91a08d929dfd415d459f22c602330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini determination.  <a href="group__algorithms.html#ga54a91a08d929dfd415d459f22c602330">More...</a><br /></td></tr>
+<tr class="separator:ga54a91a08d929dfd415d459f22c602330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga921b955e425f8577e3334582e0d55aaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa">fdc::mini</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga921b955e425f8577e3334582e0d55aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini determination.  <a href="group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa">More...</a><br /></td></tr>
+<tr class="separator:ga921b955e425f8577e3334582e0d55aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -575,6 +581,49 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga54a91a08d929dfd415d459f22c602330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga54a91a08d929dfd415d459f22c602330">&#9670;&nbsp;</a></span>is_mini()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_mini </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), determine if:</p>
+<ul>
+<li>For every \( X \to Y \in F \), \( | Y | = 1 \).</li>
+<li>\( F \) has fewest FDs.</li>
+<li>With the previous constraint, \( F \) has fewest attributes.</li>
+</ul>
+<p>Time complexity: \( O(2^N) \).</p>
+<p>See also: The definition of Mini in <a href="https://doi.org/10.1007/s00236-015-0247-9">Peng &amp; Xiao (2015, p. 461)</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga524d6230f67fa9b47e897ffac9d5aa81"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga524d6230f67fa9b47e897ffac9d5aa81">&#9670;&nbsp;</a></span>is_minimum()</h2>
 
@@ -732,6 +781,49 @@ Functions</h2></td></tr>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: Corollary 2. in <a href="https://dl.acm.org/doi/10.1145/800135.804425">Maier(1979, p. 335)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga921b955e425f8577e3334582e0d55aaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga921b955e425f8577e3334582e0d55aaa">&#9670;&nbsp;</a></span>mini()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> fdc::mini </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate \( G \) where:</p>
+<ul>
+<li>For every \( X \to Y \in G \), \( | Y | = 1 \).</li>
+<li>\( G \) has fewest FDs.</li>
+<li>With the previous constraint, \( G \) has fewest attributes.</li>
+</ul>
+<p>Time complexity: \( O(2^N) \).</p>
+<p>See also: The definition of Mini in <a href="https://doi.org/10.1007/s00236-015-0247-9">Peng &amp; Xiao (2015, p. 461)</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
