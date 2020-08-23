@@ -145,6 +145,7 @@ void to_json(std::ostream &output, const int &N, const fds &F);
  *     minimum[label = "Minimum Cover"]
  *     l_minimum[label = "L-Minimum Cover"]
  *     lr_minimum[label = "LR-Minimum Cover"]
+ *     mini[label = "Mini Cover"]
  *
  *     is_membership -> depend
  *     equal_attrs -> is_membership
@@ -155,6 +156,7 @@ void to_json(std::ostream &output, const int &N, const fds &F);
  *     minimum -> non_redundant
  *     l_minimum -> minimum
  *     lr_minimum -> l_minimum
+ *     optimal -> mini
  *   }
  * \enddot
  *
@@ -172,12 +174,15 @@ void to_json(std::ostream &output, const int &N, const fds &F);
  *     l_minimum[label = "L-Minimum"]
  *     lr_minimum[label = "LR-Minimum"]
  *     optical[label = "Optical"]
+ *     mini[label = "Mini"]
  *
  *     canonical -> non_redundant
  *     minimum -> non_redundant
+ *     mini -> canonical
  *     l_minimum -> minimum
  *     lr_minimum -> l_minimum
  *     optical -> lr_minimum
+ *     optical -> mini
  *   }
  * \enddot
  *
