@@ -527,7 +527,7 @@ fds mini(const int N, const fds &F);
  *
  *   * \f$ F \f$ has fewest FDs.
  *
- * Time complexity: \f$ O(x^N) \f$.
+ * Time complexity: \f$ O(2^N) \f$.
  *
  * See also: Optimize algorithm in [Peng & Xiao (2015, p.
  * 467)](https://doi.org/10.1007/s00236-015-0247-9).
@@ -543,7 +543,7 @@ bool is_optimal(const int N, const fds &F);
  *
  *   * \f$ G \f$ has fewest FDs.
  *
- * Time complexity: \f$ O(x^N) \f$.
+ * Time complexity: \f$ O(2^N) \f$.
  *
  * See also: Optimize algorithm in [Peng & Xiao (2015, p.
  * 467)](https://doi.org/10.1007/s00236-015-0247-9).
