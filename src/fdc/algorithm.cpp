@@ -593,5 +593,82 @@ bool is_mini(const int N, const fds &F) {
   return false;
 }
 
-fds mini(const int N, const fds &F) {}
+fds mini(const int N, const fds &F) {
+
+  bool_exprs expr_input;
+
+  // 1. Generate minimum boolean expressions.
+  queue<bool_expr> expr_queue;
+  expr_queue.push(bool_expr());
+
+  while (expr_queue.size() > 0) {
+    auto top = expr_queue.front();
+
+    expr_queue.pop();
+
+    if (top.size() == N) {
+      expr_input.push_back(top);
+    } else {
+      for (char c = '0'; c <= '1'; c++) {
+
+        bool_expr new_expr = bool_expr(top);
+        new_expr.push_back(c);
+
+        bool matched = false;
+
+        for (auto f : F) {
+          matched = true;
+
+          for (auto id : f.first) {
+            if (id < new_expr.size() && new_expr[id] != '1') {
+              matched = false;
+              break;
+            }
+          }
+
+          for (auto id : f.second) {
+            if (id < new_expr.size() && new_expr[id] != '0') {
+              matched = false;
+              break;
+            }
+          }
+
+          if (matched) {
+            break;
+          }
+        }
+
+        if (matched) {
+          expr_queue.push(new_expr);
+        }
+      }
+    }
+  }
+
+  // 2. Quine-McCluskey method.
+  bool_exprs expr_output = qmc(expr_input);
+
+  // 3. Generate functional dependencies.
+  fds G;
+
+  for (auto expr : expr_output) {
+
+    attrs l;
+
+    for (int i = 0; i < N; i++) {
+      if (expr[i] == '1') {
+        l.push_back(i);
+      }
+    }
+
+    for (int i = 0; i < N; i++) {
+      if (expr[i] == '0') {
+        G.push_back(fd(l, attrs({i})));
+      }
+    }
+  }
+
+  return G;
+}
+
 } // namespace fdc
