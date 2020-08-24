@@ -586,8 +586,6 @@ fds lrminimum(const int N, const fds &F) {
   return G;
 }
 
-bool_exprs qmc(bool_exprs exprs) { return exprs; }
-
 bool is_mini(const int N, const fds &F) {
 
   // TODO
