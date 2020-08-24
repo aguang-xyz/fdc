@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['qmc',['qmc',['../group__algorithms.html#ga41f9d99732cedc78b35523169bcc0437',1,'fdc']]]
+  ['optimum',['optimum',['../group__algorithms.html#ga5ff853acca04ad27174593c91c294bac',1,'fdc']]]
 ];

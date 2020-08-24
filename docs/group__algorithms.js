@@ -11,11 +11,13 @@ var group__algorithms =
     [ "is_membership", "group__algorithms.html#gaf3875762dfd1a9029c6ac00c24ddd8fb", null ],
     [ "is_mini", "group__algorithms.html#ga54a91a08d929dfd415d459f22c602330", null ],
     [ "is_minimum", "group__algorithms.html#ga524d6230f67fa9b47e897ffac9d5aa81", null ],
+    [ "is_optimum", "group__algorithms.html#gaf7fc6ce6ff929c18552f16c8d4b9765a", null ],
     [ "is_redundant", "group__algorithms.html#ga80983183955c8ec5a387980206976ecf", null ],
     [ "lminimum", "group__algorithms.html#ga3552c3b760d686831ca45988d99f240e", null ],
     [ "lrminimum", "group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e", null ],
     [ "mini", "group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa", null ],
     [ "minimum", "group__algorithms.html#gab63892073a1fefd2c7eeff939afaa645", null ],
     [ "non_redundant", "group__algorithms.html#gac9021e04da8e9bcba926a7d000724712", null ],
+    [ "optimum", "group__algorithms.html#ga5ff853acca04ad27174593c91c294bac", null ],
     [ "qmc", "group__algorithms.html#ga41f9d99732cedc78b35523169bcc0437", null ]
 ];

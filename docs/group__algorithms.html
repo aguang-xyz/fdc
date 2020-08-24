@@ -159,8 +159,14 @@ Functions</h2></td></tr>
 <tr class="memdesc:ga54a91a08d929dfd415d459f22c602330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini determination.  <a href="group__algorithms.html#ga54a91a08d929dfd415d459f22c602330">More...</a><br /></td></tr>
 <tr class="separator:ga54a91a08d929dfd415d459f22c602330"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga921b955e425f8577e3334582e0d55aaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa">fdc::mini</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
-<tr class="memdesc:ga921b955e425f8577e3334582e0d55aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini determination.  <a href="group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa">More...</a><br /></td></tr>
+<tr class="memdesc:ga921b955e425f8577e3334582e0d55aaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini calculation.  <a href="group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa">More...</a><br /></td></tr>
 <tr class="separator:ga921b955e425f8577e3334582e0d55aaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf7fc6ce6ff929c18552f16c8d4b9765a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#gaf7fc6ce6ff929c18552f16c8d4b9765a">fdc::is_optimum</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:gaf7fc6ce6ff929c18552f16c8d4b9765a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimum determination.  <a href="group__algorithms.html#gaf7fc6ce6ff929c18552f16c8d4b9765a">More...</a><br /></td></tr>
+<tr class="separator:gaf7fc6ce6ff929c18552f16c8d4b9765a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ff853acca04ad27174593c91c294bac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga5ff853acca04ad27174593c91c294bac">fdc::optimum</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
+<tr class="memdesc:ga5ff853acca04ad27174593c91c294bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimum calculate.  <a href="group__algorithms.html#ga5ff853acca04ad27174593c91c294bac">More...</a><br /></td></tr>
+<tr class="separator:ga5ff853acca04ad27174593c91c294bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>This module contains the algorithms implemented in <code>FDC</code>.</p>
@@ -668,6 +674,47 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gaf7fc6ce6ff929c18552f16c8d4b9765a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf7fc6ce6ff929c18552f16c8d4b9765a">&#9670;&nbsp;</a></span>is_optimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fdc::is_optimum </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), determine if:</p>
+<ul>
+<li>\( F \) has fewest FDs.</li>
+</ul>
+<p>Time complexity: \( O(x^N) \).</p>
+<p>See also: Optimize algorithm in <a href="https://doi.org/10.1007/s00236-015-0247-9">Peng &amp; Xiao (2015, p. 467)</a>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga80983183955c8ec5a387980206976ecf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga80983183955c8ec5a387980206976ecf">&#9670;&nbsp;</a></span>is_redundant()</h2>
 
@@ -911,6 +958,47 @@ Functions</h2></td></tr>
 </ul>
 <p>Time complexity: \( O(|F|^2) \).</p>
 <p>See also: 5.2 Redundancy Tests in <a href="https://dl.acm.org/doi/10.1145/320064.320066">Beeri and Bernstein (1979, p. 47)</a></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
+    <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga5ff853acca04ad27174593c91c294bac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ff853acca04ad27174593c91c294bac">&#9670;&nbsp;</a></span>optimum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> fdc::optimum </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>N</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;&#160;</td>
+          <td class="paramname"><em>F</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Given a set of functional dependencies \( F \), calculate \( G \):</p>
+<ul>
+<li>\( G \) has fewest FDs.</li>
+</ul>
+<p>Time complexity: \( O(x^N) \).</p>
+<p>See also: Optimize algorithm in <a href="https://doi.org/10.1007/s00236-015-0247-9">Peng &amp; Xiao (2015, p. 467)</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
