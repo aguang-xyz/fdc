@@ -16,6 +16,7 @@ var NAVTREEINDEX0 =
 "group__algorithms.html#ga02987d32ad8bec3488ae8a8f86086b4d":[0,1,1],
 "group__algorithms.html#ga3552c3b760d686831ca45988d99f240e":[0,1,12],
 "group__algorithms.html#ga3666e257f63ccceea357d0260d19f40c":[0,1,7],
+"group__algorithms.html#ga41f9d99732cedc78b35523169bcc0437":[0,1,17],
 "group__algorithms.html#ga524d6230f67fa9b47e897ffac9d5aa81":[0,1,10],
 "group__algorithms.html#ga54a91a08d929dfd415d459f22c602330":[0,1,9],
 "group__algorithms.html#ga5e9ad80acf84ba8db47e9b93a518fb83":[0,1,5],

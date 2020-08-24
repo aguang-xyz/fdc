@@ -586,6 +586,8 @@ fds lrminimum(const int N, const fds &F) {
   return G;
 }
 
+bool_exprs qmc(bool_exprs exprs) { return exprs; }
+
 bool is_mini(const int N, const fds &F) {
 
   // TODO
@@ -593,10 +595,5 @@ bool is_mini(const int N, const fds &F) {
   return false;
 }
 
-fds mini(const int N, const fds &F) {
-
-  // TODO
-
-  return fds(F);
-}
+fds mini(const int N, const fds &F) {}
 } // namespace fdc

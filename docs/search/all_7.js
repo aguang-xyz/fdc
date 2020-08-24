@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['mini',['mini',['../group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa',1,'fdc']]],
-  ['minimum',['minimum',['../group__algorithms.html#gab63892073a1fefd2c7eeff939afaa645',1,'fdc']]]
+  ['lminimum',['lminimum',['../group__algorithms.html#ga3552c3b760d686831ca45988d99f240e',1,'fdc']]],
+  ['lrminimum',['lrminimum',['../group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e',1,'fdc']]]
 ];

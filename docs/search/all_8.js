@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['non_5fredundant',['non_redundant',['../group__algorithms.html#gac9021e04da8e9bcba926a7d000724712',1,'fdc']]]
+  ['mini',['mini',['../group__algorithms.html#ga921b955e425f8577e3334582e0d55aaa',1,'fdc']]],
+  ['minimum',['minimum',['../group__algorithms.html#gab63892073a1fefd2c7eeff939afaa645',1,'fdc']]]
 ];

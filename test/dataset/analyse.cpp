@@ -135,8 +135,8 @@ void solve(const string dataset) {
 TEST(dataset, complete_fd_reduced) {
 
   // 3573 FDs.
-  solve("../../dataset/Complete Data/fd_reduced.json");
+  // solve("../../dataset/Complete Data/fd_reduced.json");
 
   // 5794 FDs.
-  solve("../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json");
+  // solve("../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json");
 }

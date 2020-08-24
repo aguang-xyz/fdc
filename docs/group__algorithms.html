@@ -152,6 +152,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e">fdc::lrminimum</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">LR-minimum calculation.  <a href="group__algorithms.html#ga995574caa368b1d1d0b21aea36bd3f5e">More...</a><br /></td></tr>
 <tr class="separator:ga995574caa368b1d1d0b21aea36bd3f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41f9d99732cedc78b35523169bcc0437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacefdc.html#aefea2079480c51b053550424af0ce03b">bool_exprs</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga41f9d99732cedc78b35523169bcc0437">fdc::qmc</a> (<a class="el" href="namespacefdc.html#aefea2079480c51b053550424af0ce03b">bool_exprs</a> exprs)</td></tr>
+<tr class="memdesc:ga41f9d99732cedc78b35523169bcc0437"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quine-McCluskey algorithm.  <a href="group__algorithms.html#ga41f9d99732cedc78b35523169bcc0437">More...</a><br /></td></tr>
+<tr class="separator:ga41f9d99732cedc78b35523169bcc0437"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga54a91a08d929dfd415d459f22c602330"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__algorithms.html#ga54a91a08d929dfd415d459f22c602330">fdc::is_mini</a> (const int N, const <a class="el" href="namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc">fds</a> &amp;F)</td></tr>
 <tr class="memdesc:ga54a91a08d929dfd415d459f22c602330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mini determination.  <a href="group__algorithms.html#ga54a91a08d929dfd415d459f22c602330">More...</a><br /></td></tr>
 <tr class="separator:ga54a91a08d929dfd415d459f22c602330"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -912,6 +915,32 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">N</td><td>The number of attributes. </td></tr>
     <tr><td class="paramname">F</td><td>A set of functional dependencies. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga41f9d99732cedc78b35523169bcc0437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41f9d99732cedc78b35523169bcc0437">&#9670;&nbsp;</a></span>qmc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacefdc.html#aefea2079480c51b053550424af0ce03b">bool_exprs</a> fdc::qmc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacefdc.html#aefea2079480c51b053550424af0ce03b">bool_exprs</a>&#160;</td>
+          <td class="paramname"><em>exprs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compute minimum boolean expression.</p>
+<p>Time complexity: \( O(2^N) \).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exprs</td><td>2d-vector of chars ('0', '1', '-') indicating the boolean expressions. </td></tr>
   </table>
   </dd>
 </dl>

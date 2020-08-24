@@ -1,12 +1,7 @@
 var searchData=
 [
-  ['io',['IO',['../group__IO.html',1,'']]],
-  ['is_5fcanonical',['is_canonical',['../group__algorithms.html#ga629b492a2bc73251ef441daf107aa32e',1,'fdc']]],
-  ['is_5fdirect',['is_direct',['../group__algorithms.html#ga5e9ad80acf84ba8db47e9b93a518fb83',1,'fdc']]],
-  ['is_5flminimum',['is_lminimum',['../group__algorithms.html#gad891954554bf7582c4432f55c63461ac',1,'fdc']]],
-  ['is_5flrminimum',['is_lrminimum',['../group__algorithms.html#ga3666e257f63ccceea357d0260d19f40c',1,'fdc']]],
-  ['is_5fmembership',['is_membership',['../group__algorithms.html#gaf3875762dfd1a9029c6ac00c24ddd8fb',1,'fdc']]],
-  ['is_5fmini',['is_mini',['../group__algorithms.html#ga54a91a08d929dfd415d459f22c602330',1,'fdc']]],
-  ['is_5fminimum',['is_minimum',['../group__algorithms.html#ga524d6230f67fa9b47e897ffac9d5aa81',1,'fdc']]],
-  ['is_5fredundant',['is_redundant',['../group__algorithms.html#ga80983183955c8ec5a387980206976ecf',1,'fdc']]]
+  ['fd',['fd',['../namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2',1,'fdc']]],
+  ['fdc',['fdc',['../namespacefdc.html',1,'']]],
+  ['fds',['fds',['../namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc',1,'fdc']]],
+  ['from_5fjson',['from_json',['../group__IO.html#gace7f87adbda7b15acda7b0f252e5cacb',1,'fdc::from_json(const std::string input, int &amp;N, fds &amp;F)'],['../group__IO.html#gaae7f117700551176730d181f3825696e',1,'fdc::from_json(std::istream &amp;input, int &amp;N, fds &amp;F)']]]
 ];

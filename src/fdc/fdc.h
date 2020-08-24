@@ -26,6 +26,12 @@ typedef std::pair<attrs, attrs> fd;
 /*! \brief A set of functional dependencies. */
 typedef std::vector<fd> fds;
 
+/*! \brief A boolean expressions. */
+typedef std::vector<char> bool_expr;
+
+/*! \brief A collection of boolean expressions. */
+typedef std::vector<bool_expr> bool_exprs;
+
 /*! \brief Input/output functions implemented in `FDC`.
  *
  * This module contains the input and output functions implemented in `FDC`.
@@ -466,6 +472,17 @@ bool is_lrminimum(const int N, const fds &F);
  * @param F: A set of functional dependencies.
  */
 fds lrminimum(const int N, const fds &F);
+
+/*! \brief Quine-McCluskey algorithm.
+ *
+ * Compute minimum boolean expression.
+ *
+ * Time complexity: \f$ O(2^N) \f$.
+ *
+ * @param exprs: 2d-vector of chars ('0', '1', '-') indicating the boolean
+ * expressions.
+ */
+bool_exprs qmc(bool_exprs exprs);
 
 /*! \brief Mini determination.
  *

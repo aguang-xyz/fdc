@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fd',['fd',['../namespacefdc.html#aa9a82a6ea5967445729ae71e5e8065a2',1,'fdc']]],
-  ['fds',['fds',['../namespacefdc.html#aa48d6653a52613809e7f775598b0bbcc',1,'fdc']]]
+  ['bool_5fexpr',['bool_expr',['../namespacefdc.html#ae8bfd447c00ce8cadb14fe940ac1738d',1,'fdc']]],
+  ['bool_5fexprs',['bool_exprs',['../namespacefdc.html#aefea2079480c51b053550424af0ce03b',1,'fdc']]]
 ];
