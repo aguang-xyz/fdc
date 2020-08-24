@@ -4,6 +4,10 @@ A cross-platform library for calculating the covers of functional dependencies.
 
 * [Document](https://aguang-xyz.github.io/fdc/namespacefdc.html).
 
+## Dependencies.
+
+`cmake` `make` `g++` `doxygen` `graphviz`.
+
 ## Usage
 
 ### Install.
@@ -30,7 +34,7 @@ g++ xxx.cpp -lfdc
 doxygen
 ```
 
-## Algorithms Implemented.
+## Algorithms.
 
 | Type | Determination | Calculation
 |:---:|:-----:|:----:|
