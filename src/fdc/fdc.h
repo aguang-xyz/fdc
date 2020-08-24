@@ -521,7 +521,7 @@ bool is_mini(const int N, const fds &F);
  */
 fds mini(const int N, const fds &F);
 
-/*! \brief Optimum determination.
+/*! \brief Optimal determination.
  *
  * Given a set of functional dependencies \f$ F \f$, determine if:
  *
@@ -535,9 +535,9 @@ fds mini(const int N, const fds &F);
  * @param N: The number of attributes.
  * @param F: A set of functional dependencies.
  */
-bool is_optimum(const int N, const fds &F);
+bool is_optimal(const int N, const fds &F);
 
-/*! \brief Optimum calculate.
+/*! \brief Optimal calculate.
  *
  * Given a set of functional dependencies \f$ F \f$, calculate \f$ G \f$:
  *
@@ -551,7 +551,7 @@ bool is_optimum(const int N, const fds &F);
  * @param N: The number of attributes.
  * @param F: A set of functional dependencies.
  */
-fds optimum(const int N, const fds &F);
+fds optimal(const int N, const fds &F);
 
 /** @} */
 } // namespace fdc

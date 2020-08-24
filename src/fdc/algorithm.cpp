@@ -702,9 +702,9 @@ fds mini(const int N, const fds &F) {
   return H;
 }
 
-bool is_optimum(const int N, const fds &F) {
+bool is_optimal(const int N, const fds &F) {
 
-  fds G = optimum(N, F);
+  fds G = optimal(N, F);
 
   int cnt_g = 0;
 
@@ -721,7 +721,7 @@ bool is_optimum(const int N, const fds &F) {
   return cnt_f == cnt_g;
 }
 
-fds optimum(const int N, const fds &F) {
+fds optimal(const int N, const fds &F) {
 
   // Optimize algorithm is as same as minimize algorithm. The only difference
   // is that optimize algorithm requires the input must be a mini-cover.

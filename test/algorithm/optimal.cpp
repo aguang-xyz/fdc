@@ -4,7 +4,7 @@
 using namespace std;
 using namespace fdc;
 
-TEST(algorithm, optimum_1) {
+TEST(algorithm, optimal_1) {
 
   // This case:
   //
@@ -25,12 +25,12 @@ TEST(algorithm, optimum_1) {
       fd(attrs({0, 1}), attrs({2})),
   });
 
-  ASSERT_FALSE(is_optimum(4, F));
-  ASSERT_EQ(optimum(4, F), G);
-  ASSERT_TRUE(is_optimum(4, G));
+  ASSERT_FALSE(is_optimal(4, F));
+  ASSERT_EQ(optimal(4, F), G);
+  ASSERT_TRUE(is_optimal(4, G));
 }
 
-TEST(algorithm, optimum_2) {
+TEST(algorithm, optimal_2) {
 
   // This case:
   //
@@ -50,12 +50,12 @@ TEST(algorithm, optimum_2) {
       fd(attrs({0}), attrs({1, 2, 3})),
   });
 
-  ASSERT_FALSE(is_optimum(4, F));
-  ASSERT_EQ(optimum(4, F), G);
-  ASSERT_TRUE(is_optimum(4, G));
+  ASSERT_FALSE(is_optimal(4, F));
+  ASSERT_EQ(optimal(4, F), G);
+  ASSERT_TRUE(is_optimal(4, G));
 }
 
-TEST(algorithm, optimum_3) {
+TEST(algorithm, optimal_3) {
 
   // This case:
   //
@@ -83,7 +83,7 @@ TEST(algorithm, optimum_3) {
 
   ASSERT_TRUE(equal(5, F, G));
 
-  // ASSERT_FALSE(is_optimum(5, F));
-  ASSERT_EQ(optimum(5, F), G);
-  // ASSERT_TRUE(is_optimum(5, G));
+  ASSERT_FALSE(is_optimal(5, F));
+  ASSERT_EQ(optimal(5, F), G);
+  ASSERT_TRUE(is_optimal(5, G));
 }
