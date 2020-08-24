@@ -588,9 +588,31 @@ fds lrminimum(const int N, const fds &F) {
 
 bool is_mini(const int N, const fds &F) {
 
-  // TODO
+  fds G = mini(N, F);
 
-  return false;
+  for (auto f : F) {
+    if (f.second.size() != 1) {
+      return false;
+    }
+  }
+
+  if (G.size() != F.size()) {
+    return false;
+  }
+
+  int cnt_g = 0;
+
+  for (auto g : G) {
+    cnt_g += g.first.size() + g.second.size();
+  }
+
+  int cnt_f = 0;
+
+  for (auto f : F) {
+    cnt_f += f.first.size() + f.second.size();
+  }
+
+  return cnt_f == cnt_g;
 }
 
 fds mini(const int N, const fds &F) {

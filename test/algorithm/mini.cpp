@@ -19,5 +19,7 @@ TEST(algorithm, mini_1) {
       fd(attrs({0, 1}), attrs({2})),
   });
 
+  ASSERT_FALSE(is_mini(4, F));
   ASSERT_EQ(mini(4, F), G);
+  ASSERT_TRUE(is_mini(4, G));
 }
