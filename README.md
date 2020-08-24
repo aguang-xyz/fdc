@@ -10,7 +10,7 @@ A cross-platform library for calculating the covers of functional dependencies.
 
 ## Usage
 
-### Install this library from source.
+### Install this library from the source code.
 
 ```bash
 git clone git@github.com:aguang-xyz/fdc.git
