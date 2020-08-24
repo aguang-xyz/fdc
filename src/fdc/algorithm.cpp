@@ -617,6 +617,15 @@ bool is_mini(const int N, const fds &F) {
 
 fds mini(const int N, const fds &F) {
 
+  // 0. Split fds to make sure the right side of each fd is 1.
+  fds G;
+
+  for (auto f : F) {
+    for (auto r : f.second) {
+      G.push_back(fd(f.first, attrs({r})));
+    }
+  }
+
   bool_exprs expr_input;
 
   // 1. Generate minimum boolean expressions.
@@ -638,7 +647,7 @@ fds mini(const int N, const fds &F) {
 
         bool matched = false;
 
-        for (auto f : F) {
+        for (auto f : G) {
           matched = true;
 
           for (auto id : f.first) {
@@ -671,7 +680,7 @@ fds mini(const int N, const fds &F) {
   bool_exprs expr_output = qmc(expr_input);
 
   // 3. Generate functional dependencies.
-  fds G;
+  fds H;
 
   for (auto expr : expr_output) {
 
@@ -685,12 +694,39 @@ fds mini(const int N, const fds &F) {
 
     for (int i = 0; i < N; i++) {
       if (expr[i] == '0') {
-        G.push_back(fd(l, attrs({i})));
+        H.push_back(fd(l, attrs({i})));
       }
     }
   }
 
-  return G;
+  return H;
+}
+
+bool is_optimum(const int N, const fds &F) {
+
+  fds G = optimum(N, F);
+
+  int cnt_g = 0;
+
+  for (auto g : G) {
+    cnt_g += g.first.size() + g.second.size();
+  }
+
+  int cnt_f = 0;
+
+  for (auto f : F) {
+    cnt_f += f.first.size() + f.second.size();
+  }
+
+  return cnt_f == cnt_g;
+}
+
+fds optimum(const int N, const fds &F) {
+
+  // Optimize algorithm is as same as minimize algorithm. The only difference
+  // is that optimize algorithm requires the input must be a mini-cover.
+
+  return minimum(N, mini(N, F));
 }
 
 } // namespace fdc

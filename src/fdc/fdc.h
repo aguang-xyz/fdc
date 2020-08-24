@@ -502,7 +502,7 @@ bool_exprs qmc(bool_exprs exprs);
  */
 bool is_mini(const int N, const fds &F);
 
-/*! \brief Mini determination.
+/*! \brief Mini calculation.
  *
  * Given a set of functional dependencies \f$ F \f$, calculate \f$ G \f$
  * where:
@@ -520,6 +520,38 @@ bool is_mini(const int N, const fds &F);
  * @param F: A set of functional dependencies.
  */
 fds mini(const int N, const fds &F);
+
+/*! \brief Optimum determination.
+ *
+ * Given a set of functional dependencies \f$ F \f$, determine if:
+ *
+ *   * \f$ F \f$ has fewest FDs.
+ *
+ * Time complexity: \f$ O(x^N) \f$.
+ *
+ * See also: Optimize algorithm in [Peng & Xiao (2015, p.
+ * 467)](https://doi.org/10.1007/s00236-015-0247-9).
+ *
+ * @param N: The number of attributes.
+ * @param F: A set of functional dependencies.
+ */
+bool is_optimum(const int N, const fds &F);
+
+/*! \brief Optimum calculate.
+ *
+ * Given a set of functional dependencies \f$ F \f$, calculate \f$ G \f$:
+ *
+ *   * \f$ G \f$ has fewest FDs.
+ *
+ * Time complexity: \f$ O(x^N) \f$.
+ *
+ * See also: Optimize algorithm in [Peng & Xiao (2015, p.
+ * 467)](https://doi.org/10.1007/s00236-015-0247-9).
+ *
+ * @param N: The number of attributes.
+ * @param F: A set of functional dependencies.
+ */
+fds optimum(const int N, const fds &F);
 
 /** @} */
 } // namespace fdc
