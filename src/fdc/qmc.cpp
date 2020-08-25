@@ -130,9 +130,60 @@ bool_exprs qmc_search(bool_exprs exprs,
 
   glp_prob *lp = glp_create_prob();
 
-  // TODO
+  glp_set_prob_name(lp, "qmc");
 
-  return exprs;
+  glp_set_obj_dir(lp, GLP_MIN);
+
+  // Rows.
+  glp_add_rows(lp, exprs.size());
+
+  for (int i = 1; i <= exprs.size(); i++) {
+    glp_set_row_bnds(lp, i, GLP_LO, 1, 0);
+  }
+
+  // Columns.
+  glp_add_cols(lp, combined_exprs.size());
+
+  for (int i = 1; i <= combined_exprs.size(); i++) {
+    glp_set_col_kind(lp, i, GLP_IV);
+    glp_set_col_bnds(lp, i, GLP_LO, 0, 0);
+    glp_set_col_bnds(lp, i, GLP_UP, 0, 1);
+    glp_set_obj_coef(lp, i, qmc_count_attributes(combined_exprs[i - 1].second));
+  }
+
+  // Matrix.
+  int matrix_size = 0;
+
+  for (auto expr : combined_exprs) {
+    matrix_size += expr.first.size();
+  }
+
+  int ia[matrix_size + 1], ja[matrix_size + 1];
+  double ar[matrix_size + 1];
+
+  for (int i = 0, j = 1; i < combined_exprs.size(); i++) {
+    for (auto id : combined_exprs[i].first) {
+      ia[j] = id + 1;
+      ja[j] = i + 1;
+      ar[j] = 1;
+      j++;
+    }
+  }
+
+  glp_load_matrix(lp, matrix_size, ia, ja, ar);
+
+  // Solve the described 01-IP problem.
+  glp_simplex(lp, NULL);
+
+  bool_exprs result;
+
+  for (int i = 1; i <= combined_exprs.size(); i++) {
+    if (glp_get_col_prim(lp, i) > 0.5) {
+      result.push_back(combined_exprs[i - 1].second);
+    }
+  }
+
+  return result;
 }
 
 bool_exprs qmc(bool_exprs exprs) {
@@ -148,30 +199,6 @@ bool_exprs qmc(bool_exprs exprs) {
 
   // 2. Try to combine and reduce expressions.
   auto combined_exprs = qmc_combine(N, exprs);
-
-  // For debug.
-  for (auto x : combined_exprs) {
-
-    for (auto c : x.second) {
-      printf("%c", c);
-    }
-
-    printf(" : ");
-
-    for (int id = 0; id < exprs.size(); id++) {
-      if (x.first.find(id) != x.first.end()) {
-        printf("x");
-      } else {
-        printf(" ");
-      }
-    }
-
-    for (auto id : x.first) {
-      printf(" %d", id);
-    }
-
-    printf("\n");
-  }
 
   // 3. Search for the best selection of combined expressions.
   return qmc_search(exprs, combined_exprs);

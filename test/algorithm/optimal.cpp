@@ -21,8 +21,8 @@ TEST(algorithm, optimal_1) {
 
   auto G = fds({
 
-      fd(attrs({2}), attrs({3})),
       fd(attrs({0, 1}), attrs({2})),
+      fd(attrs({2}), attrs({3})),
   });
 
   ASSERT_FALSE(is_optimal(4, F));
@@ -76,9 +76,9 @@ TEST(algorithm, optimal_3) {
 
   auto G = fds({
 
-      fd(attrs({4}), attrs({1, 2})),
       fd(attrs({1, 2}), attrs({4})),
       fd(attrs({0, 4}), attrs({3})),
+      fd(attrs({4}), attrs({1, 2})),
   });
 
   ASSERT_TRUE(equal(5, F, G));

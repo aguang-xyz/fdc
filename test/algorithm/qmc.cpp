@@ -21,9 +21,9 @@ TEST(algorithm, qmc_1) {
   bool_exprs min_exprs = qmc(exprs);
 
   ASSERT_EQ(min_exprs, bool_exprs({
-                           bool_expr({'-', '-', '0', '0'}),
-                           bool_expr({'0', '1', '-', '1'}),
                            bool_expr({'1', '-', '1', '1'}),
+                           bool_expr({'0', '1', '-', '1'}),
+                           bool_expr({'-', '-', '0', '0'}),
                        }));
 }
 
@@ -55,10 +55,10 @@ TEST(algorithm, qmc_2) {
   bool_exprs min_exprs = qmc(exprs);
 
   ASSERT_EQ(min_exprs, bool_exprs({
-                           // C -> D
-                           bool_expr({'-', '-', '1', '0'}),
-
                            // AB -> C
                            bool_expr({'1', '1', '0', '-'}),
+
+                           // C -> D
+                           bool_expr({'-', '-', '1', '0'}),
                        }));
 }
