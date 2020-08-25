@@ -679,6 +679,8 @@ fds mini(const int N, const fds &F) {
   // 2. Quine-McCluskey method.
   bool_exprs expr_output = qmc(expr_input);
 
+  fprintf(stderr, "Start generating the result.\n");
+
   // 3. Generate functional dependencies.
   fds H;
 

@@ -129,10 +129,30 @@ void solve(const string dataset) {
     record("Minimum", minimum, N, G);
     record("L-Minimum", lminimum, N, G);
     record("LR-Minimum", lrminimum, N, G);
+    record("Mini", mini, N, G);
+    record("Optimal", optimal, N, G);
   }
 }
 
 TEST(dataset, complete_fd_reduced) {
+
+  // 5 attributes, 1 FDs.
+  // solve("../../dataset/Complete Data/balance-scale.json");
+
+  // 7 attributes, 1 FDs.
+  // solve("../../dataset/Complete Data/chess.json");
+
+  // 5 attributes, 4 FDs.
+  // solve("../../dataset/Complete Data/iris.json");
+
+  // 17 attributes, 61 FDs.
+  // solve("../../dataset/Complete Data/letter.json");
+
+  // 9 attributes, 1 FDs.
+  // solve("../../dataset/Complete Data/nursery.json");
+
+  // 9 FDs.
+  // solve("../../dataset/Complete Data/abalone.json");
 
   // 3573 FDs.
   // solve("../../dataset/Complete Data/fd_reduced.json");

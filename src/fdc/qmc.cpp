@@ -28,6 +28,9 @@ struct qmc_search_state {
   // Combined states.
   set<qmc_reduce_state> states;
 
+  // Combined state ids.
+  set<int> state_ids;
+
   static int count_attrs(const qmc_search_state &x) {
 
     int count = 0;
@@ -120,6 +123,8 @@ bool_exprs qmc(bool_exprs input_exprs) {
     return exprs;
   }
 
+  fprintf(stderr, "input size = %lu\n", input_exprs.size());
+
   // The number of columns.
   const int N = exprs[0].size();
 
@@ -185,17 +190,40 @@ bool_exprs qmc(bool_exprs input_exprs) {
     }
   }
 
+  fprintf(stderr, "Start searching, |rest_states| = %lu.\n",
+          rest_states.size());
+
+  for (auto state : rest_states) {
+    for (auto c : state.expr) {
+      fprintf(stderr, "%c", c);
+    }
+
+    fprintf(stderr, " :");
+
+    for (auto id : state.ids) {
+      fprintf(stderr, " %d", id);
+    }
+
+    fprintf(stderr, "\n");
+  }
+
   // Search for the optimal combination.
   priority_queue<qmc_search_state, vector<qmc_search_state>,
                  greater<qmc_search_state>>
       queue;
 
-  queue.push({qmc_search_state({
+  set<set<int>> visit;
+
+  auto init_state = qmc_search_state({
       .ids = set<int>(),
       .states = set<qmc_reduce_state>(),
-  })});
+      .state_ids = set<int>(),
+  });
+
+  queue.push(init_state);
 
   while (queue.size() > 0) {
+    fprintf(stderr, "Rest: %lu\n", queue.size());
 
     auto top = queue.top();
     queue.pop();
@@ -213,8 +241,50 @@ bool_exprs qmc(bool_exprs input_exprs) {
       return result;
     }
 
-    for (auto state : rest_states) {
-      if (top.states.find(state) == top.states.end()) {
+    // Count how many un-searched expressions can cover each target input
+    // expression.
+    int ref_cnt[exprs.size()] = {0};
+
+    for (int state_id = 0; state_id < rest_states.size(); state_id++) {
+      if (top.state_ids.find(state_id) == top.state_ids.end()) {
+        for (auto id : rest_states[state_id].ids) {
+          ref_cnt[id]++;
+        }
+      }
+    }
+
+    // Compute if there is a must included search expression.
+    int must_select_state_id = -1;
+
+    for (int state_id = 0; state_id < rest_states.size(); state_id++) {
+      if (top.state_ids.find(state_id) == top.state_ids.end()) {
+        int must_select = false;
+
+        for (auto id : rest_states[state_id].ids) {
+          if (ref_cnt[id] == 1 && top.ids.find(id) == top.ids.end()) {
+            must_select = true;
+            break;
+          }
+        }
+
+        if (must_select) {
+          must_select_state_id = state_id;
+          break;
+        }
+      }
+    }
+
+    // Iteration for adding a new expression.
+    for (int state_id = 0; state_id < rest_states.size(); state_id++) {
+
+      // If there one must be included, skip others.
+      if (must_select_state_id != -1 && must_select_state_id != state_id) {
+        continue;
+      }
+
+      auto state = rest_states[state_id];
+
+      if (top.state_ids.find(state_id) == top.state_ids.end()) {
 
         auto new_ids = set<int>();
 
@@ -222,18 +292,39 @@ bool_exprs qmc(bool_exprs input_exprs) {
           new_ids.insert(id);
         }
 
+        bool expand_ids = false;
+
         for (auto id : state.ids) {
-          new_ids.insert(id);
+          if (new_ids.find(id) == new_ids.end()) {
+            new_ids.insert(id);
+            expand_ids = true;
+          }
+        }
+
+        // Prune strategy 1. Adding new expressions must lead to more input
+        // expressions to be covered.
+        if (!expand_ids) {
+          continue;
         }
 
         set<qmc_reduce_state> new_states(top.states.begin(), top.states.end());
-
         new_states.insert(state);
 
-        queue.push(qmc_search_state({
+        set<int> new_state_ids(top.state_ids.begin(), top.state_ids.end());
+        new_state_ids.insert(state_id);
+
+        auto new_search_state = qmc_search_state({
             .ids = new_ids,
             .states = new_states,
-        }));
+            .state_ids = new_state_ids,
+        });
+
+        // Prune strategy 2. Do not search for exact same combinations for
+        // multiple times.
+        if (visit.find(new_state_ids) == visit.end()) {
+          queue.push(new_search_state);
+          visit.insert(new_state_ids);
+        }
       }
     }
   }
