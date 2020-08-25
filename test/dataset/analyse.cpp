@@ -94,6 +94,7 @@ auto yaml = ofstream("../../dataset.analyse.yaml", fstream::out);
     yaml << "       - Name: " << name << endl;                                 \
     yaml << "         Attrs: " << calc(algo(N, F)) << endl;                    \
     yaml << "         Time: " << (clock() - t0) / CLOCKS_PER_SEC << endl;      \
+    yaml.flush();                                                              \
   }
 
 void solve(const string dataset) {
@@ -136,27 +137,19 @@ void solve(const string dataset) {
 
 TEST(dataset, complete_fd_reduced) {
 
-  // 5 attributes, 1 FDs.
-  // solve("../../dataset/Complete Data/balance-scale.json");
-
-  // 7 attributes, 1 FDs.
-  // solve("../../dataset/Complete Data/chess.json");
-
-  // 5 attributes, 4 FDs.
-  // solve("../../dataset/Complete Data/iris.json");
-
-  // 17 attributes, 61 FDs.
-  // solve("../../dataset/Complete Data/letter.json");
-
-  // 9 attributes, 1 FDs.
+  // Slow cases.
+  // solve("../../dataset/Complete Data/adult.json");
+  // solve("../../dataset/Complete Data/fd_reduced.json");
+  // solve("../../dataset/Complete Data/lineitem.json");
   // solve("../../dataset/Complete Data/nursery.json");
 
-  // 9 FDs.
   // solve("../../dataset/Complete Data/abalone.json");
+  // solve("../../dataset/Complete Data/balance-scale.json");
+  // solve("../../dataset/Complete Data/chess.json");
+  // solve("../../dataset/Complete Data/iris.json");
+  // solve("../../dataset/Complete Data/letter.json");
 
-  // 3573 FDs.
-  // solve("../../dataset/Complete Data/fd_reduced.json");
-
-  // 5794 FDs.
-  // solve("../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json");
+  // for (auto dataset : datasets) {
+  //   solve(dataset);
+  // }
 }

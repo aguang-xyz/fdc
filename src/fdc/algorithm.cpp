@@ -628,6 +628,8 @@ fds mini(const int N, const fds &F) {
 
   bool_exprs expr_input;
 
+  fprintf(stderr, " - Start generation of boolean expression.\n");
+
   // 1. Generate minimum boolean expressions.
   queue<bool_expr> expr_queue;
   expr_queue.push(bool_expr());
@@ -676,10 +678,12 @@ fds mini(const int N, const fds &F) {
     }
   }
 
+  fprintf(stderr, " - Start Quine-McCluskey method. \n");
+
   // 2. Quine-McCluskey method.
   bool_exprs expr_output = qmc(expr_input);
 
-  fprintf(stderr, "Start generating the result.\n");
+  fprintf(stderr, " - Start generating the result.\n");
 
   // 3. Generate functional dependencies.
   fds H;
