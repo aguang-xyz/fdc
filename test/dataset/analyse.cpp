@@ -97,7 +97,7 @@ auto yaml = ofstream("../../dataset.analyse.yaml", fstream::out);
     yaml.flush();                                                              \
   }
 
-void solve(const string dataset) {
+void solve(const string dataset, bool run_mini) {
 
   // The number of attributes.
   int N;
@@ -116,40 +116,87 @@ void solve(const string dataset) {
   yaml << "   Attrs: " << N << endl;
   yaml << "   Metrics: " << endl;
 
-  for (int pct = 1; pct <= 100; pct++) {
+  for (int pct = 1, prev_size = -1; pct <= 100; pct++) {
 
-    // Retrieve pct% functional dependencies.
-    const fds G = head(F, pct * F.size() / 100);
+    if (prev_size != (pct * F.size() / 100)) {
 
-    yaml << "    - Pct: " << pct << endl;
-    yaml << "      Fds: " << G.size() << endl;
-    yaml << "      Algos: " << endl;
+      // Retrieve pct% functional dependencies.
+      const fds G = head(F, pct * F.size() / 100);
 
-    record("Non-Redundant", non_redundant, N, G);
-    record("Canonical", canonical, N, G);
-    record("Minimum", minimum, N, G);
-    record("L-Minimum", lminimum, N, G);
-    record("LR-Minimum", lrminimum, N, G);
-    record("Mini", mini, N, G);
-    record("Optimal", optimal, N, G);
+      yaml << "    - Pct: " << pct << endl;
+      yaml << "      Fds: " << G.size() << endl;
+      yaml << "      Algos: " << endl;
+
+      record("Non-Redundant", non_redundant, N, G);
+      record("Canonical", canonical, N, G);
+      record("Minimum", minimum, N, G);
+      record("L-Minimum", lminimum, N, G);
+      record("LR-Minimum", lrminimum, N, G);
+
+      if (run_mini) {
+        record("Mini", mini, N, G);
+        record("Optimal", optimal, N, G);
+      }
+
+      prev_size = pct * F.size() / 100;
+    }
   }
 }
 
 TEST(dataset, complete_fd_reduced) {
 
   // Slow cases.
-  // solve("../../dataset/Complete Data/adult.json");
-  // solve("../../dataset/Complete Data/fd_reduced.json");
-  // solve("../../dataset/Complete Data/lineitem.json");
-  // solve("../../dataset/Complete Data/nursery.json");
+  solve("../../dataset/Complete Data/fd_reduced.json", false);
+  solve("../../dataset/Complete Data/lineitem.json", false);
 
-  // solve("../../dataset/Complete Data/abalone.json");
-  // solve("../../dataset/Complete Data/balance-scale.json");
-  // solve("../../dataset/Complete Data/chess.json");
-  // solve("../../dataset/Complete Data/iris.json");
-  // solve("../../dataset/Complete Data/letter.json");
+  // Cases where mini cover can be solve.
+  solve("../../dataset/Complete Data/abalone.json", true);
+  solve("../../dataset/Complete Data/balance-scale.json", true);
+  solve("../../dataset/Complete Data/chess.json", true);
+  solve("../../dataset/Complete Data/iris.json", true);
+  solve("../../dataset/Complete Data/letter.json", true);
+  solve("../../dataset/Complete Data/nursery.json", true);
+  solve("../../dataset/Complete Data/adult.json", true);
 
-  // for (auto dataset : datasets) {
-  //   solve(dataset);
-  // }
+  auto rest_datasets = vector<string>({
+      "../../dataset/Incomplete Data NullNEQ/hepatitis.json",
+      "../../dataset/Incomplete Data NullNEQ/uniprot_512001r_30c.json",
+      "../../dataset/Incomplete Data NullNEQ/plista.json",
+      "../../dataset/Incomplete Data NullNEQ/breast.json",
+      "../../dataset/Incomplete Data NullNEQ/diabetic.json",
+      "../../dataset/Incomplete Data NullNEQ/pdbx.json",
+      "../../dataset/Incomplete Data NullNEQ/ncvoter.json",
+      "../../dataset/Incomplete Data NullNEQ/echo.json",
+      "../../dataset/Incomplete Data NullNEQ/flight.json",
+      "../../dataset/Incomplete Data NullNEQ/china_weather.json",
+      "../../dataset/Incomplete Data NullNEQ/bridges.json",
+      "../../dataset/Incomplete Data NullNEQ/horse.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter8060060.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter4000.json",
+      "../../dataset/Incomplete Data NullEQ/hepatitis.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter1024000.json",
+      "../../dataset/Incomplete Data NullEQ/uniprot_512001r_30c.json",
+      "../../dataset/Incomplete Data NullEQ/plista.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter16000.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter64000.json",
+      "../../dataset/Incomplete Data NullEQ/breast.json",
+      "../../dataset/Incomplete Data NullEQ/diabetic.json",
+      "../../dataset/Incomplete Data NullEQ/pdbx.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter256000.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter8000.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter2000.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter.json",
+      "../../dataset/Incomplete Data NullEQ/echo.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter512000.json",
+      "../../dataset/Incomplete Data NullEQ/flight.json",
+      "../../dataset/Incomplete Data NullEQ/china_weather.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter32000.json",
+      "../../dataset/Incomplete Data NullEQ/bridges.json",
+      "../../dataset/Incomplete Data NullEQ/ncvoter128000.json",
+      "../../dataset/Incomplete Data NullEQ/horse.json",
+  });
+
+  for (auto dataset : rest_datasets) {
+    solve(dataset, false);
+  }
 }
