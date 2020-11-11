@@ -1,6 +1,7 @@
 #include <ctime>
 #include <fstream>
 #include <vector>
+#include <algorithm>
 
 #include "fdc/fdc.h"
 #include "gtest/gtest.h"
@@ -91,10 +92,14 @@ auto yaml = ofstream("../../dataset.analyse.yaml", fstream::out);
 #define record(name, algo, N, F)                                               \
   {                                                                            \
     double t0 = clock();                                                       \
+    auto result = algo(N, F);                                                  \
+    sort(result.begin(), result.end());                                        \
     yaml << "       - Name: " << name << endl;                                 \
-    yaml << "         Attrs: " << calc(algo(N, F)) << endl;                    \
+    yaml << "         Attrs: " << calc(result) << endl;                        \
+    yaml << "         FDs: " << result.size() << endl;                         \
     yaml << "         Time: " << (clock() - t0) / CLOCKS_PER_SEC << endl;      \
     yaml.flush();                                                              \
+    fprintf(stderr, "%s cover = %s\n", name, to_str(result).c_str());          \
   }
 
 void solve(const string dataset, bool run_mini) {
@@ -111,12 +116,17 @@ void solve(const string dataset, bool run_mini) {
   // Load dataset.
   from_json(json, N, F);
 
+  sort(F.begin(), F.end());
+
+  fprintf(stderr, "original cover = %s\n", to_str(F).c_str());
+  fprintf(stderr, "attrs = %d\n", calc(F));
+
   // Print result.
   yaml << " - Dataset: " << dataset << endl;
   yaml << "   Attrs: " << N << endl;
   yaml << "   Metrics: " << endl;
 
-  for (int pct = 1, prev_size = -1; pct <= 100; pct++) {
+  for (int pct = 100, prev_size = -1; pct <= 100; pct++) {
 
     if (prev_size != (pct * F.size() / 100)) {
 
@@ -146,11 +156,13 @@ void solve(const string dataset, bool run_mini) {
 TEST(dataset, complete_fd_reduced) {
 
   // Slow cases.
-  solve("../../dataset/Complete Data/fd_reduced.json", false);
-  solve("../../dataset/Complete Data/lineitem.json", false);
+  // solve("../../dataset/Complete Data/fd_reduced.json", false);
+  // solve("../../dataset/Complete Data/lineitem.json", false);
 
   // Cases where mini cover can be solve.
   solve("../../dataset/Complete Data/abalone.json", true);
+ 
+  /*
   solve("../../dataset/Complete Data/balance-scale.json", true);
   solve("../../dataset/Complete Data/chess.json", true);
   solve("../../dataset/Complete Data/iris.json", true);
@@ -199,4 +211,5 @@ TEST(dataset, complete_fd_reduced) {
   for (auto dataset : rest_datasets) {
     solve(dataset, false);
   }
+  */
 }

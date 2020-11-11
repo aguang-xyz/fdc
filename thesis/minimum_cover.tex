@@ -728,6 +728,9 @@ the overall time complexity of computing optimal cover is still NP-Complelte.
 
 We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions. The full source code can be found via Github \cite{githubfdc} or in the Appendix of this paper.
 
+
+
+
 \section{Summary}
 
 So in this chapter, we introduced some basic algorithms to find dependent set, validate membership determination, attributes equivalence and functional dependencies equivalence. Based on these basic approaches, we introduced how to compute non-redundant cover, canonical cover, minimum cover, l-minimum cover and lr-minimum cover. And then we talked about the computation of mini cover. It can be converted to a equivalent minimum boolean expression problem using Delobel-Casey transform. To solve the minimum boolean expression problem, we introduced Quine-McCluskey method and 0-1 integer programming model. Finally, based on the computation of mini cover, we introduced the optimal cover algorithm.
@@ -940,7 +943,7 @@ Table 4.4 shows the time consumption and the result cover size for each algorith
     	& L-Minimum     & 0.001 & 269 \\
     	& LR-Minimum    & 0.001 & 210 \\	
     	& Mini          & 0.016 & 395 \\	
-    	& Optimal       & 0.016 & 200 \\
+    	& Optimal       & 0.016 & 209 \\
 
     \hline
     \multirow{5}{*}{letter}
@@ -956,11 +959,11 @@ Table 4.4 shows the time consumption and the result cover size for each algorith
     \multirow{5}{*}{adult}
     	& Non-Redundant & 0.001  & 269 \\
     	& Canonical     & 0.001  & 295 \\
-    	& Minimum       & 0.001  & 255 \\
-    	& L-Minimum     & 0.001  & 145 \\
-    	& LR-Minimum    & 0.001  & 135 \\	
+    	& Minimum       & 0.001  & 269 \\
+    	& L-Minimum     & 0.001  & 269 \\
+    	& LR-Minimum    & 0.001  & 267 \\	
     	& Mini          & 40.560 & 290 \\	
-    	& Optimal       & 40.115 & 130 \\
+    	& Optimal       & 40.115 & 167 \\
 	
     \hline
     
@@ -1444,11 +1447,498 @@ $$
 
 \section{Qualitative Analysis}
 
-To better understand the experiment result, here we use the abalone dataset as an example to show the results of different covers.
+To better understand the experiment result, here we use the abalone dataset as an example to show the results of different covers. This could give more sense about what is the difference these covers try to achieve?
+
+\subsection{Original Cover of Abalone Dataset}
+
+The abalone dataset contains 9 attributes and 54 functional dependencies. There are attributes repetitively counted. The below shows the original cover.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 7) -> (4, 6)
+  (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
+  (0, 1, 2, 3, 6, 7) -> (4)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 6) -> (4, 8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (2, 3, 6, 7)
+  (0, 1, 5, 6) -> (2, 7)
+  (0, 1, 6, 7, 8) -> (2, 3, 4, 5)
+  (0, 2, 3, 5, 6) -> (4, 7, 8)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (1, 2, 3, 5, 7)
+  (0, 5, 6, 8) -> (2, 7)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5, 6, 7)
+  (1, 2, 3, 5, 7, 8) -> (4, 6)
+  (1, 2, 3, 6, 8) -> (0, 4, 5, 7)
+  (1, 2, 4, 5) -> (3, 7)
+  (1, 2, 4, 7) -> (0, 3, 5, 6, 8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0, 3, 4, 5)
+  (1, 3, 4, 5) -> (0, 2, 6, 7)
+  (1, 3, 4, 6) -> (0, 2, 5, 7, 8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 5, 6) -> (3, 7)
+  (1, 4, 6, 8) -> (0, 2, 3, 5, 7)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (0, 2)
+  (1, 5, 6, 8) -> (0, 2, 3, 4, 7)
+  (2, 3, 4, 5) -> (1, 7, 8)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 4, 7, 8) -> (1, 5, 6)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0, 6)
+  (2, 4, 5, 8) -> (1, 3, 7)
+  (2, 4, 6) -> (0)
+  (2, 4, 6, 8) -> (1, 3, 5, 7)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (0, 7)
+  (3, 4, 5, 6) -> (1, 7, 8)
+  (3, 5, 6, 7) -> (0, 1, 2, 4, 8)
+  (3, 5, 6, 8) -> (0, 1, 2, 4, 7)
+  (4, 5, 6) -> (0, 2)
+  (4, 5, 6, 8) -> (1, 3, 7)
+  (4, 5, 7) -> (0, 1, 2, 3, 6, 8)
+  (4, 6, 7) -> (0, 1, 2, 3, 5, 8)
+\end{verbatim}
+
+\subsection{Non-Redundant Cover of Abalone Dataset}
+
+By removing redundant functional dependencies, we got a non-redundant cover where there are 269 attributes and 40 functional dependencies. We can see that non-redundant cover algorithm only removes redundant functional dependencies. All the functional dependencies in the result must be originally existed in the input cover.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (2, 3, 6, 7)
+  (0, 1, 5, 6) -> (2, 7)
+  (0, 1, 6, 7, 8) -> (2, 3, 4, 5)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (1, 2, 3, 5, 7)
+  (0, 5, 6, 8) -> (2, 7)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5, 6, 7)
+  (1, 2, 3, 6, 8) -> (0, 4, 5, 7)
+  (1, 2, 4, 7) -> (0, 3, 5, 6, 8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0, 3, 4, 5)
+  (1, 3, 4, 6) -> (0, 2, 5, 7, 8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (0, 2, 3, 5, 7)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (0, 2)
+  (1, 5, 6, 8) -> (0, 2, 3, 4, 7)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0, 6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (0, 7)
+  (3, 5, 6, 7) -> (0, 1, 2, 4, 8)
+  (3, 5, 6, 8) -> (0, 1, 2, 4, 7)
+  (4, 5, 6) -> (0, 2)
+  (4, 5, 7) -> (0, 1, 2, 3, 6, 8)
+  (4, 6, 7) -> (0, 1, 2, 3, 5, 8)
+\end{verbatim}
+
+\subsection{Canonical Cover of Abalone Dataset}
+
+To compute canonical cover, we first split the functional dependencies where the right side has multiple attributes into multiple functional dependencies when the right side is single.
+Then we remove the redundant covers. We can see the the right side of canonical cover is some kind of simplified. But considering the cover size, the result has 512 attributes and 100 functional dependencies. It is definitely not good to be a smallest cover.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (4)
+  (0, 1, 2, 3, 5, 8) -> (6)
+  (0, 1, 2, 3, 5, 8) -> (7)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (2)
+  (0, 1, 4, 5) -> (3)
+  (0, 1, 4, 5) -> (6)
+  (0, 1, 4, 5) -> (7)
+  (0, 1, 5, 6) -> (2)
+  (0, 1, 5, 6) -> (7)
+  (0, 1, 6, 7, 8) -> (2)
+  (0, 1, 6, 7, 8) -> (3)
+  (0, 1, 6, 7, 8) -> (4)
+  (0, 1, 6, 7, 8) -> (5)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (1)
+  (0, 4, 6, 8) -> (2)
+  (0, 4, 6, 8) -> (3)
+  (0, 4, 6, 8) -> (5)
+  (0, 4, 6, 8) -> (7)
+  (0, 5, 6, 8) -> (2)
+  (0, 5, 6, 8) -> (7)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5)
+  (1, 2, 3, 4, 8) -> (6)
+  (1, 2, 3, 4, 8) -> (7)
+  (1, 2, 3, 6, 8) -> (0)
+  (1, 2, 3, 6, 8) -> (4)
+  (1, 2, 3, 6, 8) -> (5)
+  (1, 2, 3, 6, 8) -> (7)
+  (1, 2, 4, 7) -> (0)
+  (1, 2, 4, 7) -> (3)
+  (1, 2, 4, 7) -> (5)
+  (1, 2, 4, 7) -> (6)
+  (1, 2, 4, 7) -> (8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (3)
+  (1, 2, 6, 7, 8) -> (4)
+  (1, 2, 6, 7, 8) -> (5)
+  (1, 3, 4, 6) -> (0)
+  (1, 3, 4, 6) -> (2)
+  (1, 3, 4, 6) -> (5)
+  (1, 3, 4, 6) -> (7)
+  (1, 3, 4, 6) -> (8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (0)
+  (1, 4, 6, 8) -> (2)
+  (1, 4, 6, 8) -> (3)
+  (1, 4, 6, 8) -> (5)
+  (1, 4, 6, 8) -> (7)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (0)
+  (1, 5, 6, 7) -> (2)
+  (1, 5, 6, 8) -> (0)
+  (1, 5, 6, 8) -> (2)
+  (1, 5, 6, 8) -> (3)
+  (1, 5, 6, 8) -> (4)
+  (1, 5, 6, 8) -> (7)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0)
+  (2, 4, 5) -> (6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (0)
+  (2, 5, 6, 8) -> (7)
+  (3, 5, 6, 7) -> (0)
+  (3, 5, 6, 7) -> (1)
+  (3, 5, 6, 7) -> (2)
+  (3, 5, 6, 7) -> (4)
+  (3, 5, 6, 7) -> (8)
+  (3, 5, 6, 8) -> (0)
+  (3, 5, 6, 8) -> (1)
+  (3, 5, 6, 8) -> (2)
+  (3, 5, 6, 8) -> (4)
+  (3, 5, 6, 8) -> (7)
+  (4, 5, 6) -> (0)
+  (4, 5, 6) -> (2)
+  (4, 5, 7) -> (0)
+  (4, 5, 7) -> (1)
+  (4, 5, 7) -> (2)
+  (4, 5, 7) -> (3)
+  (4, 5, 7) -> (6)
+  (4, 5, 7) -> (8)
+  (4, 6, 7) -> (0)
+  (4, 6, 7) -> (1)
+  (4, 6, 7) -> (2)
+  (4, 6, 7) -> (3)
+  (4, 6, 7) -> (5)
+  (4, 6, 7) -> (8)
+\end{verbatim}
+
+\subsection{Minimum Cover of Abalone Dataset}
+
+Minimum cover tries to achive smallest number of functional dependencies. Here is the result of minimum cover from the abalone dataset. It has 269 attributes and only 40 functional dependencies.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (2, 3, 6, 7)
+  (0, 1, 5, 6) -> (2, 7)
+  (0, 1, 6, 7, 8) -> (2, 3, 4, 5)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (1, 2, 3, 5, 7)
+  (0, 5, 6, 8) -> (2, 7)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5, 6, 7)
+  (1, 2, 3, 6, 8) -> (0, 4, 5, 7)
+  (1, 2, 4, 7) -> (0, 3, 5, 6, 8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0, 3, 4, 5)
+  (1, 3, 4, 6) -> (0, 2, 5, 7, 8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (0, 2, 3, 5, 7)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (0, 2)
+  (1, 5, 6, 8) -> (0, 2, 3, 4, 7)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0, 6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (0, 7)
+  (3, 5, 6, 7) -> (0, 1, 2, 4, 8)
+  (3, 5, 6, 8) -> (0, 1, 2, 4, 7)
+  (4, 5, 6) -> (0, 2)
+  (4, 5, 7) -> (0, 1, 2, 3, 6, 8)
+  (4, 6, 7) -> (0, 1, 2, 3, 5, 8)
+\end{verbatim}
+
+\subsection{L-Minimum Cover of Abalone Dataset}
+
+L-Minimum cover is based on minimum cover. It has the smallest number of functional dependencies and tries to reduce the left side attributes. But for our example, the left side cannot be reduced any more. So the result has 269 attributes and 40 functional dependencies as same as the previous one.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (2, 3, 6, 7)
+  (0, 1, 5, 6) -> (2, 7)
+  (0, 1, 6, 7, 8) -> (2, 3, 4, 5)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (1, 2, 3, 5, 7)
+  (0, 5, 6, 8) -> (2, 7)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5, 6, 7)
+  (1, 2, 3, 6, 8) -> (0, 4, 5, 7)
+  (1, 2, 4, 7) -> (0, 3, 5, 6, 8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0, 3, 4, 5)
+  (1, 3, 4, 6) -> (0, 2, 5, 7, 8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (0, 2, 3, 5, 7)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (0, 2)
+  (1, 5, 6, 8) -> (0, 2, 3, 4, 7)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0, 6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (0, 7)
+  (3, 5, 6, 7) -> (0, 1, 2, 4, 8)
+  (3, 5, 6, 8) -> (0, 1, 2, 4, 7)
+  (4, 5, 6) -> (0, 2)
+  (4, 5, 7) -> (0, 1, 2, 3, 6, 8)
+  (4, 6, 7) -> (0, 1, 2, 3, 5, 8)
+\end{verbatim}
+
+\subsection{LR-Minimum Cover of Abalone Dataset}
+
+LR-Minimum cover is based on L-minimum cover. It has the minimum number of functional dependencies and also tries to reduce the right side attributes based on the result of L-minimum cover. For our example, LR-minimum cover has 210 attributes (much smaller than L-minimum) and 40 functional dependencies.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (6)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (6)
+  (0, 1, 5, 6) -> (7)
+  (0, 1, 6, 7, 8) -> (4)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (5)
+  (0, 5, 6, 8) -> (2)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (6)
+  (1, 2, 3, 6, 8) -> (4)
+  (1, 2, 4, 7) -> (3)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (3)
+  (1, 3, 4, 6) -> (5)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (2)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (2)
+  (1, 5, 6, 8) -> (2)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (7)
+  (3, 5, 6, 7) -> (1)
+  (3, 5, 6, 8) -> (1)
+  (4, 5, 6) -> (2)
+  (4, 5, 7) -> (1)
+  (4, 6, 7) -> (2, 1)
+\end{verbatim}
+
+\subsection{Mini Cover of ABalone Dataset}
+
+Mini cover has the same constraint of single right side attribute. Under this constraint, it tries to achieve smallest number of attributes. For our example, mini cover has 75 functional dependencies and 395 attributes, which is much smaller than the canonical cover.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 7) -> (4)
+  (0, 1, 2, 3, 5, 8) -> (4)
+  (0, 1, 2, 3, 5, 8) -> (6)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 6) -> (4)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (3)
+  (0, 1, 4, 5) -> (6)
+  (0, 1, 4, 5) -> (7)
+  (0, 1, 5, 6) -> (7)
+  (0, 1, 6, 7, 8) -> (2)
+  (0, 1, 6, 7, 8) -> (4)
+  (0, 2, 3, 5, 6) -> (7)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (5)
+  (0, 4, 6, 8) -> (7)
+  (0, 5, 6, 8) -> (2)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5)
+  (1, 2, 3, 4, 8) -> (6)
+  (1, 2, 3, 5, 7, 8) -> (4)
+  (1, 2, 3, 6, 8) -> (4)
+  (1, 2, 3, 6, 8) -> (5)
+  (1, 2, 4, 7) -> (3)
+  (1, 2, 4, 7) -> (6)
+  (1, 2, 4, 7) -> (8)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (3)
+  (1, 2, 6, 7, 8) -> (4)
+  (1, 3, 4, 5) -> (2)
+  (1, 3, 4, 6) -> (0)
+  (1, 3, 4, 6) -> (7)
+  (1, 3, 4, 6) -> (8)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (0)
+  (1, 4, 6, 8) -> (3)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (2)
+  (1, 5, 6, 8) -> (0)
+  (1, 5, 6, 8) -> (2)
+  (1, 5, 6, 8) -> (7)
+  (2, 3, 4, 5) -> (1)
+  (2, 3, 4, 5) -> (7)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 4, 7, 8) -> (1)
+  (2, 3, 4, 7, 8) -> (5)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (0)
+  (2, 4, 5) -> (6)
+  (2, 4, 6) -> (0)
+  (2, 4, 6, 8) -> (1)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (7)
+  (3, 5, 6, 7) -> (1)
+  (3, 5, 6, 7) -> (4)
+  (3, 5, 6, 8) -> (0)
+  (3, 5, 6, 8) -> (1)
+  (3, 5, 6, 8) -> (2)
+  (4, 5, 6) -> (0)
+  (4, 5, 6) -> (2)
+  (4, 5, 6, 8) -> (1)
+  (4, 5, 6, 8) -> (3)
+  (4, 5, 7) -> (1)
+  (4, 5, 7) -> (6)
+  (4, 6, 7) -> (2)
+  (4, 6, 7) -> (5)
+\end{verbatim}
+
+\subsection{Optimal Cover of Abalone Dataset}
+
+And finally, optimal cover tries to achieve the possible smallest number of attributes. Compared with LR-minimum cover, optimal cover of our example has 209 attributes and also 40 functional dependencies. And the below shows the result of optimal cover.
+
+\begin{verbatim}
+  (0, 1, 2, 3, 5, 8) -> (4)
+  (0, 1, 2, 6, 7) -> (5)
+  (0, 1, 3, 4, 7) -> (8)
+  (0, 1, 3, 5, 7) -> (8)
+  (0, 1, 4, 5) -> (6)
+  (0, 1, 5, 6) -> (7)
+  (0, 1, 6, 7, 8) -> (4)
+  (0, 2, 3, 6, 7) -> (8)
+  (0, 3, 4, 6) -> (2)
+  (0, 3, 4, 7, 8) -> (1)
+  (0, 4, 6, 8) -> (7)
+  (0, 5, 6, 8) -> (2)
+  (1, 2, 3, 4) -> (0)
+  (1, 2, 3, 4, 8) -> (5)
+  (1, 2, 3, 6, 8) -> (4)
+  (1, 2, 4, 7) -> (6)
+  (1, 2, 5, 7, 8) -> (0)
+  (1, 2, 6, 7, 8) -> (0)
+  (1, 3, 4, 6) -> (7)
+  (1, 3, 4, 8) -> (0)
+  (1, 3, 5, 6) -> (2)
+  (1, 3, 5, 7, 8) -> (0)
+  (1, 4, 5) -> (8)
+  (1, 4, 6, 8) -> (3)
+  (1, 4, 7, 8) -> (0)
+  (1, 5, 6, 7) -> (2)
+  (1, 5, 6, 8) -> (2)
+  (2, 3, 4, 7) -> (0)
+  (2, 3, 5, 6) -> (1)
+  (2, 3, 5, 7, 8) -> (0)
+  (2, 3, 6, 7, 8) -> (0)
+  (2, 4, 5) -> (6)
+  (2, 4, 6) -> (0)
+  (2, 5, 6, 7) -> (0)
+  (2, 5, 6, 8) -> (7)
+  (3, 5, 6, 7) -> (1)
+  (3, 5, 6, 8) -> (1)
+  (4, 5, 6) -> (2)
+  (4, 5, 7) -> (1)
+  (4, 6, 7) -> (5)
+\end{verbatim}
+
 
 \section{Analysis}
 
-From the experiment result shown in the previous three sections, we can find that canonical covers always have largest number of attributes. Because in cannonical cover algorithm, we have to split each functional dependency with multiple attributes in the right side into multiple functional dependencies with single attribute in the right side. Then,
+From the experiment result shown in the sections 4.2, 4.3 and 4.4, we can find that canonical covers always have largest number of attributes. Because in cannonical cover algorithm, we have to split each functional dependency with multiple attributes in the right side into multiple functional dependencies with single attribute in the right side. Then,
 the number of attributes in non-redundant covers are dramatically reduced than canonical covers. And minimum covers have fewer attributes in the result than non-redundant attributes since it has fewest number of functional dependencies. L-minimum covers have fewer attributes than minimum covers. LR-minimum covers have fewer attributes than L-minimum. The number of attributes in mini covers is between  the number in canonical covers and the number in non-redundant covers since it takes some global optimal strategy but the right sides are all single attribute. And optimal covers have fewest number of attributes for all data sets. Table 4.1 shows the overall comparision about the number attributes for different kinds of covers.
 
 And considering the time consumption of different cover algorithms, mini cover algorithm and optimal cover algorithm take a large number of time. And since their time consumption are both exponential growing. They can only be used for small size of data sets in a limited time. Optimal cover takes one more step to do minimization, so it takes more time than mini cover calculation. For other non-exponential algorithms, LR-minimum cover algorithm takes more time than L-minimum cover. L-minimum cover algorithm takes more time than minimum cover algorithm. Canonical cover algorithm takes more time than minimum cover algorithm. And non-redundant cover algorithm takes least time than all the others. Table 4.2 summarises the overall comparision about the time consumption for different kinds of covers.

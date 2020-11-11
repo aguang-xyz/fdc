@@ -41,8 +41,16 @@
 \BOOKMARK [1][-]{section.4.3}{Experiment for All Algorithms}{chapter.4}% 41
 \BOOKMARK [1][-]{section.4.4}{Trade-off between Cover Size and Time Consumption}{chapter.4}% 42
 \BOOKMARK [1][-]{section.4.5}{Qualitative Analysis}{chapter.4}% 43
-\BOOKMARK [1][-]{section.4.6}{Analysis}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.7}{Summary}{chapter.4}% 45
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 46
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 47
-\BOOKMARK [0][-]{appendix.A}{Source Code of FDC Library}{}% 48
+\BOOKMARK [2][-]{subsection.4.5.1}{Original Cover of Abalone Dataset}{section.4.5}% 44
+\BOOKMARK [2][-]{subsection.4.5.2}{Non-Redundant Cover of Abalone Dataset}{section.4.5}% 45
+\BOOKMARK [2][-]{subsection.4.5.3}{Canonical Cover of Abalone Dataset}{section.4.5}% 46
+\BOOKMARK [2][-]{subsection.4.5.4}{Minimum Cover of Abalone Dataset}{section.4.5}% 47
+\BOOKMARK [2][-]{subsection.4.5.5}{L-Minimum Cover of Abalone Dataset}{section.4.5}% 48
+\BOOKMARK [2][-]{subsection.4.5.6}{LR-Minimum Cover of Abalone Dataset}{section.4.5}% 49
+\BOOKMARK [2][-]{subsection.4.5.7}{Mini Cover of ABalone Dataset}{section.4.5}% 50
+\BOOKMARK [2][-]{subsection.4.5.8}{Optimal Cover of Abalone Dataset}{section.4.5}% 51
+\BOOKMARK [1][-]{section.4.6}{Analysis}{chapter.4}% 52
+\BOOKMARK [1][-]{section.4.7}{Summary}{chapter.4}% 53
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 54
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 55
+\BOOKMARK [0][-]{appendix.A}{Source Code of FDC Library}{}% 56
