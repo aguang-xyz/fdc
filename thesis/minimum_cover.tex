@@ -726,10 +726,19 @@ the overall time complexity of computing optimal cover is still NP-Complelte.
 
 \section{Implementation}
 
-We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions. The full source code can be found via Github \cite{githubfdc} or in the Appendix of this paper.
+We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions.
 
+Figure 3.1 shows the project structure of our implementation. We use CMake \cite{martin2010mastering} as the build toold chain. Src folder contains the most source code, `fdc.h` provides the definitions of data structures and functions. `io.cpp` contains the IO related function implementations. `algorithm.cpp` contains the most implementations of cover algorithms. The Quine-McCluskey method and 0-1 integer programming parts are separated into `qmc.cpp`.
 
+Test folder contains test code based on GTest \cite{barca2016gtest} framework. In algorithm subfolder, we have unit test cases to validate the correctness of each cover algorithm. In io subfolder, we validate the correctness of input-output related functions. And in dataset folder, we have some test case to run the experiment for Chapter 4.
 
+Also, the code is well documented. We use Doxygen \cite{laramee2011bob} to generate documents automatically. The full source code can be found via Github \cite{githubfdc} or in the Appendix of this paper.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{./diagrams/structure.png}
+	\caption{Project structure of FDC library}
+\end{figure}
 
 \section{Summary}
 
