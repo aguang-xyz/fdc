@@ -94,7 +94,7 @@ A thesis submitted in partial fulfilment of the requirements for the degree of M
 
 \addcontentsline{toc}{chapter}{Abstract}
 
-Functional dependencies are important in relational databases as they formulate the constraints between different sets of attributes. There are different but equivalent ways to represent the same set of functional dependencies which are as known as covers. The performance of many data processing tasks such as data cleaning and query optimization deeply replies on how small the size of the cover is. In this article, we will talk about different types of "smallest covers" (optimum covers), how they can be calculated, how about the time consuming and how small they are.
+Functional dependencies are important in relational databases as they formulate the constraints between different sets of attributes. There are different but equivalent ways to represent the same set of functional dependencies which are as known as covers. The performance of many data processing tasks such as data cleaning and query optimization deeply replies on how small the size of the cover is. In this article, we will talk about different types of "smallest covers" (optimum covers), how they can be calculated, how about the time consumption and how small they are.
 
 \chapter*{Acknowledgement}       
 \setcounter{page}{2}
@@ -104,7 +104,7 @@ Functional dependencies are important in relational databases as they formulate 
 
 I would like to express my deepest appreciation to my supervisor Prof. Sebastian Link for his excellent guidance, suggestions and encouragement not only in this dissetation but also in other courses.
 
-I would also like to extend my deepest gratitude to Dr. Ziheng Wei who helped a lot to review and guidance the implementation.
+I would also like to extend my deepest gratitude to Dr. Ziheng Wei who helped a lot to review and guide the implementation.
 
 I am also grateful to my parents and my wife, for their unconditional love and support especially during this tough period against COVID-19.
 
@@ -169,10 +169,9 @@ There are many scenarios where the size of functional dependencies is very impor
 
 1) Data validation. Functional dependencies are used as integrity constraints to validate if the updates of a database are meaningful. If any update operation leads some violation of any functional dependency, then the update should be rejected, or at least some warning should be issued. Therefore, database management system must verify after every update whether the resulting database still satisfies all the functional dependencies that have been specified. To implement such a relational database system which supports functional dependencies, a simple idea could be to iterate each functional dependency $f$ and read related attributes of a relation after updating this relation. Obviously, the smaller the cover is, the less time it takes for the validation.
 
-2) Data mining. For data analysis, datasets are often mined for the set of functional dependencies that hold on the given database.
+2) Data mining. For many datasets, the functional dependencies are unknown and almost unable to be discovered manually. There are many algorithms trying to discover potential functional dependencies from a given dataset \cite{agarwal1994fast,huhtala1999tane,novelli2001fun,yao2008mining,lopes2000efficient,wyss2001fastfds}. But the output of these algorithms can be large. It is therefore important to represent the output as concisely as possible.
 
-3) Data normalization.
-~\\
+3) Data normalization. Some data normalization algorithms may use different notions of covers \cite{koehler2006finding,beeri1979computational}. So it is also nice to know what is the difference between these different kinds of covers.
 
 These use cases strongly motivate the question: What do the diffrent notions of covers achieve? To be more specific, the question can be divided into two parts: 1) How do the output sizes of the different cover algorithms compare against each other? 2) How do the times to compute the different covers compare against each other?
 
@@ -751,29 +750,29 @@ In this chapter, we'll show some experiment results based on our c++ implementat
 To better understand our experiment result, we'll show the results of some example on a tiny dataset abalone in section 4.5. Then in section 4.6, we'll analysis these experiment results and try to given some answer of our research question.
 
 \section{Experiment Setup}
-
-To evaluate the performance of different optimum cover algorithms, we used 12 different datasets for testing. Table 4.1 shows the characteristics of the 12 different databsets. Fd\_reduced is the only synthetic dataset. Other datasets are from realworld, obtained from the UCI Machine Learning Repository \cite{asuncion2007uci}
+	
+To evaluate the performance of different optimum cover algorithms, we used 12 different datasets for testing. Table 4.1 shows the characteristics of the 12 different databsets. Fd\_reduced is the only synthetic dataset. Other datasets are from realworld, obtained from the UCI Machine Learning Repository \cite{asuncion2007uci}. Most of these datasets were also  used in some experiment of functional dependency discovery \cite{papenbrock2015functional}.
 
 \begin{table}
 
 	\centering
 	
-	\begin{tabular}{ |c|c|c| }
+	\begin{tabular}{ |c|c|c|c| }
 		\hline
-		Dataset & Attributes & FDs \\
+		Dataset & Attributes(Columns) & Rows & FDs \\
 		\hline
-		abalone        & 9 & 54 \\
-		letter         & 17 & 61 \\
-		adult          & 15 & 68 \\
-		lineitem       & 16 & 901  \\ 
-		china\_weather & 18 & 2955 \\ 
-		fd\_reduced    & 30 & 3573 \\
-		hepatitis      & 20 & 5372 \\
-		uniprot        & 30 & 5794 \\
-		horse          & 28 & 86583 \\
-		diabetic       & 30 & 97341 \\
-		plista         & 63 & 111360 \\
-		flight         & 109 & 268262 \\
+		abalone        & 9   & 4177   & 54 \\
+		letter         & 17  & 20000  & 61 \\
+		adult          & 15  & 48842  & 68 \\
+		lineitem       & 16  &        & 901  \\ 
+		china\_weather & 18  &        & 2955 \\ 
+		fd\_reduced    & 30  & 250000 & 3573 \\
+		hepatitis      & 20  & 155    & 5372 \\
+		uniprot        & 30  & 233    & 5794 \\
+		horse          & 28  & 368    & 86583 \\
+		diabetic       & 30  & 1151   & 97341 \\
+		plista         & 63  & 1000   & 111360 \\
+		flight         & 109 & 1000   & 268262 \\
 		\hline
 	\end{tabular}
 
@@ -781,7 +780,7 @@ To evaluate the performance of different optimum cover algorithms, we used 12 di
 	
 \end{table}
 
-And our experiment runs on the same Linux laptop (Ubuntu 18.04.1, x86\_64, Intel i7-7700 HQ, 2.80GHz). 
+And our experiment runs on the same Linux laptop (Ubuntu 18.04.1, x86\_64, Intel i7-7700 HQ, 2.80GHz).
 
 \section{Experiment for Non-exponential Algorithms}
 
