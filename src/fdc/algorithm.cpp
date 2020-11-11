@@ -318,24 +318,25 @@ fds minimum(const int N, const fds &F) {
   // 2. Find all equivalence classes for `G`.
 
   // 2.1 Calculate $ X^+ for each X \to Y \in G $.
-  bool **D = new bool *[F.size()];
+  bool **D = new bool *[G.size()];
 
-  for (int i = 0; i < F.size(); i++) {
+  for (int i = 0; i < G.size(); i++) {
 
     D[i] = new bool[N];
   }
 
   for (int i = 0; i < G.size(); i++) {
 
-    depend(N, G, F[i].first, &(D[i][0]));
+    depend(N, G, G[i].first, &(D[i][0]));
   }
 
   // 2.2 Calculate equivalence classes.
-  bool **M = new bool *[F.size()];
+  // M[i][j] indicates X_i <-> X_j.
+  bool **M = new bool *[G.size()];
 
-  for (int i = 0; i < F.size(); i++) {
+  for (int i = 0; i < G.size(); i++) {
 
-    M[i] = new bool[F.size()];
+    M[i] = new bool[G.size()];
   }
 
   for (int i = 0; i < G.size(); i++) {
@@ -366,6 +367,8 @@ fds minimum(const int N, const fds &F) {
     if (G[i].first.size() == 0)
       continue;
 
+    // G[i] is Y -> Y'
+
     // H is $ F - EF(X) $.
     fds H = fds();
 
@@ -377,7 +380,7 @@ fds minimum(const int N, const fds &F) {
       }
     }
 
-    // D2 is $ X^+ $ under $ H $.
+    // D2 is $ Y^+ $ under $ H = F - EF(X) $.
     bool D2[N];
 
     depend(N, H, G[i].first, D2);
@@ -422,7 +425,7 @@ fds minimum(const int N, const fds &F) {
   }
 
   // 4. Since we use two dynamic array D, M, clean up here.
-  for (int i = 0; i < F.size(); i++) {
+  for (int i = 0; i < G.size(); i++) {
 
     delete[] D[i];
     delete[] M[i];
