@@ -726,7 +726,7 @@ the overall time complexity of computing optimal cover is still NP-Complelte.
 
 \section{Implementation}
 
-We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions.
+We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions. The full source code can be found via Github \cite{githubfdc} or in the Appendix of this paper.
 
 \section{Summary}
 
@@ -734,9 +734,9 @@ So in this chapter, we introduced some basic algorithms to find dependent set, v
 
 \chapter{Experiments}
 
-In this chapter, we'll show some experiment results based on our c++ implementation and 11 datasets (mostly from realworld).
+In this chapter, we'll show some experiment results based on our c++ implementation and 11 datasets (mostly from realworld). We'll first talk about how we setup the experiment and introduce the characteristics of the datasets. The experiment is basically divied into two parts: for 3 small datasets, we successfully run all the algorithms; for other 9 big datasets, we only run the other algorithms except mini cover and optimal cover in a limited time. Section 4.2 and 4.3 will show the details of these experiment results. And section 4.4 will show more trade-off between cover size and time consumption for each algorithm on the full dataset.
 
-
+To better understand our experiment result, we'll show the results of some example on a tiny dataset abalone in section 4.5. Then in section 4.6, we'll analysis these experiment results and try to given some answer of our research question.
 
 \section{Experiment Setup}
 
@@ -1442,6 +1442,9 @@ $$
 
 \end{table}
 
+\section{Qualitative Analysis}
+
+To better understand the experiment result, here we use the abalone dataset as an example to show the results of different covers.
 
 \section{Analysis}
 
@@ -1490,6 +1493,9 @@ And considering the time consumption of different cover algorithms, mini cover a
 
 Based on the experiment result, optimal cover achieves the best possible cover size, but it may be too expensive to compute. Execept mini cover and optimal cover, LR-minimum cover shows the biggest reduction of cover size. And considering the time consumption, LR-minimum cover may not spent much more time other algorithms.
 
+\section{Summary}
+
+So in this chapter, we introduced how to run the experiment and show the characteristics of the datasets that we used. Since mini cover and optimal cover computation are quite expensive, we only sucessfully run these two algorithms on three small datasets. But for other algorithms, we run them on all 11 datasets. Based on our analysis, we suggest lr-minimum cover as the best choice since the result cover size is good enough and the time consumption is not expensive as the exponential algorithms like mini cover algorithm and optimal cover algorithm.
 
 \chapter{Conclusion}
 

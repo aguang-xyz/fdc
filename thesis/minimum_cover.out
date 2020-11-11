@@ -40,7 +40,9 @@
 \BOOKMARK [1][-]{section.4.2}{Experiment for Non-exponential Algorithms}{chapter.4}% 40
 \BOOKMARK [1][-]{section.4.3}{Experiment for All Algorithms}{chapter.4}% 41
 \BOOKMARK [1][-]{section.4.4}{Trade-off between Cover Size and Time Consumption}{chapter.4}% 42
-\BOOKMARK [1][-]{section.4.5}{Analysis}{chapter.4}% 43
-\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 44
-\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 45
-\BOOKMARK [0][-]{appendix.A}{Source Code of FDC Library}{}% 46
+\BOOKMARK [1][-]{section.4.5}{Qualitative Analysis}{chapter.4}% 43
+\BOOKMARK [1][-]{section.4.6}{Analysis}{chapter.4}% 44
+\BOOKMARK [1][-]{section.4.7}{Summary}{chapter.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Conclusion}{}% 46
+\BOOKMARK [0][-]{chapter.6}{Future Work}{}% 47
+\BOOKMARK [0][-]{appendix.A}{Source Code of FDC Library}{}% 48
