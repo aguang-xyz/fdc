@@ -985,13 +985,15 @@ Table 4.4 shows the time consumption and the result cover size for each algorith
 
 To better understand the experiment result, for each dataset and each pairs of algorithms we compute the observed trade-off between the result cover size and the time consumption. Table 4.5 and Table 4.6 illustrate the time consumption ratio between each pairs of algorithms for each dataset. Table 4.7 and Table 4.8 indicate the result cover size ratio between each pairs of algorithms for each dataset.
 
-And Table 4.9 and Table 4.10 show the overall ratio between each pairs of algorithsm for each dataset. In terms of over ratio, for a pair of algorithms $A$ and $B$, the ratio is calculated by:
+And Table 4.9 and Table 4.10 show the overall ratio between each pairs of algorithms for each dataset. In terms of over ratio, for a pair of algorithms $A$ and $B$, the ratio is calculated by:
 
 $$
 \frac
 	{\text{B's cover size} \times \text{B's time consumption}}
 	{\text{A's cover size} \times \text{A's time consumption}}
 $$
+
+And Table 4.11 shows the reduction size and time ratio for each algorithm on each full dataset ($\frac{\text{The number of attributes in result cover} - \text{The number of attributes in input cover}}{\text{Running time}}$).
 
 \begin{table}
 
@@ -1450,6 +1452,44 @@ $$
 \end{tabular}
 
 	\caption{Overall ratio between paris of algorithms (all)}
+
+\end{table}
+
+\begin{table}
+
+	\centering
+	
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+
+    \hline
+    Dataset &
+    	NR &
+    	C &
+    	Min &
+    	L-Min &
+    	LR-Min &
+    	Mini &
+    	Opt \\
+    	    
+    \hline
+abalone & 260000.0 & 503000.0 & 260000.0 & 260000.0 & 201000.0 & 24125.0 & 12500.0 \\                                                                                                                                
+letter & 769000.0 & 256333.333 & 769000.0 & 192250.0 & 192250.0 & 34954.545 & 33434.782 \\                                                                                                                           
+adult & 254000.0 & 280000.0 & 254000.0 & 254000.0 & 252000.0 & 6.78 & 3.789\\                                                                                                                                       
+lineitem & 368705.882 & 288694.915 & 68107.142 & 48658.119 & 23169.811 & & \\                                                                                                                                            
+china\_weather & 56113.537 & 29096.418 & 11889.196 & 9425.531 & 7823.906 & & \\                                                                                                                                           
+fd\_reduced & 158662.068 & 440329.787 & 96345.41 & 79933.867 & 24246.575 & & \\                                                                                                                                           
+hepatitis & 24104.761 & 12294.557 & 8926.611 & 6557.874 & 6105.773 & & \\                                                                                                                                                
+uniprot & 22692.189 & 20007.987 & 5120.827 & 4375.147 & 3185.555 & & \\                                                                                                                                                  
+horse & 1436.961 & 664.012 & 362.622 & 231.519 & 219.503 & & \\                                                                                                                                                          
+diabetic & 2039.638 & 390.782 & 203.475 & 66.657 & 62.84 & & \\                                                                                                                                                          
+plista & 724.346 & 718.558 & 388.147 & 224.086 & 180.935 & & \\                                                                                                                                                          
+flight & 64.387 & 162.359 & 2.362 & 2.332 & 0.312 & & \\	
+
+    \hline
+        
+\end{tabular}
+
+	\caption{Reduction of size per-second of each algorithm}
 
 \end{table}
 
