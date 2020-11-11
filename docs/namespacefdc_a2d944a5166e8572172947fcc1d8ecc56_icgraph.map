@@ -1,6 +1,0 @@
-<map id="fdc::attrs_of" name="fdc::attrs_of">
-<area shape="rect" id="node2" href="$namespacefdc.html#a57b324986f2cc23cb3f91d8ab4ecdda7" title="Get the closure of a given set of functional depdencies F. It is an implementation of Armstrong&#39;s Axi..." alt="" coords="145,56,253,83"/>
-<area shape="rect" id="node3" href="$namespacefdc.html#afd2792679098c7b549c7f898bca33a50" title="Check if two given sets of functional dependencies are equivalent. " alt="" coords="322,5,401,32"/>
-<area shape="rect" id="node5" href="$namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6" title="Check if a given set of functional dependencies is canonical. " alt="" coords="301,56,421,83"/>
-<area shape="rect" id="node4" href="$namespacefdc.html#abd490291a1a1ce433b424dfb9be571ff" title="Check if a given set of functional dependencies F is a cover of another given set of functional depen..." alt="" coords="469,5,584,32"/>
-</map>

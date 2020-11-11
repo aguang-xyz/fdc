@@ -1,6 +1,0 @@
-<map id="fdc::depend" name="fdc::depend">
-<area shape="rect" id="node2" href="$group__algorithms.html#gaa7c9eeef2a42479ad43e9d019b88c9fe" title="Membership determination. " alt="" coords="144,31,280,57"/>
-<area shape="rect" id="node3" href="$group__algorithms.html#gacd3f67413e2b4badbb7a743d147d4122" title="Redundant determination. " alt="" coords="328,5,451,32"/>
-<area shape="rect" id="node5" href="$group__algorithms.html#ga57781fbc12b8f11fc773487b92ff8005" title="Redundant cover calculation. " alt="" coords="337,56,442,83"/>
-<area shape="rect" id="node4" href="$namespacefdc.html#a6f7c3eebb058e80db712ff650fe3fcd6" title="Check if a given set of functional dependencies is canonical. " alt="" coords="499,5,619,32"/>
-</map>

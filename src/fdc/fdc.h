@@ -179,7 +179,7 @@ void to_json(std::ostream &output, const int &N, const fds &F);
  *     minimum[label = "Minimum"]
  *     l_minimum[label = "L-Minimum"]
  *     lr_minimum[label = "LR-Minimum"]
- *     optical[label = "Optical"]
+ *     optimal[label = "Optimal"]
  *     mini[label = "Mini"]
  *
  *     canonical -> non_redundant
@@ -187,8 +187,8 @@ void to_json(std::ostream &output, const int &N, const fds &F);
  *     mini -> canonical
  *     l_minimum -> minimum
  *     lr_minimum -> l_minimum
- *     optical -> lr_minimum
- *     optical -> mini
+ *     optimal -> lr_minimum
+ *     optimal -> mini
  *   }
  * \enddot
  *

@@ -1,4 +1,0 @@
-var structnlohmann_1_1detail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01Construb7f96efbcfd2606ccb5c84a830a60036 =
-[
-    [ "object_t", "structnlohmann_1_1detail_1_1is__constructible__object__type__impl_3_01BasicJsonType_00_01Construb7f96efbcfd2606ccb5c84a830a60036.html#a6f458a63276ef62d60f4b93de03aa020", null ]
-];
