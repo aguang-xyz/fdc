@@ -236,7 +236,7 @@ We say a cover $G$ is \textbf{non-redundant} if there is no such functional depe
 \subsection{Canonical Covers}
 
 \begin{mydef}[Paredaens \cite{paredaens1977functional}]
-We say $G$ is a \textbf{canonical} cover if $G$ is \textbf{redundant} and for each functional dependency $f: X \rightarrow Y \in G$:
+We say $G$ is a \textbf{canonical} cover if $G$ is \textbf{non-redundant} and for each functional dependency $f: X \rightarrow Y \in G$:
   \begin{itemize}
 	\item the size of the left side $\lvert Y \rvert = 1$.
 	\item there is no such $X^{'}$ where $X^{'} \subset X$ and $X^{'} \rightarrow Y \in G^{+}$.
@@ -276,7 +276,7 @@ We say $G$ is a \textbf{L-minimum} cover if:
 We say $G$ is a \textbf{LR-minimum} cover if:
   \begin{itemize}
   	\item $G$ is \textbf{L-minimum}.
-  	\item for each functional dependency $f: X \rightarrow Y \in G$, there is no such $Y^{'}$ where $(G - \{f\} + \{X \rightarrow Y^{'}\}) \equiv G$.
+  	\item for each functional dependency $f: X \rightarrow Y \in G$, there is no such $Y^{'} \subset Y$ where $(G - \{f\} + \{X \rightarrow Y^{'}\}) \equiv G$.
   \end{itemize}
 \end{mydef}
 
