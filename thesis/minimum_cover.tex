@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{xcolor}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 \setlength{\oddsidemargin}{1.5cm}
@@ -102,9 +103,9 @@ Functional dependencies are important in relational databases as they formulate 
 
 \addcontentsline{toc}{chapter}{Acknowledgement}
 
-I would like to express my deepest appreciation to my supervisor Prof. Sebastian Link for his excellent guidance, suggestions and encouragement not only in this dissetation but also in other courses.
+I would like to express my deepest appreciation to my supervisor Prof. Sebastian Link for his excellent guidance, suggestions and encouragement not only in this dissertation but also in other courses.
 
-I would also like to extend my deepest gratitude to Dr. Ziheng Wei who helped a lot to review and guide the implementation.
+I would also like to extend my deepest gratitude to Dr Ziheng Wei who helped a lot to review and guide the implementation.
 
 I am also grateful to my parents and my wife, for their unconditional love and support especially during this tough period against COVID-19.
 
@@ -142,7 +143,7 @@ The term "relational database" was first introduced by Codd \cite{codd13f} from 
 	\label{example_table_1}
 \end{table}
 
-Functional dependencies (FDs) are used to constraint the relations. Let's say we have a relation $r$ and a functional dependency $f: X \rightarrow Y$, $r$ satisfies $f$ only if each set of tuples with equal $X$ values has equal $Y$ values \cite{maier1983theory}. Table \ref{example_table_1} shows some example table, it satisfies the functional dependency $f: AB \to C$, because when the values of A and B are determined, the value of C can also be uniquely determined.
+Functional dependencies (FDs) are used to constraint relations. Let's say we have a relation $r$ and a functional dependency $f: X \rightarrow Y$, $r$ satisfies $f$ only if each set of tuples with equal $X$ values has equal $Y$ values \cite{maier1983theory}. Table \ref{example_table_1} shows some example table, it satisfies the functional dependency $f: AB \to C$, because when the values of A and B are determined, the value of C can also be uniquely determined.
 
 \begin{table}[H]
 	\centering
@@ -161,7 +162,7 @@ Functional dependencies (FDs) are used to constraint the relations. Let's say we
 	\caption{Some example of table (sorted by A and B)}
 \end{table}
 
-A set of functional dependencies are usually called a cover. Given a cover, we may have different but equivalent representations. For example: $\{ A \to B, A \to C \}$ can be also represented as $\{ A \to BC \}$.
+A set of functional dependencies are usually called a cover. Given a cover, we may have different but equivalent representations. For example $\{ A \to B, A \to C \}$ can be also represented as $\{ A \to BC \}$.
 
 ~\\
 There are many scenarios where the size of functional dependencies is very important.
@@ -169,13 +170,13 @@ There are many scenarios where the size of functional dependencies is very impor
 
 1) Data validation. Functional dependencies are used as integrity constraints to validate if the updates of a database are meaningful. If any update operation leads some violation of any functional dependency, then the update should be rejected, or at least some warning should be issued. Therefore, database management system must verify after every update whether the resulting database still satisfies all the functional dependencies that have been specified. To implement such a relational database system which supports functional dependencies, a simple idea could be to iterate each functional dependency $f$ and read related attributes of a relation after updating this relation. Obviously, the smaller the cover is, the less time it takes for the validation.
 
-2) Data mining. For many datasets, the functional dependencies are unknown and almost unable to be discovered manually. There are many algorithms trying to discover potential functional dependencies from a given dataset \cite{agarwal1994fast,huhtala1999tane,novelli2001fun,yao2008mining,lopes2000efficient,wyss2001fastfds}. But the output of these algorithms can be large. It is therefore important to represent the output as concisely as possible.
+2) Data mining. For many datasets, the functional dependencies are unknown and almost unable to be discovered manually. Many algorithms trying to discover potential functional dependencies from a given dataset \cite{agarwal1994fast,huhtala1999tane,novelli2001fun,yao2008mining,lopes2000efficient,wyss2001fastfds}. But the output of these algorithms can be large. It is therefore important to represent the output as concisely as possible.
 
 3) Data normalization. Some data normalization algorithms may use different notions of covers \cite{koehler2006finding,beeri1979computational}. So it is also nice to know what is the difference between these different kinds of covers.
 
-These use cases strongly motivate the question: What do the diffrent notions of covers achieve? To be more specific, the question can be divided into two parts: 1) How do the output sizes of the different cover algorithms compare against each other? 2) How do the times to compute the different covers compare against each other?
+These use cases strongly motivate the question: What do the different notions of covers achieve? To be more specific, the question can be divided into two parts: 1) How do the output sizes of the different cover algorithms compare against each other? 2) How do the times to compute the different covers compare against each other?
 
-So far, the literature has not brought forward any experimental study focusing on these questions about different covers. Therefore, the main purpose of this article is trying to go deeper into the algorithms of different kinds of "minimum" covers and experimentally analysis the ratio between the time consumption of these algorithms and the reduction of the size of attributes. In Chapter 2., we will should some literature review of the notions of different covers. In Chapter 3., we will introduce the algorithms to compute different covers. In Chapter 4., we will show the experiment result and experimental comparision to quatify the trade-off.
+So far, the literature has not brought forward any experimental study focusing on these questions about different covers. Therefore, the main purpose of this article is trying to go deeper into the algorithms of different kinds of "minimum" covers and experimentally analysis the ratio between the time consumption of these algorithms and the reduction of the size of attributes. In Chapter 2., we will show some literature review of the notions of different covers. In Chapter 3., we will introduce the algorithms to compute different covers. In Chapter 4., we will show the experiment result and experimental comparison to quantify the trade-off.
 
 \chapter{Literature Review}
 
@@ -185,7 +186,7 @@ In this chapter, we will introduce the formal definitions in relational database
 
 \subsection{Relations}
 
-The term relation was introduced by Codd \cite{codd13f} in 1970. He gaved a mathmatical sense to describe the Large Shared Data Banks as Relational Model of Data. 
+The term relation was introduced by Codd \cite{codd13f} in 1970. He gave a mathematical sense to describe the Large Shared Data Banks as a Relational Model of Data. 
 
 \begin{mydef}
 Given sets of attributes $S_1, S_2, \cdots, S_n$, a \textbf{relation} $r$ on these attribute sets is a set of n-tuples where the $i-th$ element $\in S_i$.
@@ -202,7 +203,7 @@ Let's say $X$ and $Y$ are two sets of attributes chosen from a universe $U$ in a
 \subsection{Closure}
 
 \begin{mydef}
-For a given set of functional dependencies $F$, the \textbf{closure} of $F$ is written $F^+$ which contains all the functional dependencies which can be inferenced by $F$. 
+For a given set of functional dependencies $F$, the \textbf{closure} of $F$ is written $F^+$ which contains all the functional dependencies which can be influenced by $F$. 
 \end{mydef}
 
 The closure can be calculated based on Armstrong's axioms.
@@ -283,30 +284,31 @@ We say $G$ is a \textbf{LR-minimum} cover if:
 \subsection{Optimal Covers}
 
 \begin{mydef}[Maier \cite{maier1980minimum}]
-We say $G$ is a \textbf{optimal} cover if there no such $H$ where $H \equiv G$ and $H$ has fewer number of attributes (repetitively counted).
+We say $G$ is an \textbf{optimal} cover if there no such $H$ where $H \equiv G$ and $H$ has a fewer number of attributes (repetitively counted).
 \end{mydef}
 
 \section{Relationships between Different Types of Covers}
 
-Canonical, L-minimum, LR-minimum and optimal covers are the covers with only necessary attributes in the left sides. Canonical, LR-minimum and optimal covers are the covers with only necessary attributes in the right sides. Figure 2.1 shows the relationships between different definitions of covers. In the next section, we'll start to talk the algorithms to compute all these kinds of covers. Obviously, computing optimal cover should be most difficult task. And in the next section, we'll find that Non-redundant, Minimum, L-Minimum, LR-Minimum and Canonical covers can be calculated in non-exponential time. Mini and Optimal cover promblems are NP-Complete.
+Canonical, L-minimum, LR-minimum and optimal covers are the covers with only necessary attributes in the left sides. Canonical, LR-minimum and optimal covers are the covers with only necessary attributes in the right sides. Figure 2.1 shows the relationships between different definitions of covers. In the next section, we'll start to talk about the algorithms to compute all these kinds of covers. Computing optimal cover should be the most difficult task. And in the next section, we'll find that Non-redundant, Minimum, L-Minimum, LR-Minimum and Canonical covers can be calculated in non-exponential time. Mini and Optimal cover problems are NP-Complete.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{./diagrams/types-of-covers.png}
-	\caption{Relationships between Different Types of Covers}
+	\caption{Relationships between different types of covers}
 \end{figure}
 
 \section{Related Works}
 
-Maiver \cite{maier1980minimum} introduced the definitions of most different optimum covers (minimum, L-minimum, LR-minimum and optimal) mentioned in this paper. He also introduced an square-time algorithm to find the minimum cover. Beeri \& Bernstein \cite{beeri1979computational} introduced a linear-time algorithm to deal with the depend and membership problem. They also gave an procedure to remove redundant attributes from the left side of each functional dependency. Peng \& Xiao \cite{peng2016optimal} introduced a new concept called Mini Cover and indicated that the computation of Mini Cover can be equivalent to the computation of Minimum Boolean Expression. They also indicated that an Optimal Cover can be calculated via an OPTIMIZE algorithm from a Mini Cover.
+Maiver \cite{maier1980minimum} introduced the definitions of most different optimum covers (minimum, L-minimum, LR-minimum and optimal) mentioned in this paper. He also introduced n square-time algorithm to find the minimum cover. Beeri \& Bernstein \cite{beeri1979computational} introduced a linear-time algorithm to deal with the depend and membership problem. They also gave a procedure to remove redundant attributes from the left side of each functional dependency. Peng \& Xiao \cite{peng2016optimal} introduced a new concept called Mini Cover and indicated that the computation of Mini Cover can be equivalent to the computation of Minimum Boolean Expression. They also indicated that an Optimal Cover can be calculated via an OPTIMIZE algorithm from a Mini Cover.
 
 \section{Summary}
 
-In this chaper, we provided some literature review about the basic definitions in relational database model including relations, functional dependencies, closures and covers. And we also introduced the different notions of covers and the relationships between these covers. 
+In this chapter, we provided some literature review about the basic definitions in the 
+relational database model including relations, functional dependencies, closures and covers. And we also introduced the different notions of covers and the relationships between these covers. 
 
 \chapter{Algorithms}
 
-In this chapter, we'll first talk about some basic operations for computing covers including dependent set computation, membership determination, attributes equivalence determination and functional dependencies equivalence determination. Then, based on these basic operations, we'll introduce how to compute non-redundant cover, canonical cover, minimum cover, l-minimum cover and lr-minimum cover. After that, we'll move on the computation of mini cover. It can be transformed (Delobel-Casey Transform) as a minimum boolean expression problem. We'll talk about how to use Quine-McCluskey method to find candidate expressions and how to transform that problem again into a 0-1 integer programming model. Finally, based on the result of mini cover, we will show the algorithm to compute optimal cover.
+In this chapter, we'll first talk about some basic operations for computing covers including dependent set computation, membership determination, attributes equivalence determination and functional dependencies equivalence determination. Then, based on these basic operations, we'll introduce how to compute non-redundant cover, canonical cover, minimum cover, l-minimum cover and lr-minimum cover. After that, we'll move on the computation of the mini cover. It can be transformed (Delobel-Casey Transform) as a minimum boolean expression problem. We'll talk about how to use the Quine-McCluskey method to find candidate expressions and how to transform that problem again into a 0-1 integer programming model. Finally, based on the result of the mini cover, we will show the algorithm to compute optimal cover.
 
 \section{Dependent Set}
 
@@ -358,7 +360,7 @@ Since each functional dependency will be consumed only once, if we regard the le
 
 \section{Membership Determination}
 
-Based on the depend algorithm, we can easily determine if $X \rightarrow Y \in F^+$. Algorithm 2. shows the proccess how to determine if a given functional dependency $X \to Y$ belongs to the closure of a given functional dependnecy set $F$. Since the membership algorithm only takes extra $O(|Y|)$ time to check if $Y \subseteq depend(U, F, X)$, the time complexity of membership algorithm should be $O(|F|)$ as same as the depend algorithm.
+Based on the DEPEND algorithm, we can easily determine if $X \rightarrow Y \in F^+$. Algorithm 2. shows the process how to determine if a given functional dependency $X \to Y$ belongs to the closure of a given functional dependency set $F$. Since the membership algorithm only takes extra $O(|Y|)$ time to check if $Y \subseteq depend(U, F, X)$, the time complexity of membership algorithm should be $O(|F|)$ as same as the DEPEND algorithm.
 
 \begin{algorithm}
 
@@ -424,7 +426,7 @@ Given two sets of functional dependencies $F$ and $G$, to determine if $F \equiv
 
 \section{Non-Redundant Cover}
 
-Given a set of functional dependencies $F$, to compute a non-redundant cover $G$ where $G \equiv F$ and for each $H \subset G$, $H \not \equiv F$, we can iterate each functional dependency $f \in F$, if $f \in (F - \{ f \})^{+}$, then $f$ should be removed from the result $G$. Algorithm 5. shows this process. Basically, it takes membership algorithm for $|F|$ times; so the time complexity should be $O(|F|^2)$.
+Given a set of functional dependencies $F$, to compute a non-redundant cover $G$ where $G \equiv F$ and for each $H \subset G$, $H \not \equiv F$, we can iterate each functional dependency $f \in F$, if $f \in (F - \{ f \})^{+}$, then $f$ should be removed from the result $G$. Algorithm 5. shows this process. It takes membership algorithm for $|F|$ times; so the time complexity should be $O(|F|^2)$.
 
 \begin{algorithm}
 
@@ -487,7 +489,7 @@ Algorithms 6. shows how we compute a canonical cover. To compute a canonical cov
 
 \section{Minimum Cover}
 
-In Maier 1980 \cite{maier1980minimum}, the author introduced an $O(|F|^2)$ algorithm to compute the minimum cover. Algorithm 7. shows the process how we compute a minimum cover under a given universe $U$ and a functional dependency set $F$. The main idea is that we first convert the functional dependency set $F$ to a non-redudant cover $G$. And then, we iterate all pairs of functional dependency $X_i \rightarrow Y_i \in G$ and $X_j \rightarrow Y_j \in G$, if we find such pair of functional dependencies where $X_i \leftrightarrow X_j$ and $X_i \rightarrow Y_j \in G^{+}$, we can replace the two functional dependencies with a new one: $X_j \rightarrow Y_iY_j$. Since we may iterate all pairs of functional dependnecies, the time complexity of minimum cover algorithm is $O(|F|^2)$.
+In Maier 1980 \cite{maier1980minimum}, the author introduced an $O(|F|^2)$ algorithm to compute the minimum cover. Algorithm 7. shows the process of how we compute a minimum cover under a given universe $U$ and a functional dependency set $F$. The main idea is that we first convert the functional dependency set $F$ to a non-redundant cover $G$. And then, we iterate all pairs of functional dependency $X_i \rightarrow Y_i \in G$ and $X_j \rightarrow Y_j \in G$, if we find such pair of functional dependencies where $X_i \leftrightarrow X_j$ and $X_i \rightarrow Y_j \in G^{+}$, we can replace the two functional dependencies with a new one: $X_j \rightarrow Y_iY_j$. Since we may iterate all pairs of functional dependencies, the time complexity of the minimum cover algorithm is $O(|F|^2)$.
 
 \begin{algorithm}
   \caption{minimum(U, F)}
@@ -523,7 +525,7 @@ In Maier 1980 \cite{maier1980minimum}, the author introduced an $O(|F|^2)$ algor
 
 \section{L-Minimum Cover}
 
-The computation of L-minimum cover is based on the computation of minimum cover. By using the same algorithm \cite{beeri1979computational} mentioned in \textbf{3.6 canonical} to remove extranous left side attributes, we can convert a minimum cover to a L-minimum cover. Algorithm 8. shows the process of L-minimum cover algorithm. It first converts the given functional dependency $F$ to a minimum cover $G$. And then every time it applies a linear-time membership algorithm to check if $(X - B) \rightarrow A \in F^{+}$. If so, replace $X$ with $X - B$. The time complexity of computing L-minimum cover should be as same as the time complexity of minimum cover algorithm, $O(|F|^2)$.
+The computation of L-minimum cover is based on the computation of minimum cover. By using the same algorithm \cite{beeri1979computational} mentioned in \textbf{3.6 canonical} to remove extraneous left side attributes, we can convert a minimum cover to an L-minimum cover. Algorithm 8. shows the process of L-minimum cover algorithm. It first converts the given functional dependency $F$ to a minimum cover $G$. And then every time it applies a linear-time membership algorithm to check if $(X - B) \rightarrow A \in F^{+}$. If so, replace $X$ with $X - B$. The time complexity of computing L-minimum cover should be as same as the time complexity of the minimum cover algorithm, $O(|F|^2)$.
 
 \begin{algorithm}
  
@@ -592,17 +594,17 @@ Algorithm 9. shows the process of computing LR-minimum cover. For a functional d
 
 The concept of mini cover was introduced by Peng \& Xiao \cite{peng2016optimal}. And the authors introduced an idea that the computation of mini cover is equivalent to the minimum boolean expression problem.
 
-By using the first Delobel-Casey tranform \cite{delobel1973decomposition}, a functional dependency $f: X_1 X_2 \cdots X_m \rightarrow Y_1 Y_2 \cdots Y_n$ can be transformed to a boolean expression $X_1 X_2 \cdots X_m \overline{Y_1} + \cdots + X_1 X_2 \cdots X_m \overline{Y_m}$. And a set of functional dependencies $F$ can be transformed to the boolean sum of the transforms of each functional dependency.
+By using the first Delobel-Casey transform \cite{delobel1973decomposition}, a functional dependency $f: X_1 X_2 \cdots X_m \rightarrow Y_1 Y_2 \cdots Y_n$ can be transformed to a boolean expression $X_1 X_2 \cdots X_m \overline{Y_1} + \cdots + X_1 X_2 \cdots X_m \overline{Y_m}$. And a set of functional dependencies $F$ can be transformed to the boolean sum of the transforms of each functional dependency.
 
 For example, the Delobel-Casey transform of $F_1: \{ AB \rightarrow C, AB \rightarrow D, C \rightarrow D \}$ should be $b_1: AB\overline{C} + AB\overline{D} + C\overline{D}$. Since $AB\overline{D} = ABC\overline{D} + AB\overline{C}\overline{D}$, $ABC\overline{D}$ can be covered by $C\overline{D}$ and $AB\overline{C}\overline{D}$ can be covered by $AB\overline{C}$. $AB\overline{D}$ is redundant in the boolean expression $b_1$. So the minimum boolean expression of $b_1$ should be $b_2 = AB\overline{C} + C\overline{D}$. And $b_2$ can be transformed reversely to $F_2: \{ AB \rightarrow C, AB \rightarrow D, C \rightarrow D \}$.
 
-Minimum boolean expression problem aims to find the equivalent boolean expression with fewest number of symbols (repeated).
+Minimum boolean expression problem aims to find the equivalent boolean expression with the fewest number of symbols (repeated).
 
 \subsection{Quine-McCluskey Method}
 
 By converting a given set of functional dependencies $F$, we get an equivalent minimum boolean expression problem for computing mini cover. Quine-McCluskey method \cite{mccluskey1956minimization} is a traditional algorithm to deal with minimum boolean expression problem.
 
-Let's take the example in the previous section. We get a boolean expression $b_1: AB\overline{C} + AB\overline{D} + C\overline{D}$ from the given functional dependency set $F_1: \{ AB \rightarrow C, AB \rightarrow D, C \rightarrow D \}$. First, we write the function as a table iterating all the possible values of attributes and the related desired output. Table 3.1 shows the table of the function $F_1$. Then, we'll try to iterate paris of the terms and try to combine the pairs of terms $m_i$ and $m_j$ where $m_i$ and $m_j$ has only one different column (0 or 1). Table 3.2 shows how we combine the pairs of terms and find prime implicants. Then, we will try to find the combination of implicants (with minimum total number of symbols) to cover all the original terms in Table 3.1. As shown in the Table 3.3, the best solution should be choosing $m(2, 6, 10, 14)$ and $m(12, 13)$. So the equivalent minimum boolean expression should be $b_2 = AB\overline{C} + C\overline{D}$. 
+Let's take the example in the previous section. We get a boolean expression $b_1: AB\overline{C} + AB\overline{D} + C\overline{D}$ from the given functional dependency set $F_1: \{ AB \rightarrow C, AB \rightarrow D, C \rightarrow D \}$. First, we write the function as a table iterating all the possible values of attributes and the related desired output. Table 3.1 shows the table of the function $F_1$. Then, we'll try to iterate pairs of the terms and try to combine the pairs of terms $m_i$ and $m_j$ where $m_i$ and $m_j$ has only one different column (0 or 1). Table 3.2 shows how we combine the pairs of terms and find prime implicants. Then, we will try to find the combination of implicants (with a minimum total number of symbols) to cover all the original terms in Table 3.1. As shown in Table 3.3, the best solution should be choosing $m(2, 6, 10, 14)$ and $m(12, 13)$. So the equivalent minimum boolean expression should be $b_2 = AB\overline{C} + C\overline{D}$. 
 
 \begin{table}
 	\centering
@@ -674,7 +676,7 @@ Let's take the example in the previous section. We get a boolean expression $b_1
 
 \subsection{Integer Programming Problem}
 
-The remaining problem in the previous section is how we can find the best combination of implicants with minimum number of symbols. One simple solution could be using a $O(2^m)$ searching approach (where $m$ is the number of prime implicants generated after Quine-McCluskey method). But here, we have another solution. This problem can be easily converted to a equivalent 01-Integer programming problem.
+The remaining problem in the previous section is how we can find the best combination of implicants with the minimum number of symbols. One simple solution could be using a $O(2^m)$ searching approach (where $m$ is the number of prime implicants generated after Quine-McCluskey method). But here, we have another solution. This problem can be easily converted to an equivalent 01-Integer programming problem.
 
 Let's say we have a matrix $M$ where $C_{i, j} \in {0, 1}$ indicates whether the $i-th$ prime implicant contains the $j-th$ original term. And $S_{i} \in Z^{+}$ indicates the number of symbols contained in the $i-th$ prime implicant. $Z_i$ indicates whether we use the $i-th$ prime implicant in the result or not. Then we have:
 
@@ -684,12 +686,12 @@ Let's say we have a matrix $M$ where $C_{i, j} \in {0, 1}$ indicates whether the
 	\min_{Z} \sum_{i} Z_i * S_{i}		 
 \end{align}
 
-So we converted the last step of Quine-McCluskey method into a pure 0-1 integer programming problem. Although 0-1 integer programming problem is still NP-Complete, it is helpful to make it descriptive. And in real engineering, we may use some common integer programming solver library to have better performance. Since the first step, we may need to iterate exponential-level number of terms and the final integer programming solving may also take exponential time. The overall time complexity of computing mini cover is still exponential level.
+So we converted the last step of Quine-McCluskey method into a pure 0-1 integer programming problem. Although 0-1 integer programming problem is still NP-Complete, it is helpful to make it descriptive. And in real engineering, we may use some common integer programming solver library to have better performance. Since the first step, we may need to iterate an exponential-level number of terms and the final integer programming solving may also take exponential time. The overall time complexity of computing mini cover is still exponential level.
 
 \section{Optimal Cover}
 
-Now, let's go into the hardest problem, optimal cover. As introduced in Peng \& Xiao \cite{peng2016optimal}, with a given mini cover, we can get a equivalent optimal cover by applying the same MINIMIZE approach used in section 3.7. So here we can use a very similar approach to compute optimal cover. Algorithm 10. shows the process how we compute a optimal cover from a given functional dependency set $F$ under a given universe $U$. Since the step computing mini cover is NP-Complete,
-the overall time complexity of computing optimal cover is still NP-Complelte.
+Now, let's go into the hardest problem, optimal cover. As introduced in Peng \& Xiao \cite{peng2016optimal}, with a given mini cover, we can get an equivalent optimal cover by applying the same MINIMIZE approach used in section 3.7. So here we can use a very similar approach to compute optimal cover. Algorithm 10. shows the process of how we compute an optimal cover from a given functional dependency set $F$ under a given universe $U$. Since the step computing mini cover is NP-Complete,
+the overall time complexity of computing optimal cover is still NP-Complete.
 
 \begin{algorithm}
   \caption{optimal(U, F)}
@@ -725,11 +727,11 @@ the overall time complexity of computing optimal cover is still NP-Complelte.
 
 \section{Implementation}
 
-We implemented all the algorithms mentioned in the this chapter using C++ (around 1700 lines of code) and the project is fully open sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during development process to set up enough test cases validating the correctness of the implementions.
+We implemented all the algorithms mentioned in this chapter using C++ (around 1700 lines of code) and the project is fully open-sourced on Github \cite{githubfdc}. We used the Standard Template Library (STL) \cite{plauger2000c++} to construct basic data structures, Lohmann's JSON library \cite{nlohmann_json} to deal with the format of our datasets and GNU Linear Programming Kit (GLPK) \cite{makhorin2008glpk} to solve some integer programming problem for computing optimal covers. We also used Google's GTest \cite{barca2016gtest} during the development process to set up enough test cases validating the correctness of the implementation.
 
-Figure 3.1 shows the project structure of our implementation. We use CMake \cite{martin2010mastering} as the build toold chain. Src folder contains the most source code, `fdc.h` provides the definitions of data structures and functions. `io.cpp` contains the IO related function implementations. `algorithm.cpp` contains the most implementations of cover algorithms. The Quine-McCluskey method and 0-1 integer programming parts are separated into `qmc.cpp`.
+Figure 3.1 shows the project structure of our implementation. We use CMake \cite{martin2010mastering} as the build tool chain. Src folder contains the most source code, `fdc.h` provides the definitions of data structures and functions. `io.cpp` contains the IO related function implementations. `algorithm.cpp` contains the most implementations of cover algorithms. The Quine-McCluskey method and 0-1 integer programming parts are separated into `qmc.cpp`.
 
-Test folder contains test code based on GTest \cite{barca2016gtest} framework. In algorithm subfolder, we have unit test cases to validate the correctness of each cover algorithm. In io subfolder, we validate the correctness of input-output related functions. And in dataset folder, we have some test case to run the experiment for Chapter 4.
+Test folder contains test code based on the GTest \cite{barca2016gtest} framework. In algorithm subfolder, we have unit test cases to validate the correctness of each cover algorithm. In io subfolder, we validate the correctness of input-output related functions. And in dataset folder, we have some test case to run the experiment for Chapter 4.
 
 Also, the code is well documented. We use Doxygen \cite{laramee2011bob} to generate documents automatically. The full source code can be found via Github \cite{githubfdc} or in the Appendix of this paper.
 
@@ -741,17 +743,17 @@ Also, the code is well documented. We use Doxygen \cite{laramee2011bob} to gener
 
 \section{Summary}
 
-So in this chapter, we introduced some basic algorithms to find dependent set, validate membership determination, attributes equivalence and functional dependencies equivalence. Based on these basic approaches, we introduced how to compute non-redundant cover, canonical cover, minimum cover, l-minimum cover and lr-minimum cover. And then we talked about the computation of mini cover. It can be converted to a equivalent minimum boolean expression problem using Delobel-Casey transform. To solve the minimum boolean expression problem, we introduced Quine-McCluskey method and 0-1 integer programming model. Finally, based on the computation of mini cover, we introduced the optimal cover algorithm.
+So in this chapter, we introduced some basic algorithms to find dependent set, validate membership, attributes equivalence and functional dependencies equivalence. Based on these basic approaches, we introduced how to compute non-redundant cover, canonical cover, minimum cover, l-minimum cover and lr-minimum cover. And then we talked about the computation of mini cover. It can be converted to an equivalent minimum boolean expression problem using Delobel-Casey transform. To solve the minimum boolean expression problem, we introduced the Quine-McCluskey method and 0-1 integer programming model. Finally, based on the computation of the mini cover, we introduced the optimal cover algorithm.
 
 \chapter{Experiments}
 
-In this chapter, we'll show some experiment results based on our c++ implementation and 11 datasets (mostly from realworld). We'll first talk about how we setup the experiment and introduce the characteristics of the datasets. The experiment is basically divied into two parts: for 3 small datasets, we successfully run all the algorithms; for other 9 big datasets, we only run the other algorithms except mini cover and optimal cover in a limited time. Section 4.2 and 4.3 will show the details of these experiment results. And section 4.4 will show more trade-off between cover size and time consumption for each algorithm on the full dataset.
+In this chapter, we'll show some experimental results based on our c++ implementation and 11 datasets (mostly from real-world). We'll first talk about how we set up the experiment and introduce the characteristics of the datasets. The experiment is divied into two parts: for 3 small datasets, we successfully run all the algorithms; for other 9 big datasets, we only run the other algorithms except mini cover and optimal cover in a limited time. Section 4.2 and 4.3 will show the details of these experimental results. And section 4.4 will show more trade-off between cover size and time consumption for each algorithm on the full dataset.
 
-To better understand our experiment result, we'll show the results of some example on a tiny dataset abalone in section 4.5. Then in section 4.6, we'll analysis these experiment results and try to given some answer of our research question.
+To better understand our experiment result, we'll show the results of some example on a tiny dataset abalone in section 4.5. Then in section 4.6, we'll analysis these experimental results and try to give some answer to1 our research question.
 
 \section{Experiment Setup}
 	
-To evaluate the performance of different optimum cover algorithms, we used 12 different datasets for testing. Table 4.1 shows the characteristics of the 12 different databsets. Fd\_reduced is the only synthetic dataset. Other datasets are from realworld, obtained from the UCI Machine Learning Repository \cite{asuncion2007uci}. Most of these datasets were also  used in some experiment of functional dependency discovery \cite{papenbrock2015functional}.
+To evaluate the performance of different optimum cover algorithms, we used 12 different datasets for testing. Table 4.1 shows the characteristics of the 12 different datasets. Fd\_reduced is the only synthetic dataset. Other datasets are from real-world, obtained from the UCI Machine Learning Repository \cite{asuncion2007uci}. Most of these datasets were also  used in some experiment of functional dependency discovery \cite{papenbrock2015functional}.
 
 \begin{table}
 
@@ -777,7 +779,7 @@ To evaluate the performance of different optimum cover algorithms, we used 12 di
 		\hline
 	\end{tabular}
 
-	\caption{Summary Characteristics of Various Datasets}
+	\caption{Summary characteristics of various datasets}
 	
 \end{table}
 
@@ -785,9 +787,9 @@ And our experiment runs on the same Linux laptop (Ubuntu 18.04.1, x86\_64, Intel
 
 \section{Experiment for Non-exponential Algorithms}
 
-In this section, we only test the non-exponential time complexity algorithms (non-redundant, cannonical, minimum, L-minimum and LR-minimum algorithms). For each dataset, we first sorted the functional dependencies by ascending order. Then we tested 100 times for the algorithms. For each time, we only used the first $k$ ($k$ is from 1 to 100) percentage of the functional dependencies as the input. And we recorded the time consumption and the number of attributes in the result cover for each algorithm.
+In this section, we only test the non-exponential time complexity algorithms (non-redundant, canonical, minimum, L-minimum and LR-minimum algorithms). For each dataset, we first sorted the functional dependencies by ascending order. Then we tested 100 times for the algorithms. For each time, we only used the first $k$ ($k$ is from 1 to 100) percentage of the functional dependencies as the input. And we recorded the time consumption and the number of attributes in the resulting cover for each algorithm.
 
-The line charts below show the experiment result for this section. Each pair of line charts indicates the result from one dataset. The both x-axises indicate the percentage of dataset we used as the input. For the left diagrams, the y-axis indicates the number of attributes (repetitvely counted) in the result cover for each algorithm. For the right diagrams, the y-axis indicates the time consumption for each algorithm.
+The line charts below show the experiment result for this section. Each pair of line charts indicates the result from one dataset. Both x-axises indicate the percentage of the dataset we used as the input. For the left diagrams, the y-axis indicates the number of attributes (repetitively counted) in the resulting cover for each algorithm. For the right diagrams, the y-axis indicates the time consumption for each algorithm.
 
 Table 4.2-4.3 shows the time consumption and the result cover size for each algorithm and each dataset when using full functional dependencies as the input.
 
@@ -873,7 +875,7 @@ Table 4.2-4.3 shows the time consumption and the result cover size for each algo
     
 \end{tabular}
 
-	\caption{Time Consumption and Cover Size of Non-exponential Algorithms}
+	\caption{Time consumption and cover size of non-exponential algorithms}
 	
 \end{table}
 
@@ -914,7 +916,7 @@ Table 4.2-4.3 shows the time consumption and the result cover size for each algo
     
 \end{tabular}
 
-	\caption{Time Consumption and Cover Size of Non-exponential Algorithms}
+	\caption{Time consumption and cover size of con-exponential algorithms}
 	
 \end{table}
 
@@ -978,7 +980,7 @@ Table 4.4 shows the time consumption and the result cover size for each algorith
     
 \end{tabular}
 
-	\caption{Time Consumption and Cover Size of All Algorithms}
+	\caption{Time consumption and cover size of all algorithms}
 	
 \end{table}
 
@@ -1474,18 +1476,18 @@ And Table 4.11 shows the reduction size and time ratio for each algorithm on eac
     	    
     \hline
     
-abalone & 102000.0 & -141000.0 & 102000.0 & 102000.0 & 161000.0 & -1500.0 & 10125.0 \\                                                                                                                               
+abalone & 102000.0 & -141000.0 & 102000.0 & 102000.0 & \textcolor{red}{161000.0} & -1500.0 & 10125.0 \\                                                                                                                               
 letter & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\                                                                                                                                                                  
-adult & 182000.0 & 156000.0 & 182000.0 & 182000.0 & 184000.0 & 3.969 & 7.079 \\                                                                                                                                      
-lineitem & 145352.941 & -140576.271 & 35928.571 & 26034.188 & 31792.452 && \\                                                                                                                                           
-china\_weather & 60676.855 & 7742.424 & 25153.739 & 20524.076 & 20719.316 && \\                                                                                                                                          
-fd\_reduced & 187000.0 & -173728.723 & 145785.024 & 120951.903 & 433479.452 && \\                                                                                                                                        
-hepatitis & 24952.38 & 8729.931 & 10796.426 & 8103.415 & 8169.515 && \\                                                                                                                                                 
-uniprot & 9010.719 & -3472.843 & 8698.931 & 7874.556 & 8315.555 && \\                                                                                                                                                   
-horse & -168.636 & -160.676 & 89.185 & 134.312 & 152.629 && \\                                                                                                                                                          
-diabetic & 1317.016 & 210.012 & 732.358 & 738.338 & 748.394 && \\                                                                                                                                                       
-plista & 1420.161 & 786.394 & 1060.091 & 1001.961 & 1016.912 && \\                                                                                                                                                      
-flight & 5533.379 & 5473.493 & 5603.379 & 5583.835 & 5558.287 && \\	
+adult & 182000.0 & 156000.0 & 182000.0 & 182000.0 & \textcolor{red}{184000.0} & 3.969 & 7.079 \\                                                                                                                                      
+lineitem & \textcolor{red}{145352.941} & -140576.271 & 35928.571 & 26034.188 & 31792.452 && \\                                                                                                                                           
+china\_weather & \textcolor{red}{60676.855} & 7742.424 & 25153.739 & 20524.076 & 20719.316 && \\                                                                                                                                          
+fd\_reduced & 187000.0 & -173728.723 & 145785.024 & 120951.903 & \textcolor{red}{433479.452} && \\                                                                                                                                        
+hepatitis & 24952.38 & 8729.931 & \textcolor{red}{10796.426} & 8103.415 & 8169.515 && \\                                                                                                                                                 
+uniprot & \textcolor{red}{9010.719} & -3472.843 & 8698.931 & 7874.556 & 8315.555 && \\                                                                                                                                                   
+horse & -168.636 & -160.676 & 89.185 & 134.312 & \textcolor{red}{152.629} && \\                                                                                                                                                          
+diabetic & \textcolor{red}{1317.016} & 210.012 & 732.358 & 738.338 & 748.394 && \\                                                                                                                                                       
+plista & \textcolor{red}{1420.161} & 786.394 & 1060.091 & 1001.961 & 1016.912 && \\                                                                                                                                                      
+flight & 5533.379 & 5473.493 & \textcolor{red}{5603.379} & 5583.835 & 5558.287 && \\	
 
     \hline
         
@@ -1562,7 +1564,7 @@ The abalone dataset contains 9 attributes and 54 functional dependencies. There 
 
 \subsection{Non-Redundant Cover of Abalone Dataset}
 
-By removing redundant functional dependencies, we got a non-redundant cover where there are 269 attributes and 40 functional dependencies. We can see that non-redundant cover algorithm only removes redundant functional dependencies. All the functional dependencies in the result must be originally existed in the input cover.
+By removing redundant functional dependencies, we got a non-redundant cover where there are 269 attributes and 40 functional dependencies. We can see that the non-redundant cover algorithm only removes redundant functional dependencies. All the functional dependencies in the result must originally exist in the input cover.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
@@ -1610,7 +1612,7 @@ By removing redundant functional dependencies, we got a non-redundant cover wher
 \subsection{Canonical Cover of Abalone Dataset}
 
 To compute canonical cover, we first split the functional dependencies where the right side has multiple attributes into multiple functional dependencies when the right side is single.
-Then we remove the redundant covers. We can see the the right side of canonical cover is some kind of simplified. But considering the cover size, the result has 512 attributes and 100 functional dependencies. It is definitely not good to be a smallest cover.
+Then we remove the redundant covers. We can see the right side of canonical cover is some kind of simplified. But considering the cover size, the result has 512 attributes and 100 functional dependencies. It is definitely not good to be the smallest cover.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (4)
@@ -1717,7 +1719,7 @@ Then we remove the redundant covers. We can see the the right side of canonical 
 
 \subsection{Minimum Cover of Abalone Dataset}
 
-Minimum cover tries to achive smallest number of functional dependencies. Here is the result of minimum cover from the abalone dataset. It has 269 attributes and only 40 functional dependencies.
+Minimum cover tries to achive the smallest number of functional dependencies. Here is the result of minimum cover from the abalone dataset. It has 269 attributes and only 40 functional dependencies.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
@@ -1764,7 +1766,7 @@ Minimum cover tries to achive smallest number of functional dependencies. Here i
 
 \subsection{L-Minimum Cover of Abalone Dataset}
 
-L-Minimum cover is based on minimum cover. It has the smallest number of functional dependencies and tries to reduce the left side attributes. But for our example, the left side cannot be reduced any more. So the result has 269 attributes and 40 functional dependencies as same as the previous one.
+The L-Minimum cover is based on minimum cover. It has the smallest number of functional dependencies and tries to reduce the left side attributes. But for our example, the left side cannot be reduced any more. So the result has 269 attributes and 40 functional dependencies as same as the previous one.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (4, 6, 7)
@@ -1811,7 +1813,7 @@ L-Minimum cover is based on minimum cover. It has the smallest number of functio
 
 \subsection{LR-Minimum Cover of Abalone Dataset}
 
-LR-Minimum cover is based on L-minimum cover. It has the minimum number of functional dependencies and also tries to reduce the right side attributes based on the result of L-minimum cover. For our example, LR-minimum cover has 210 attributes (much smaller than L-minimum) and 40 functional dependencies.
+The LR-Minimum cover is based on L-minimum cover. It has the minimum number of functional dependencies and also tries to reduce the right side attributes based on the result of L-minimum cover. For our example, LR-minimum cover has 210 attributes (much smaller than L-minimum) and 40 functional dependencies.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (6)
@@ -1858,7 +1860,7 @@ LR-Minimum cover is based on L-minimum cover. It has the minimum number of funct
 
 \subsection{Mini Cover of ABalone Dataset}
 
-Mini cover has the same constraint of single right side attribute. Under this constraint, it tries to achieve smallest number of attributes. For our example, mini cover has 75 functional dependencies and 395 attributes, which is much smaller than the canonical cover.
+Mini cover has the same constraint of single right side attribute. Under this constraint, it tries to achieve the smallest number of attributes. For our example, mini cover has 75 functional dependencies and 395 attributes, which is much smaller than the canonical cover.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 7) -> (4)
@@ -1940,7 +1942,7 @@ Mini cover has the same constraint of single right side attribute. Under this co
 
 \subsection{Optimal Cover of Abalone Dataset}
 
-And finally, optimal cover tries to achieve the possible smallest number of attributes. Compared with LR-minimum cover, optimal cover of our example has 209 attributes and also 40 functional dependencies. And the below shows the result of optimal cover.
+And finally, optimal cover tries to achieve the possible smallest number of attributes. Compared with LR-minimum cover, the optimal cover of our example has 209 attributes and also 40 functional dependencies. And the below shows the result of optimal cover.
 
 \begin{verbatim}
   (0, 1, 2, 3, 5, 8) -> (4)
@@ -1988,10 +1990,9 @@ And finally, optimal cover tries to achieve the possible smallest number of attr
 
 \section{Analysis}
 
-From the experiment result shown in the sections 4.2, 4.3 and 4.4, we can find that canonical covers always have largest number of attributes. Because in cannonical cover algorithm, we have to split each functional dependency with multiple attributes in the right side into multiple functional dependencies with single attribute in the right side. Then,
-the number of attributes in non-redundant covers are dramatically reduced than canonical covers. And minimum covers have fewer attributes in the result than non-redundant attributes since it has fewest number of functional dependencies. L-minimum covers have fewer attributes than minimum covers. LR-minimum covers have fewer attributes than L-minimum. The number of attributes in mini covers is between  the number in canonical covers and the number in non-redundant covers since it takes some global optimal strategy but the right sides are all single attribute. And optimal covers have fewest number of attributes for all data sets. Table 4.1 shows the overall comparision about the number attributes for different kinds of covers.
+From the experiment result shown in sections 4.2, 4.3 and 4.4, we can find that canonical covers always have the largest number of attributes. Because in the canonical cover algorithm, we have to split each functional dependency with multiple attributes in the right side into multiple functional dependencies with a single attribute in the right side. Then, the number of attributes in non-redundant covers are dramatically reduced than canonical covers. And minimum covers have fewer attributes in the result than non-redundant attributes since it has the fewest number of functional dependencies. L-minimum covers have fewer attributes than minimum covers. LR-minimum covers have fewer attributes than L-minimum. The number of attributes in mini covers is between  the number in canonical covers and the number in non-redundant covers since it takes some global optimal strategy but the right sides are all single attribute. And optimal covers have the fewest number of attributes for all data sets. Table 4.1 shows the overall comparison of the number of attributes for different kinds of covers.
 
-And considering the time consumption of different cover algorithms, mini cover algorithm and optimal cover algorithm take a large number of time. And since their time consumption are both exponential growing. They can only be used for small size of data sets in a limited time. Optimal cover takes one more step to do minimization, so it takes more time than mini cover calculation. For other non-exponential algorithms, LR-minimum cover algorithm takes more time than L-minimum cover. L-minimum cover algorithm takes more time than minimum cover algorithm. Canonical cover algorithm takes more time than minimum cover algorithm. And non-redundant cover algorithm takes least time than all the others. Table 4.2 summarises the overall comparision about the time consumption for different kinds of covers.
+And considering the time consumption of different cover algorithms, mini cover algorithm and optimal cover algorithm take massive time. And since their time consumption are both exponential growing. They can only be used for the small size of data sets in a limited time. The optimal cover takes one more step to do minimization, so it takes more time than mini cover calculation. For other non-exponential algorithms, LR-minimum cover algorithm takes more time than L-minimum cover. The L-minimum cover algorithm takes more time than the minimum cover algorithm. The canonical cover algorithm takes more time than the minimum cover algorithm. And non-redundant cover algorithm takes least time than all the others. Table 4.2 summarises the overall comparision about the time consumption for different kinds of covers.
 
 \begin{figure}[H]
 	\begin{minipage}[b]{.45\linewidth}
@@ -2031,23 +2032,23 @@ And considering the time consumption of different cover algorithms, mini cover a
 	\end{minipage}	
 \end{figure}
 
-Based on the experiment result, optimal cover achieves the best possible cover size, but it may be too expensive to compute. Execept mini cover and optimal cover, LR-minimum cover shows the biggest reduction of cover size. And considering the time consumption, LR-minimum cover may not spent much more time other algorithms.
+Based on the experiment result, optimal cover achieves the best possible cover size, but it may be too expensive to compute. Except mini cover and optimal cover, LR-minimum cover shows the biggest reduction of cover size. And considering the time consumption, LR-minimum cover may not spend much more time other algorithms.
 
 \section{Summary}
 
-So in this chapter, we introduced how to run the experiment and show the characteristics of the datasets that we used. Since mini cover and optimal cover computation are quite expensive, we only sucessfully run these two algorithms on three small datasets. But for other algorithms, we run them on all 11 datasets. Based on our analysis, we suggest lr-minimum cover as the best choice since the result cover size is good enough and the time consumption is not expensive as the exponential algorithms like mini cover algorithm and optimal cover algorithm.
+So in this chapter, we introduced how to run the experiment and show the characteristics of the datasets that we used. Since mini cover and optimal cover computation are quite expensive, we only successfully run these two algorithms on three small datasets. But for other algorithms, we run them on all 11 datasets. Based on our analysis, we suggest lr-minimum cover as the best choice since the result cover size is good enough and the time consumption is not expensive as the exponential algorithms like mini cover algorithm and optimal cover algorithm.
 
 \chapter{Conclusion}
 
-Functional dependencies are essential for database schema design and other data processing tasks. Functional dependencies can be represented in many equivalent but different ways. They can known as covers. In this article, we reviewed many different types of optimum covers. They are non-redundant, canonical, minimum, L-minimum, LR-minimum, mini and optimal covers. We fully implemented all the cover algorithms and tested the implementations using many datasets from real world. We evaluated their performance by the reduction of the attribute size and the time comsumption.
+Functional dependencies are essential for database schema design and other data processing tasks. Functional dependencies can be represented in many equivalent but different ways. They can be known as covers. In this article, we reviewed many different types of optimum covers. They are non-redundant, canonical, minimum, L-minimum, LR-minimum, mini and optimal covers. We fully implemented all the cover algorithms and tested the implementations using many datasets from the real world. We evaluated their performance by the reduction of the attribute size and time consumption.
 
-Optimal cover algorithm has best performance on the reduction of input size and the time consumption is not acceptable for many big data sets. Mini cover algorithm also takes exponential growing time so it is not pretty suitable for big input data. Other algorithms can be exptended for big data sets. Their time comsuption all grows at same level. LR-minimum cover algorithm may have the biggest constant but also perform better on the reduction. So based on our expriment, LR-minimum seems to be more suitable for real world datasets.
+The optimal cover algorithm has the best performance on the reduction of input size and the time consumption is not acceptable for many big data sets. The mini cover algorithm also takes exponential growing time so it is not pretty suitable for big input data. Other algorithms can be extended for big data sets. Their time consumption all grows at the same level. The LR-minimum cover algorithm may have the biggest constant but also perform better on the reduction. So based on our experiment, LR-minimum seems to be more suitable for real world datasets.
 
-So considering the output sizes of covers, optimal cover achives the best possible size. But it might be too expensive for realworld datasets. Overall, LR-minimum cover could be the most ideal choice since the reduction of attributes is good enough and the time consumption is not much bigger than other algorithms.
+So considering the output sizes of covers, optimal cover achieves the best possible size. But it might be too expensive for real-world datasets. Overall, LR-minimum cover could be the most ideal choice since the reduction of attributes is good enough and the time consumption is not much bigger than other algorithms.
 
 \chapter{Future Work}
 
-To some extent, most of the algorithms described in this article are following the same way of thinking: based on what kind of rules, transform the current cover to equivalent but smaller cover. What if we rethink the problem in another pattern? For example, we may probably try to grow a functional dependency set $G$. For each time, we make sure that $G^{+} \subset F^{+}$ and try to add some new functional dependency $f$ into $G$. Obviously, $f \not \in G^{+}$. If we can find a effective way to enumerate potential $f$ for current $G$ and we can find a approate heuristic function to estimate the potential final size grown from current $G$. Maybe we can find some more effective algorithm to solve optimal cover algorithm.
+To some extent, most of the algorithms described in this article are following the same way of thinking: based on what kind of rules, transform the current cover to an equivalent but smaller cover. What if we rethink the problem in another pattern? For example, we may probably try to grow a functional dependency set $G$. For each time, we make sure that $G^{+} \subset F^{+}$ and try to add some new functional dependency $f$ into $G$. Obviously, $f \not \in G^{+}$. If we can find an effective way to enumerate potential $f$ for current $G$ and we can find an approate heuristic function to estimate the potential final size grown from current $G$. Maybe we can find some more effective algorithm to solve the optimal cover algorithm.
 
 And speaking to the performance, is it possible that we can use some parallel computing techniques to speed up our current algorithms? It may also be a good direction to go further.
 

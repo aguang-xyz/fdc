@@ -1,7 +1,7 @@
 *.aux
 *.log
-*.pdf
 *.synctex.gz
+references/*.pdf
 *.toc
 *.bbl
 *.blg
