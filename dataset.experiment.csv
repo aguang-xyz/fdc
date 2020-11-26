@@ -1,0 +1,7 @@
+../../dataset/Complete Data/abalone,Non-Redundant,0.000228,40,269,0.00803,0
+../../dataset/Complete Data/abalone,Canonical,0.000657,100,512,0.019109,0
+../../dataset/Complete Data/abalone,Minimum,0.000497,40,269,0.005259,0
+../../dataset/Complete Data/abalone,L-Minimum,0.000747,40,269,0.00499,0
+../../dataset/Complete Data/abalone,LR-Minimum,0.000846,40,210,0.004613,0
+../../dataset/Complete Data/abalone,Mini,0.018546,75,395,0.008208,0
+../../dataset/Complete Data/abalone,Optimal,0.016356,40,209,0.004397,0
